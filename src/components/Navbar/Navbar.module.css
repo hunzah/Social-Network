@@ -2,10 +2,13 @@
 
     grid-area: nav;
     background-color: bisque;
+    padding: 20px;
+
 }
 .item a {
     color: white;
+    text-decoration: none;
 }
-.item.active a {
+.item a.active {
     color: gold;
 }
