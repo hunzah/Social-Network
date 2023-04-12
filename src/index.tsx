@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-
+// db for Dialogs
 export type dialogsArrType = {
     path: string
     name: string
@@ -27,8 +27,22 @@ const messageArr: messageArrType[] = [
     {text: 'Hey!'},
 ]
 
+// db for Profile
+export type PostsArrType = {
+    message:string
+    count:number
+}
+const postsArr: PostsArrType[] = [
+    { message: "Hi, how fre you?", count: 15 },
+    { message: "It's my first post", count: 16 },
+]
+
+
+
 
 ReactDOM.render(
-    <App dialogsArr = {dialogsArr} messageArr = {messageArr}/>,
+    <App dialogsArr = {dialogsArr} messageArr = {messageArr}
+         postsArr = {postsArr}/>,
   document.getElementById('root')
 )
+

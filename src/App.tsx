@@ -7,25 +7,28 @@ import {Dialogs} from './components/Dialogs/Dialogs';
 import {BrowserRouter, Route} from 'react-router-dom';
 import {Music} from './components/Navbar/Music/Music';
 import {Settings} from './components/Navbar/Setings/Settings';
-import {dialogsArrType, messageArrType} from './index';
+import {dialogsArrType, messageArrType, PostsArrType} from './index';
 
 
-export type DialogsPropsType = {
+export type AppPropsType = {
     dialogsArr:dialogsArrType[]
     messageArr:messageArrType[]
+    postsArr:PostsArrType[]
 }
 
 
-const App = (props:DialogsPropsType) =>{
+
+
+const App = (props:AppPropsType) =>{
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
-                <Navbar/>
+                <Navbar />
                 <div className={'app-wrapper-content'}>
                     <Route path="/Dialogs" render={() => <Dialogs
                         dialogsArr={props.dialogsArr} messageArr={props.messageArr}/>}/>
-                    <Route path="/Profile" render={() => <Profile/>}/>
+                    <Route path="/Profile" render={() => <Profile postsArr={props.postsArr}/>}/>
                     <Route path="/Music" render={() => <Music/>}/>
                     <Route path="/Settings" render={() => <Settings/>}/>
                 </div>

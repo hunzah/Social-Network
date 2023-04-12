@@ -1,9 +1,13 @@
 import s from './Dialogs.module.css'
 import {Message} from './Message/Message';
 import {Dialog} from './DialogItem/Dialog';
-import {DialogsPropsType} from '../../App';
+import {dialogsArrType, messageArrType} from '../../index';
 
 
+type DialogsPropsType = {
+    dialogsArr: dialogsArrType[]
+    messageArr:messageArrType[]
+}
 export const Dialogs = (props:DialogsPropsType) => {
     return (
         <div className={s.dialogs}>

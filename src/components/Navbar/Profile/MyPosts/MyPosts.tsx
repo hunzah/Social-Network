@@ -2,9 +2,15 @@ import React from 'react';
 // @ts-ignore
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
+import { PostsArrType } from '../../../../index';
 
 
-export const MyPosts = () => {
+type MyPostsPropsType = {
+    postsArr: PostsArrType[]
+}
+
+
+export const MyPosts = (props:MyPostsPropsType) => {
     return (
         <div className={s.postsBlock}>
             <h3>My Post</h3>
@@ -17,9 +23,7 @@ export const MyPosts = () => {
                 </div>
             </div>
             <div>
-                <Post message="Hi, how fre you?" count={15}/>
-                <Post message="It's my first post" count={16}/>
-
+                {props.postsArr.map(item => <Post message={item.message} count={item.count} />)}
             </div>
         </div>
     )
