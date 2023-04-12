@@ -1,12 +1,12 @@
 import s from './Dialogs.module.css'
 import {Message} from './Message/Message';
 import {Dialog} from './DialogItem/Dialog';
-import {dialogsArrType, messageArrType} from '../../index';
+import {DialogsArrType, MessageArrType} from '../redux/state';
 
 
 type DialogsPropsType = {
-    dialogsArr: dialogsArrType[]
-    messageArr:messageArrType[]
+    dialogsArr: DialogsArrType[]
+    messageArr:MessageArrType[]
 }
 export const Dialogs = (props:DialogsPropsType) => {
     return (
