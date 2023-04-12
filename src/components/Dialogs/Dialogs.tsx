@@ -1,23 +1,23 @@
 import s from './Dialogs.module.css'
 import {Message} from './Message/Message';
 import {Dialog} from './DialogItem/Dialog';
+import {DialogsPropsType} from '../../App';
 
 
-
-export const Dialogs = () => {
+export const Dialogs = (props:DialogsPropsType) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
-                <Dialog path={'1'} name={'Curtis James'}/>
-                <Dialog path={'2'} name={'John Carter'}/>
-                <Dialog path={'3'} name={'Andre Lauren'}/>
-                <Dialog path={'4'} name={'Christopher George'}/>
+                <Dialog path={props.dialogsArr[0].path} name={props.dialogsArr[0].name}/>
+                <Dialog path={props.dialogsArr[1].path} name={props.dialogsArr[1].name}/>
+                <Dialog path={props.dialogsArr[2].path} name={props.dialogsArr[2].name}/>
+                <Dialog path={props.dialogsArr[3].path} name={props.dialogsArr[3].name}/>
             </div>
             <div className={s.messages}>
-                <Message text={'Hi!'}/>
-                <Message text={'my name is Curtis James'}/>
-                < Message text={'Hi!'}/>
-                <Message text={'Hi!'}/>
+                <Message text={props.messageArr[0].text}/>
+                <Message text={props.messageArr[1].text}/>
+                <Message text={props.messageArr[2].text}/>
+                <Message text={props.messageArr[3].text}/>
             </div>
         </div>
     )
