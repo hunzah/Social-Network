@@ -1,7 +1,7 @@
 import React from 'react';
 import { MyPosts } from './MyPosts/MyPosts';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
-import { PostsArrType } from '../../redux/state';
+import {addPost, PostsArrType} from '../../redux/state';
 
 
 type ProfilePropsType = {
@@ -13,7 +13,7 @@ export const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo />
-            <MyPosts postsArr={props.postsArr} />
+            <MyPosts postsArr={props.postsArr} addPost={addPost} />
         </div>
     )
 }

@@ -7,7 +7,8 @@ import {Dialogs} from './components/Dialogs/Dialogs';
 import {BrowserRouter, Route} from 'react-router-dom';
 import {Music} from './components/Navbar/Music/Music';
 import {Settings} from './components/Navbar/Setings/Settings';
-import {StateType} from './components/redux/state';
+import state, {StateType} from './components/redux/state';
+import {Friends} from './components/Navbar/Friends/Friends';
 
 
 type AppPropsType = {
@@ -27,6 +28,8 @@ const App = (props:AppPropsType) =>{
                     <Route path="/Profile" render={() => <Profile postsArr={props.state.profilePage.postsArr}/>}/>
                     <Route path="/Music" render={() => <Music/>}/>
                     <Route path="/Settings" render={() => <Settings/>}/>
+                    <Route path="/Friends" render={() => <Friends Friends={state.friendsPage.Friends}/>}/>
+
                 </div>
             </div>
         </BrowserRouter>

@@ -22,6 +22,8 @@ export const Dialogs = (props:DialogsPropsType) => {
                 <Message text={props.messageArr[1].text}/>
                 <Message text={props.messageArr[2].text}/>
                 <Message text={props.messageArr[3].text}/>
+                <input></input>
+                <button>send</button>
             </div>
         </div>
     )
