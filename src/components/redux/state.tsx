@@ -1,4 +1,5 @@
 import {renderEntireTree} from '../../render';
+import {v1} from 'uuid';
 
 export type StateType = {
     messagesPage:
@@ -6,11 +7,12 @@ export type StateType = {
             dialogsArr: DialogsArrType[]
             messageArr: MessageArrType[]
         }
-    profilePage:
-        { postsArr: PostsArrType[] }
+    profilePage: ProfilePageType
     friendsPage:
         { Friends: FriendsArrType[] }
 }
+
+
 
 // Dialogs
 export type DialogsArrType = {
@@ -21,16 +23,27 @@ export type MessageArrType = {
     text: string
 }
 
+
+
+
 //Navbar > Profile
+export type ProfilePageType = {
+    postsArr: PostsArrType[]
+    newPostText:string
+}
 export type PostsArrType = {
-    id:number
+    id: number
     message: string
     count: number
 }
 
+
+
 //Navbar > Friends
 export type FriendsArrType =
-    { avatar: string, name: string }
+    { id: string, avatar: string, name: string }
+
+
 
 let state: StateType = {
     messagesPage: {
@@ -49,27 +62,42 @@ let state: StateType = {
     },
     profilePage: {
         postsArr: [
-            {id:1, message: 'Hi, how are you?', count: 15},
-            {id:2, message: 'It\'s my first post', count: 16},
-        ]
+            {id: 1, message: 'Hi, how are you?', count: 15},
+            {id: 2, message: 'It\'s my first post', count: 16},
+        ],
+        newPostText:''
     },
     friendsPage: {
         Friends: [
-            {avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Victoria'},
-            {avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Alex'}
+            {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Victoria'},
+            {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Victoria'},
+            {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Victoria'},
+            {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Victoria'},
+            {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Victoria'},
+            {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Alex'}
         ]
     }
 }
 
 
-export const addPost:() => void =()=>{
-    const newPost:PostsArrType = {
-        id:3,
-        message:'Hey! I\'am new here',
-        count:2
+export const addPost: (text:string) => void = (text:string) => {
+    const newPost: PostsArrType = {
+        id: 3,
+        message: state.profilePage.newPostText,
+        count: 2
     }
-    state.profilePage.postsArr.push(newPost)
+    state.profilePage.postsArr.unshift(newPost)
+    state.profilePage.newPostText = ''
+
     renderEntireTree(state)
 }
+
+export const updateNewPostText: (newText:string) => void = (newText:string) => {
+    state.profilePage.newPostText = newText
+    renderEntireTree(state)
+}
+
+
+
 
 export default state

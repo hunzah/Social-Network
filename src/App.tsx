@@ -13,6 +13,8 @@ import {Friends} from './components/Navbar/Friends/Friends';
 
 type AppPropsType = {
     state:StateType
+    addPost: (text:string)=>void
+    updateNewPostText:(newText:string)=>void
 }
 
 
@@ -21,11 +23,13 @@ const App = (props:AppPropsType) =>{
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
-                <Navbar />
+                <Navbar Friends={state.friendsPage.Friends} />
                 <div className={'app-wrapper-content'}>
                     <Route path="/Dialogs" render={() => <Dialogs
                         dialogsArr={props.state.messagesPage.dialogsArr} messageArr={props.state.messagesPage.messageArr}/>}/>
-                    <Route path="/Profile" render={() => <Profile postsArr={props.state.profilePage.postsArr}/>}/>
+                    <Route path="/Profile" render={() => <Profile state={props.state}
+                                                                  addPost = {props.addPost}
+                                                                  updateNewPostText={props.updateNewPostText}/>}/>
                     <Route path="/Music" render={() => <Music/>}/>
                     <Route path="/Settings" render={() => <Settings/>}/>
                     <Route path="/Friends" render={() => <Friends Friends={state.friendsPage.Friends}/>}/>

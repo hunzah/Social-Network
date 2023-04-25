@@ -1,11 +1,15 @@
 import React from 'react';
 import { MyPosts } from './MyPosts/MyPosts';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
-import {addPost, PostsArrType} from '../../redux/state';
+import {StateType, updateNewPostText} from '../../redux/state';
+
+
 
 
 type ProfilePropsType = {
-    postsArr: PostsArrType[]
+    state: StateType
+    addPost: (text:string)=>void
+    updateNewPostText:(newText:string)=>void
 }
 
 
@@ -13,7 +17,7 @@ export const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo />
-            <MyPosts postsArr={props.postsArr} addPost={addPost} />
+            <MyPosts profilePage={props.state.profilePage} addPost={props.addPost} updateNewPostText={updateNewPostText} />
         </div>
     )
 }

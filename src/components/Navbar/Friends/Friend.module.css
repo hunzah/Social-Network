@@ -3,3 +3,13 @@
     height: 50px;
     border-radius: 30px;
 }
+
+
+ul {
+    display: flex;
+}
+
+.items {
+padding-right: 20px;
+    list-style: none;
+}

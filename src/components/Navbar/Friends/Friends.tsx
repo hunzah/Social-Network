@@ -7,19 +7,19 @@ type FriendsPropsType = {
 }
 
 
-export  const Friends = (props:FriendsPropsType, index:number) => {
+export  const Friends = (props:FriendsPropsType) => {
     return (
-        <div>
+        <ul >
             {props.Friends.map(item => {
-                return (<div key={index}>
+                return (<li className={s.items}  key={item.id}>
                             <img className={s.img} src={item.avatar}/>
-                        <div>
+                        <li className={s.items} >
                             {item.name}
-                        </div>
-                    </div>
+                        </li>
+                    </li>
                 )
             })}
-        </div>
+        </ul>
     );
 };
 
