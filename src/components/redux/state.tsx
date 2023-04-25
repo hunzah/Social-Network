@@ -1,5 +1,16 @@
-import {renderEntireTree} from '../../render';
+
 import {v1} from 'uuid';
+
+
+
+let renderEntireTree:(state?:StateType)=>void = () => {
+    console.log('state changed')
+}
+
+export const subscribe = (callback:()=>void) => {
+    renderEntireTree=callback
+}
+
 
 export type StateType = {
     messagesPage:
@@ -89,12 +100,12 @@ export const addPost: (text:string) => void = (text:string) => {
     state.profilePage.postsArr.unshift(newPost)
     state.profilePage.newPostText = ''
 
-    renderEntireTree(state)
+    renderEntireTree()
 }
 
 export const updateNewPostText: (newText:string) => void = (newText:string) => {
     state.profilePage.newPostText = newText
-    renderEntireTree(state)
+    renderEntireTree()
 }
 
 
