@@ -95,7 +95,7 @@ export const addPost: (text:string) => void = (text:string) => {
     const newPost: PostsArrType = {
         id: 3,
         message: state.profilePage.newPostText,
-        count: 2
+        count: 0
     }
     state.profilePage.postsArr.unshift(newPost)
     state.profilePage.newPostText = ''
