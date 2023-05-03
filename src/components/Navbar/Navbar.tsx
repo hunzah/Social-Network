@@ -34,7 +34,7 @@ export const Navbar = (props:FriendsPropsType) => {
                     {props.Friends.map(item => {
                         return (
                             <div className={s.friendItem} key={item.id}>
-                                <img  src={item.avatar}/>
+                                <img  src={item.avatar} alt='avatars'/>
                                 <div className={s.name} >
                                     {item.name}
                                 </div>

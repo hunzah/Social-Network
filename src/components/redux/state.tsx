@@ -1,16 +1,16 @@
-
 import {v1} from 'uuid';
 
 
 
-let renderEntireTree:(state?:StateType)=>void = () => {
-    console.log('state changed')
+export type StoreType = {
+    _state:StateType
+    getState:()=>StateType
+    renderEntireTree:()=>void
+    updateNewPostText: (newText:string) => void
+    subscribe:(callback:()=>void)=>void
+    addPost:() =>void
+    dispatch:(action:any)=>void
 }
-
-export const subscribe = (callback:()=>void) => {
-    renderEntireTree=callback
-}
-
 
 export type StateType = {
     messagesPage:
@@ -23,8 +23,6 @@ export type StateType = {
         { Friends: FriendsArrType[] }
 }
 
-
-
 // Dialogs
 export type DialogsArrType = {
     path: string
@@ -33,9 +31,6 @@ export type DialogsArrType = {
 export type MessageArrType = {
     text: string
 }
-
-
-
 
 //Navbar > Profile
 export type ProfilePageType = {
@@ -48,15 +43,18 @@ export type PostsArrType = {
     count: number
 }
 
-
-
 //Navbar > Friends
-export type FriendsArrType =
-    { id: string, avatar: string, name: string }
+export type FriendsArrType = {
+        id: string, avatar: string, name: string
+    }
 
 
 
-let state: StateType = {
+
+
+
+export const store:StoreType = {
+     _state: {
     messagesPage: {
         dialogsArr: [
             {path: '1', name: 'Curtis James'},
@@ -88,27 +86,47 @@ let state: StateType = {
             {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Alex'}
         ]
     }
-}
+},
+    getState(){
+         return this._state
+    },
+    renderEntireTree() {
+        console.log('state changed')
+    },
+    updateNewPostText (newText) {
+        this._state.profilePage.newPostText = newText
+        this.renderEntireTree()
+},
+    subscribe (callback) {
+        this.renderEntireTree=callback
+    },
+    addPost () {
+        const newPost: PostsArrType = {
+            id: 3,
+            message: this._state.profilePage.newPostText,
+            count: 0
+        }
+        this._state.profilePage.postsArr.unshift(newPost)
+        this._state.profilePage.newPostText = ''
 
-
-export const addPost: (text:string) => void = (text:string) => {
-    const newPost: PostsArrType = {
-        id: 3,
-        message: state.profilePage.newPostText,
-        count: 0
+        this.renderEntireTree()
+    },
+    dispatch (action){
+         if (action === 'ADD-POST'){
+             const newPost: PostsArrType = {
+             id: 3,
+             message: this._state.profilePage.newPostText,
+             count: 0
+         }
+             this._state.profilePage.postsArr.unshift(newPost)
+             this._state.profilePage.newPostText = ''
+             this.renderEntireTree()}
     }
-    state.profilePage.postsArr.unshift(newPost)
-    state.profilePage.newPostText = ''
-
-    renderEntireTree()
-}
-
-export const updateNewPostText: (newText:string) => void = (newText:string) => {
-    state.profilePage.newPostText = newText
-    renderEntireTree()
 }
 
 
 
 
-export default state
+
+
+export default store

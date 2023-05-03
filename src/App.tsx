@@ -7,18 +7,18 @@ import {Dialogs} from './components/Dialogs/Dialogs';
 import {BrowserRouter, Route} from 'react-router-dom';
 import {Music} from './components/Navbar/Music/Music';
 import {Settings} from './components/Navbar/Setings/Settings';
-import state, {StateType} from './components/redux/state';
 import {Friends} from './components/Navbar/Friends/Friends';
+import {StoreType} from './components/redux/state';
 
 
 type AppPropsType = {
-    state:StateType
-    addPost: (text:string)=>void
-    updateNewPostText:(newText:string)=>void
+    store:StoreType
 }
 
 
-const App = (props:AppPropsType) =>{
+const App: React.FC<AppPropsType> = (props) =>{
+    const state = props.store.getState()
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -26,10 +26,10 @@ const App = (props:AppPropsType) =>{
                 <Navbar Friends={state.friendsPage.Friends} />
                 <div className={'app-wrapper-content'}>
                     <Route path="/Dialogs" render={() => <Dialogs
-                        dialogsArr={props.state.messagesPage.dialogsArr} messageArr={props.state.messagesPage.messageArr}/>}/>
-                    <Route path="/Profile" render={() => <Profile state={props.state}
-                                                                  addPost = {props.addPost}
-                                                                  updateNewPostText={props.updateNewPostText}/>}/>
+                        dialogsArr={state.messagesPage.dialogsArr} messageArr={props.store._state.messagesPage.messageArr}/>}/>
+                    <Route path="/Profile" render={() => <Profile state={state}
+                                                                  addPost = {props.store.addPost.bind(props.store)}
+                                                                  updateNewPostText={props.store.updateNewPostText.bind(props.store)}/>}/>
                     <Route path="/Music" render={() => <Music/>}/>
                     <Route path="/Settings" render={() => <Settings/>}/>
                     <Route path="/Friends" render={() => <Friends Friends={state.friendsPage.Friends}/>}/>
