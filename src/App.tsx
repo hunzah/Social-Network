@@ -28,8 +28,7 @@ const App: React.FC<AppPropsType> = (props) =>{
                     <Route path="/Dialogs" render={() => <Dialogs
                         dialogsArr={state.messagesPage.dialogsArr} messageArr={props.store._state.messagesPage.messageArr}/>}/>
                     <Route path="/Profile" render={() => <Profile state={state}
-                                                                  addPost = {props.store.addPost.bind(props.store)}
-                                                                  updateNewPostText={props.store.updateNewPostText.bind(props.store)}/>}/>
+                                                                  dispatch = {props.store.dispatch.bind(props.store)}/>}/>
                     <Route path="/Music" render={() => <Music/>}/>
                     <Route path="/Settings" render={() => <Settings/>}/>
                     <Route path="/Friends" render={() => <Friends Friends={state.friendsPage.Friends}/>}/>

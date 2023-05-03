@@ -1,13 +1,12 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
-import {ProfilePageType} from '../../../redux/state';
+import {DispatchType, ProfilePageType} from '../../../redux/state';
 
 
 type MyPostsPropsType = {
     profilePage:ProfilePageType
-    addPost: () => void
-    updateNewPostText:(newText:string)=>void
+    dispatch: DispatchType
 }
 
 
@@ -18,13 +17,14 @@ export const MyPosts = (props: MyPostsPropsType) => {
     const newPostElement: any = React.createRef()
 
     const addPost = () => {
-
-        props.addPost()
+        let text = newPostElement.current.value
+        props.dispatch({type:'ADD-POST', text:text} )
     }
 
     function onChangeHandler() {
+        debugger
         let newText = newPostElement.current.value
-        props.updateNewPostText(newText)
+        props.dispatch({type:'UPDATE-NEW-POST-TEXT', newText:newText})
     }
 
 
