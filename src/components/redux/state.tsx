@@ -47,7 +47,7 @@ export type FriendsArrType = {
 
 
 export type DispatchType = (action: ActionTypes) => void;
-export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>|ReturnType<typeof addNewMessageAC>
+export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
 
 
 // type AddPostACType = {type: 'ADD-POST', text: string};
@@ -110,15 +110,12 @@ export const store: StoreType = {
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText
             this.renderEntireTree()
-        } else if (action.type === 'NEW-MESSAGE') {
-            // const newMessage = {text: message}
-            // this._state.messagesPage.messageArr.unshift(newMessage)
-
         }
+
     }
 }
 
-export const addNewMessageAC = (message:string)=>({type:'NEW-MESSAGE', messageText:message}as const)
+
 export const addPostAC = (text: string) => ({type: 'ADD-POST', text: text} as const)
 export const updateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
 
