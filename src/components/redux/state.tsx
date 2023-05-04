@@ -27,7 +27,7 @@ export type DialogsArrType = {
     name: string
 }
 export type MessageArrType = {
-    text: string
+    message: string
 }
 
 //Navbar > Profile
@@ -55,10 +55,6 @@ export type ActionTypes =
     | ReturnType<typeof messageSendAC>
 
 
-// type AddPostACType = {type: 'ADD-POST', text: string};
-// type UpdateNewPostTextACType = {type: 'UPDATE-NEW-POST-TEXT', newText:string};
-
-
 export const store: StoreType = {
     _state: {
         messagesPage: {
@@ -69,10 +65,9 @@ export const store: StoreType = {
                 {path: '4', name: 'Christopher George'},
             ],
             messageArr: [
-                {text: 'Hi!'},
-                {text: 'my name is Curtis James!'},
-                {text: 'Hi!'},
-                {text: 'Hey!'},
+                {message: 'Hi!'},
+                {message: 'my name is Curtis James!'},
+
             ],
             newMessageBody: '',
         },
@@ -117,19 +112,25 @@ export const store: StoreType = {
             this._state.profilePage.newPostText = action.newText
             this.renderEntireTree()
         } else if (action.type === 'NEW-MESSAGE-BODY') {
-            this._state.messagesPage.messageArr.unshift(message)
-            this._state.messagesPage.newMessageBody = ''
+
+            this._state.messagesPage.newMessageBody = action.body
             this.renderEntireTree()
         } else if (action.type === 'MESSAGE-SEND') {
-            this._state.messagesPage.newMessageBody = action.body
+
+            const body = this._state.messagesPage.newMessageBody
+            this._state.messagesPage.newMessageBody = ''
+            this._state.messagesPage.messageArr.unshift({message: body})
             this.renderEntireTree()
         }
 
     }
 }
 
-export const newMessageBodyAC = (text: string) => ({type: 'NEW-MESSAGE-BODY', text: text} as const)
-export const messageSendAC = (text: string) => ({type: 'MESSAGE-SEND', text: text} as const)
+
+export const messageSendAC = () => ({type: 'MESSAGE-SEND'} as const)
+export const newMessageBodyAC = (body: string) => ({type: 'NEW-MESSAGE-BODY', body: body} as const)
+
+
 export const addPostAC = (text: string) => ({type: 'ADD-POST', text: text} as const)
 export const updateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
 
