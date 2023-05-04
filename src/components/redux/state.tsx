@@ -46,17 +46,24 @@ export type FriendsArrType = {
 }
 
 
-export type DispatchType = (action: AddPostActionType | UpdateNewPostTextActionType) => void;
 
-type AddPostActionType = {
-    type: 'ADD-POST'
-    text: string
-}
-type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
+
+
+
+export type DispatchType = (action: ActionTypes) => void;
+
+export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
+
+// type AddPostACType = {type: 'ADD-POST', text: string};
+// type UpdateNewPostTextACType = {type: 'UPDATE-NEW-POST-TEXT', newText:string};
+
+export const addPostAC = (text: string) => {
+    return {type: 'ADD-POST', text: text} as const
 }
 
+export const updateNewPostTextAC = (newText: string) => {
+    return {type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const
+}
 
 export const store: StoreType = {
     _state: {
@@ -117,6 +124,8 @@ export const store: StoreType = {
         }
     }
 }
+
+
 
 
 export default store

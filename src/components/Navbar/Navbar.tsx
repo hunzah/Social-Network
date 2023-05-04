@@ -3,7 +3,6 @@ import s from './Navbar.module.css'
 import {NavLink} from 'react-router-dom';
 import {FriendsArrType} from '../redux/state';
 
-
 type FriendsPropsType = {
     Friends: FriendsArrType[]
 }
