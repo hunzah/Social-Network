@@ -5,7 +5,7 @@ export type StoreType = {
     _state: StateType
     getState: () => StateType
     renderEntireTree: () => void
-    subscribe: (callback: () => void) => void
+    subscribe: (callback: () => void) => void | any
     dispatch: DispatchType
 }
 
@@ -14,6 +14,7 @@ export type StateType = {
         {
             dialogsArr: DialogsArrType[]
             messageArr: MessageArrType[]
+            newMessageBody: string
         }
     profilePage: ProfilePageType
     friendsPage:
@@ -47,7 +48,11 @@ export type FriendsArrType = {
 
 
 export type DispatchType = (action: ActionTypes) => void;
-export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
+export type ActionTypes =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof newMessageBodyAC>
+    | ReturnType<typeof messageSendAC>
 
 
 // type AddPostACType = {type: 'ADD-POST', text: string};
@@ -69,6 +74,7 @@ export const store: StoreType = {
                 {text: 'Hi!'},
                 {text: 'Hey!'},
             ],
+            newMessageBody: '',
         },
         profilePage: {
             postsArr: [
@@ -110,12 +116,20 @@ export const store: StoreType = {
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText
             this.renderEntireTree()
+        } else if (action.type === 'NEW-MESSAGE-BODY') {
+            this._state.messagesPage.messageArr.unshift(message)
+            this._state.messagesPage.newMessageBody = ''
+            this.renderEntireTree()
+        } else if (action.type === 'MESSAGE-SEND') {
+            this._state.messagesPage.newMessageBody = action.body
+            this.renderEntireTree()
         }
 
     }
 }
 
-
+export const newMessageBodyAC = (text: string) => ({type: 'NEW-MESSAGE-BODY', text: text} as const)
+export const messageSendAC = (text: string) => ({type: 'MESSAGE-SEND', text: text} as const)
 export const addPostAC = (text: string) => ({type: 'ADD-POST', text: text} as const)
 export const updateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
 
