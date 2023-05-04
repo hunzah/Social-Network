@@ -15,8 +15,6 @@ export const Post = (props: PostType) => {
                 <div>{props.message}</div>
                 <span>likes: </span>
                 {props.count}
-
-
         </div>
     )
 }

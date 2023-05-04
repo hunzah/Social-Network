@@ -46,24 +46,13 @@ export type FriendsArrType = {
 }
 
 
-
-
-
-
 export type DispatchType = (action: ActionTypes) => void;
+export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>|ReturnType<typeof addNewMessageAC>
 
-export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
 
 // type AddPostACType = {type: 'ADD-POST', text: string};
 // type UpdateNewPostTextACType = {type: 'UPDATE-NEW-POST-TEXT', newText:string};
 
-export const addPostAC = (text: string) => {
-    return {type: 'ADD-POST', text: text} as const
-}
-
-export const updateNewPostTextAC = (newText: string) => {
-    return {type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const
-}
 
 export const store: StoreType = {
     _state: {
@@ -91,10 +80,10 @@ export const store: StoreType = {
         friendsPage: {
             Friends: [
                 {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Victoria'},
-                {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Victoria'},
-                {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Victoria'},
-                {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Victoria'},
-                {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Victoria'},
+                {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Ivan'},
+                {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'John'},
+                {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Ali'},
+                {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Curtis'},
                 {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Alex'}
             ]
         }
@@ -121,11 +110,16 @@ export const store: StoreType = {
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText
             this.renderEntireTree()
+        } else if (action.type === 'NEW-MESSAGE') {
+            // const newMessage = {text: message}
+            // this._state.messagesPage.messageArr.unshift(newMessage)
+
         }
     }
 }
 
-
-
+export const addNewMessageAC = (message:string)=>({type:'NEW-MESSAGE', messageText:message}as const)
+export const addPostAC = (text: string) => ({type: 'ADD-POST', text: text} as const)
+export const updateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
 
 export default store

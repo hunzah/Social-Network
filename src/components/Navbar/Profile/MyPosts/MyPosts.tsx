@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {RefObject} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
 import {addPostAC, DispatchType, ProfilePageType, updateNewPostTextAC} from '../../../redux/state';
@@ -14,24 +14,23 @@ type MyPostsPropsType = {
 export const MyPosts = (props: MyPostsPropsType) => {
 
     const postElements = props.profilePage.postsArr.map(item => <Post key ={item.id} message={item.message} count={item.count}/>)
-    const newPostElement: any = React.createRef()
+    const newPostElement:  React.RefObject<HTMLTextAreaElement>  = React.createRef()
 
 
 
     const addPost = () => {
-        let text = newPostElement.current?.value
+        const text = newPostElement.current?.value
         if (text) {
             props.dispatch(addPostAC(text))
         }
     }
 
     function onChangeHandler() {
-        let newText = newPostElement.current?.value
+        const newText = newPostElement.current?.value
         if (newText) {
             props.dispatch(updateNewPostTextAC(newText))
         }
     }
-
 
     return (
         <div className={s.postsBlock}>

@@ -12,23 +12,25 @@ import {StoreType} from './components/redux/state';
 
 
 type AppPropsType = {
-    store:StoreType
+    store: StoreType
 }
 
 
-const App: React.FC<AppPropsType> = (props) =>{
+const App: React.FC<AppPropsType> = (props) => {
     const state = props.store.getState()
 
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
-                <Navbar Friends={state.friendsPage.Friends} />
+                <Navbar Friends={state.friendsPage.Friends}/>
                 <div className={'app-wrapper-content'}>
                     <Route path="/Dialogs" render={() => <Dialogs
-                        dialogsArr={state.messagesPage.dialogsArr} messageArr={props.store._state.messagesPage.messageArr}/>}/>
+                        dialogsArr={state.messagesPage.dialogsArr}
+                        messageArr={props.store._state.messagesPage.messageArr}
+                        dispatch={props.store.dispatch.bind(props.store)}/>}/>
                     <Route path="/Profile" render={() => <Profile state={state}
-                                                                  dispatch = {props.store.dispatch.bind(props.store)}/>}/>
+                                                                  dispatch={props.store.dispatch.bind(props.store)}/>}/>
                     <Route path="/Music" render={() => <Music/>}/>
                     <Route path="/Settings" render={() => <Settings/>}/>
                     <Route path="/Friends" render={() => <Friends Friends={state.friendsPage.Friends}/>}/>

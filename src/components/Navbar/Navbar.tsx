@@ -5,9 +5,10 @@ import {FriendsArrType} from '../redux/state';
 
 type FriendsPropsType = {
     Friends: FriendsArrType[]
+
 }
 
-export const Navbar = (props:FriendsPropsType) => {
+export const Navbar = (props: FriendsPropsType) => {
     return (
         <nav className={s.nav}>
             <div className={`${s.item} ${s.active}`}>
@@ -33,8 +34,8 @@ export const Navbar = (props:FriendsPropsType) => {
                     {props.Friends.map(item => {
                         return (
                             <div className={s.friendItem} key={item.id}>
-                                <img  src={item.avatar} alt='avatars'/>
-                                <div className={s.name} >
+                                <img src={item.avatar} alt="avatars"/>
+                                <div className={s.name}>
                                     {item.name}
                                 </div>
                             </div>
@@ -42,7 +43,7 @@ export const Navbar = (props:FriendsPropsType) => {
                     })}
                 </div>
             </div>
-            
+
         </nav>
     )
 }
