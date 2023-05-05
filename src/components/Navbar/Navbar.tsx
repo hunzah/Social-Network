@@ -27,7 +27,7 @@ export const Navbar = (props: FriendsPropsType) => {
                 <NavLink to="/Friends" activeClassName={s.active}>Friends</NavLink>
             </div>
             {/*<div className={s.friends}>*/}
-            {/*    <Friends Friends={state.friendsPage.Friends}/>*/}
+            {/*    <Friends Friends={state.profileReducer.Friends}/>*/}
             {/*</div>*/}
             <div>
                 <div className={s.friends}>

@@ -1,4 +1,7 @@
 import {v1} from 'uuid';
+import profileReducer from './profile-reducer';
+import messagesReducer from './messages-reducer';
+import friendsReducer from './friends-reducer';
 
 
 export type StoreType = {
@@ -10,18 +13,18 @@ export type StoreType = {
 }
 
 export type StateType = {
-    messagesPage:
-        {
-            dialogsArr: DialogsArrType[]
-            messageArr: MessageArrType[]
-            newMessageBody: string
-        }
+    messagesPage: MessagesPageType
     profilePage: ProfilePageType
-    friendsPage:
-        { Friends: FriendsArrType[] }
+    friendsPage:FriendsPageType
+
 }
 
 // Dialogs
+export type MessagesPageType = {
+    dialogsArr: DialogsArrType[]
+    messageArr: MessageArrType[]
+    newMessageBody: string
+}
 export type DialogsArrType = {
     path: string
     name: string
@@ -42,6 +45,7 @@ export type PostsArrType = {
 }
 
 //Navbar > Friends
+export type FriendsPageType = {Friends: FriendsArrType[]}
 export type FriendsArrType = {
     id: string, avatar: string, name: string
 }
@@ -99,37 +103,16 @@ export const store: StoreType = {
         this.renderEntireTree = callback
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostsArrType = {
-                id: 3,
-                message: this._state.profilePage.newPostText,
-                count: 0
-            }
-            this._state.profilePage.postsArr.unshift(newPost)
-            this._state.profilePage.newPostText = ''
-            this.renderEntireTree()
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this.renderEntireTree()
-        } else if (action.type === 'NEW-MESSAGE-BODY') {
-
-            this._state.messagesPage.newMessageBody = action.body
-            this.renderEntireTree()
-        } else if (action.type === 'MESSAGE-SEND') {
-
-            const body = this._state.messagesPage.newMessageBody
-            this._state.messagesPage.newMessageBody = ''
-            this._state.messagesPage.messageArr.unshift({message: body})
-            this.renderEntireTree()
-        }
-
+        this._state.profilePage = profileReducer(store._state.profilePage, action)
+        this._state.messagesPage = messagesReducer(store._state.messagesPage, action)
+        this._state.friendsPage = friendsReducer(store._state.friendsPage, action)
+        this.renderEntireTree()
     }
 }
 
 
 export const messageSendAC = () => ({type: 'MESSAGE-SEND'} as const)
 export const newMessageBodyAC = (body: string) => ({type: 'NEW-MESSAGE-BODY', body: body} as const)
-
 
 export const addPostAC = (text: string) => ({type: 'ADD-POST', text: text} as const)
 export const updateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
