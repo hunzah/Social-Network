@@ -1,19 +1,22 @@
 import {ActionTypes, MessagesPageType} from './state';
 
 
-const messagesReducer = (state:MessagesPageType, action:ActionTypes) => {
-    if (action.type === 'NEW-MESSAGE-BODY') {
-        state.newMessageBody = action.body
+const messagesReducer = (state: MessagesPageType, action: ActionTypes) => {
 
-    } else if (action.type === 'MESSAGE-SEND') {
-
-        const body = state.newMessageBody
-        state.newMessageBody = ''
-        state.messageArr.unshift({message: body})
-
+    switch (action.type) {
+        case 'NEW-MESSAGE-BODY':
+            state.newMessageBody = action.body;
+            return state;
+        case 'MESSAGE-SEND':
+            const body = state.newMessageBody
+            state.newMessageBody = ''
+            state.messageArr.unshift({message: body});
+            return state;
+        default:
+            return state
     }
-    return state
 
-};
+}
+
 
 export default messagesReducer
