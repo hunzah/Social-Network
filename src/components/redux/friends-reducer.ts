@@ -1,4 +1,4 @@
-import {ActionTypes, FriendsPageType} from './state';
+import {ActionTypes, FriendsPageType} from './store';
 
 
 export const friendsReducer= (state:FriendsPageType, action:ActionTypes) => {

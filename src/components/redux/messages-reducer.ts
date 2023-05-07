@@ -1,4 +1,4 @@
-import {ActionTypes, MessagesPageType} from './state';
+import {ActionTypes, MessagesPageType} from './store';
 
 
 const messagesReducer = (state: MessagesPageType, action: ActionTypes) => {
@@ -18,5 +18,8 @@ const messagesReducer = (state: MessagesPageType, action: ActionTypes) => {
 
 }
 
+
+export const messageSendAC = () => ({type: 'MESSAGE-SEND'} as const)
+export const newMessageBodyAC = (body: string) => ({type: 'NEW-MESSAGE-BODY', body: body} as const)
 
 export default messagesReducer

@@ -1,15 +1,9 @@
 import s from './Dialogs.module.css'
 import {Message} from './Message/Message';
 import {Dialog} from './DialogItem/Dialog';
-import {
-    DialogsArrType,
-    DispatchType,
-    MessageArrType,
-    messageSendAC,
-    newMessageBodyAC,
-
-} from '../redux/state';
+import {DialogsArrType, DispatchType, MessageArrType,} from '../redux/store';
 import React, {ChangeEvent} from 'react';
+import {messageSendAC, newMessageBodyAC} from '../redux/messages-reducer';
 
 
 type DialogsPropsType = {

@@ -8,7 +8,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {Music} from './components/Navbar/Music/Music';
 import {Settings} from './components/Navbar/Setings/Settings';
 import {Friends} from './components/Navbar/Friends/Friends';
-import {StoreType} from './components/redux/state';
+import {StoreType} from './components/redux/store';
 
 
 type AppPropsType = {

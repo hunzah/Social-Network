@@ -1,6 +1,6 @@
 import {v1} from 'uuid';
-import profileReducer from './profile-reducer';
-import messagesReducer from './messages-reducer';
+import profileReducer, {addPostAC, updateNewPostTextAC} from './profile-reducer';
+import messagesReducer, {messageSendAC, newMessageBodyAC} from './messages-reducer';
 import friendsReducer from './friends-reducer';
 
 
@@ -15,7 +15,7 @@ export type StoreType = {
 export type StateType = {
     messagesPage: MessagesPageType
     profilePage: ProfilePageType
-    friendsPage:FriendsPageType
+    friendsPage: FriendsPageType
 
 }
 
@@ -45,18 +45,15 @@ export type PostsArrType = {
 }
 
 //Navbar > Friends
-export type FriendsPageType = {Friends: FriendsArrType[]}
+export type FriendsPageType = { Friends: FriendsArrType[] }
 export type FriendsArrType = {
     id: string, avatar: string, name: string
 }
 
-
+//Dispatch
 export type DispatchType = (action: ActionTypes) => void;
-export type ActionTypes =
-    ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewPostTextAC>
-    | ReturnType<typeof newMessageBodyAC>
-    | ReturnType<typeof messageSendAC>
+export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
+                          | ReturnType<typeof newMessageBodyAC> | ReturnType<typeof messageSendAC>
 
 
 export const store: StoreType = {
@@ -110,11 +107,5 @@ export const store: StoreType = {
     }
 }
 
-
-export const messageSendAC = () => ({type: 'MESSAGE-SEND'} as const)
-export const newMessageBodyAC = (body: string) => ({type: 'NEW-MESSAGE-BODY', body: body} as const)
-
-export const addPostAC = (text: string) => ({type: 'ADD-POST', text: text} as const)
-export const updateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
 
 export default store
