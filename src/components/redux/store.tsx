@@ -1,7 +1,7 @@
 import {v1} from 'uuid';
 import profileReducer, {addPostAC, updateNewPostTextAC} from './profile-reducer';
-import messagesReducer, {messageSendAC, newMessageBodyAC} from './messages-reducer';
-import friendsReducer from './friends-reducer';
+import {messagesReducer,messageSendAC, newMessageBodyAC} from './messages-reducer';
+import {friendsReducer} from './friends-reducer';
 
 
 export type StoreType = {

@@ -1,7 +1,21 @@
 import {ActionTypes, MessagesPageType} from './store';
 
+const initialState = {
+    dialogsArr: [
+        {path: '1', name: 'Curtis James'},
+        {path: '2', name: 'John Carter'},
+        {path: '3', name: 'Andre Lauren'},
+        {path: '4', name: 'Christopher George'},
+    ],
+        messageArr: [
+        {message: 'Hi!'},
+        {message: 'my name is Curtis James!'},
 
-const messagesReducer = (state: MessagesPageType, action: ActionTypes) => {
+    ],
+        newMessageBody: '',
+}
+
+export const messagesReducer = (state: MessagesPageType = initialState, action: ActionTypes) => {
 
     switch (action.type) {
         case 'NEW-MESSAGE-BODY':
@@ -22,4 +36,3 @@ const messagesReducer = (state: MessagesPageType, action: ActionTypes) => {
 export const messageSendAC = () => ({type: 'MESSAGE-SEND'} as const)
 export const newMessageBodyAC = (body: string) => ({type: 'NEW-MESSAGE-BODY', body: body} as const)
 
-export default messagesReducer
