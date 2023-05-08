@@ -17,8 +17,8 @@ type AppPropsType = {
 
 
 const App: React.FC<AppPropsType> = (props) => {
-    const state = props.store.getState()
 
+    const state = props.store.getState()
     return (
         <BrowserRouter>
             <div className="app-wrapper">
