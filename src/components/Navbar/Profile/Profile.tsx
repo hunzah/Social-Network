@@ -13,7 +13,6 @@ export const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            {/*<MyPosts profilePage={props.state.profilePage} dispatch={props.dispatch}/>*/}
             <MyPostsContainer store={props.store}/>
         </div>
     )

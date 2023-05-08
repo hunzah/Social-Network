@@ -1,8 +1,6 @@
-import s from './Dialogs.module.css'
-import {Message} from './Message/Message';
 import {Dialog} from './DialogItem/Dialog';
 import {StoreType,} from '../redux/store';
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {messageSendAC, newMessageBodyAC} from '../redux/messages-reducer';
 
 
@@ -10,19 +8,19 @@ type DialogsContainerPropsType = {
     store: StoreType
 }
 export const DialogsContainer = (props: DialogsContainerPropsType) => {
+    const state = props.store.getState()
 
-    const newMessageBody = props.newMessageBody
-
-    function onClickHandler() {
-        props.dispatch(messageSendAC());
+    // const newMessageBody = state.messagesPage.newMessageBody
+    function onClickHandlerC() {
+        props.store.dispatch(messageSendAC());
     }
 
-    // const message:  React.RefObject<HTMLTextAreaElement>  = React.createRef()
-    function onchangeHandler(e: ChangeEvent<HTMLTextAreaElement>) {
-        const body = e.target.value
-        props.dispatch(newMessageBodyAC(body))
+    function onchangeHandlerC(props: any) {
+        const body = props.e.target.value
+        props.store.dispatch(newMessageBodyAC(body))
     }
 
-    return <Dialog onClickHandler={onClickHandler} onchangeHandler={onchangeHandler} messagesPage={messagesPage}/>
+    return <Dialog onClickHandlerC={onClickHandlerC} onchangeHandlerC={onchangeHandlerC}
+                   messagesPage={state.messagesPage}/>
 
 }
