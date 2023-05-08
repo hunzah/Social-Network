@@ -1,7 +1,7 @@
 import React, {RefObject} from 'react';
-import {addPostAC, updateNewPostTextAC} from '../../../../redux/profile-reducer';
-import {MyPosts} from '../MyPosts';
-import {StateType, StoreType} from '../../../../redux/store';
+import {addPostAC, updateNewPostTextAC} from '../../../redux/profile-reducer';
+import {MyPosts} from './MyPosts';
+import {StateType, StoreType} from '../../../redux/store';
 
 
 type MyPostsContainerPropsType = {

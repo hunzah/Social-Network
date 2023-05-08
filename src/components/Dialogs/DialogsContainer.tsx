@@ -23,6 +23,6 @@ export const DialogsContainer = (props: DialogsContainerPropsType) => {
         props.dispatch(newMessageBodyAC(body))
     }
 
-    return <Dialog path={} name={}
+    return <Dialog onClickHandler={onClickHandler} onchangeHandler={onchangeHandler} messagesPage={messagesPage}/>
 
 }
