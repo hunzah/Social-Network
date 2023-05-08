@@ -7,21 +7,14 @@ import {messageSendAC, newMessageBodyAC} from '../redux/messages-reducer';
 
 
 type DialogsPropsType = {
-    dialogsArr: DialogsArrType[]
-    messageArr: MessageArrType[]
-    dispatch: DispatchType
-    newMessageBody:string
+    messagesPage:any
+
 }
 export const Dialogs = (props: DialogsPropsType) => {
 
 const newMessageBody = props.newMessageBody
     function onClickHandler() {
             props.dispatch(messageSendAC());
-    }
-    // const message:  React.RefObject<HTMLTextAreaElement>  = React.createRef()
-    function onchangeHandler(e:ChangeEvent<HTMLTextAreaElement>) {
-       const body =  e.target.value
-            props.dispatch(newMessageBodyAC(body))
     }
 
     return (
