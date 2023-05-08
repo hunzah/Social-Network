@@ -30,8 +30,8 @@ const App: React.FC<AppPropsType> = (props) => {
                         messageArr={props.store._state.messagesPage.messageArr}
                         dispatch={props.store.dispatch.bind(props.store)}
                         newMessageBody={props.store._state.messagesPage.newMessageBody}/>}/>
-                    <Route path="/Profile" render={() => <Profile state={state}
-                                                                  dispatch={props.store.dispatch.bind(props.store)}/>}/>
+                    <Route path="/Profile" render={() => <Profile store={props.store}
+                                                                  />}/>
                     <Route path="/Music" render={() => <Music/>}/>
                     <Route path="/Settings" render={() => <Settings/>}/>
                     <Route path="/Friends" render={() => <Friends Friends={state.friendsPage.Friends}/>}/>

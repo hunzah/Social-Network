@@ -1,54 +1,33 @@
-import React from 'react';
-import s from './MyPosts.module.css'
-import {Post} from './Post/Post';
-import {DispatchType, ProfilePageType} from '../../../redux/store';
-import {addPostAC, updateNewPostTextAC} from '../../../redux/profile-reducer';
+import React, {RefObject} from 'react';
+import {addPostAC, updateNewPostTextAC} from '../../../../redux/profile-reducer';
+import {MyPosts} from '../MyPosts';
+import {StateType, StoreType} from '../../../../redux/store';
 
 
-type MyPostsPropsType = {
-    profilePage: ProfilePageType
-    dispatch: DispatchType
+type MyPostsContainerPropsType = {
+    store: StoreType
 }
 
 
-export const MyPosts = (props: MyPostsPropsType) => {
+export const MyPostsContainer = (props: MyPostsContainerPropsType) => {
 
-    const postElements = props.profilePage.postsArr.map(item => <Post key={item.id} message={item.message}
-                                                                      count={item.count}/>)
-    const newPostElement: React.RefObject<HTMLTextAreaElement> = React.createRef()
+    let state:StateType = props.store.getState()
 
-
-    const addPost = () => {
+    const onAddPost = (newPostElement:RefObject<HTMLTextAreaElement>) => {
         const text = newPostElement.current?.value
         if (text) {
-            props.dispatch(addPostAC(text))
+            props.store.dispatch(addPostAC(text))
         }
     }
 
-    function onChangeHandler() {
-        const newText = newPostElement.current?.value
-        if (newText) {
-            props.dispatch(updateNewPostTextAC(newText))
+    function onChangeHandler(e:React.ChangeEvent<HTMLTextAreaElement>) {
+        // const newText = newPostElement.current?.value
+        // if (newText) {
+        //     props.store.dispatch(updateNewPostTextAC(newText))
+            props.store.dispatch(updateNewPostTextAC(e.currentTarget.value))
         }
-    }
 
-    return (
-        <div className={s.postsBlock}>
-            <h3>My Post</h3>
-            <div>
-                <div>
-                    <textarea
-                        value={props.profilePage.newPostText}
-                        onChange={onChangeHandler}
-                        ref={newPostElement}/>
-                </div>
-                <div>
-                    <button onClick={addPost}>Add post</button>
-                </div>
-            </div>
-            <div>
-                {postElements}
-            </div>
-        </div>
-    )
+
+    return <MyPosts onAddPost={onAddPost} onChangeHandler={onChangeHandler} profilePage={state.profilePage}/>
+
 }

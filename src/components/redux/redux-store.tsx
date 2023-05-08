@@ -9,7 +9,7 @@ let reducers = combineReducers({
     profileReducer
 })
 
-let store = createStore()
+// let store = createStore()
 
 
-export default store
+// export default store

@@ -1,12 +1,11 @@
 import React from 'react';
-import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
-import {DispatchType, StateType} from '../../redux/store';
+import {StoreType} from '../../redux/store';
+import {MyPostsContainer} from './MyPosts/Post/MyPostsContainer';
 
 
 type ProfilePropsType = {
-    state: StateType
-    dispatch: DispatchType
+    store: StoreType
 }
 
 
@@ -14,7 +13,8 @@ export const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts profilePage={props.state.profilePage} dispatch={props.dispatch}/>
+            {/*<MyPosts profilePage={props.state.profilePage} dispatch={props.dispatch}/>*/}
+            <MyPostsContainer store={props.store}/>
         </div>
     )
 }

@@ -1,35 +1,28 @@
-import React from 'react';
+import React, {RefObject} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
-import {DispatchType, ProfilePageType} from '../../../redux/store';
-import {addPostAC, updateNewPostTextAC} from '../../../redux/profile-reducer';
+import {ProfilePageType} from '../../../redux/store';
 
 
 type MyPostsPropsType = {
+    onAddPost: (newPostElement: React.RefObject<HTMLTextAreaElement>) => void
+    onChangeHandler: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
     profilePage: ProfilePageType
-    dispatch: DispatchType
 }
 
 
 export const MyPosts = (props: MyPostsPropsType) => {
 
     const postElements = props.profilePage.postsArr.map(item => <Post key={item.id} message={item.message}
-                                                                      count={item.count}/>)
-    const newPostElement: React.RefObject<HTMLTextAreaElement> = React.createRef()
+                                                          count={item.count}/>)
+    const newPostElement = React.createRef<HTMLTextAreaElement>()
 
-
-    const addPost = () => {
-        const text = newPostElement.current?.value
-        if (text) {
-            props.dispatch(addPostAC(text))
-        }
+    const handleAddPost = () => {
+        props.onAddPost(newPostElement)
     }
 
-    function onChangeHandler() {
-        const newText = newPostElement.current?.value
-        if (newText) {
-            props.dispatch(updateNewPostTextAC(newText))
-        }
+    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        props.onChangeHandler(event)
     }
 
     return (
@@ -39,11 +32,11 @@ export const MyPosts = (props: MyPostsPropsType) => {
                 <div>
                     <textarea
                         value={props.profilePage.newPostText}
-                        onChange={onChangeHandler}
+                        onChange={handleChange }
                         ref={newPostElement}/>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={handleAddPost}>Add post</button>
                 </div>
             </div>
             <div>
