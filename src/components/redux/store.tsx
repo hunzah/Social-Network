@@ -56,7 +56,7 @@ export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updat
                           | ReturnType<typeof newMessageBodyAC> | ReturnType<typeof messageSendAC>
 
 
-export const store: StoreType = {
+const store: StoreType = {
     _state: {
         messagesPage: {
             dialogsArr: [
