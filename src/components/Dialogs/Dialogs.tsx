@@ -6,17 +6,20 @@ import React, {ChangeEvent} from 'react';
 
 
 type DialogsPropsType = {
-    onClickHandlerC: () => void
-    onchangeHandlerC: (e: ChangeEvent<HTMLTextAreaElement>) => void
+    AddMessageHandler: () => void
+    onChangeMessageHandler: (e:ChangeEvent<HTMLTextAreaElement>) => void
     messagesPage: MessagesPageType
 }
 export const Dialogs = (props: DialogsPropsType) => {
-    const onClickHandler = () => {
-        props.onClickHandlerC()
+    const handleAddMessage = () => {
+        props.AddMessageHandler()
     }
-    const onchangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        props.onchangeHandlerC(e)
+    const handleChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        props.onChangeMessageHandler(e)
     }
+
+
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
@@ -29,9 +32,9 @@ export const Dialogs = (props: DialogsPropsType) => {
                 {props.messagesPage.messageArr.map((item, id) => {
                     return (<Message text={item.message}/>)
                 })}
-                <textarea value={props.messagesPage.newMessageBody} onChange={onchangeHandler}></textarea>
+                <textarea value={props.messagesPage.newMessageBody} onChange={handleChange}></textarea>
                 <button
-                    onClick={onClickHandler}>send
+                    onClick={handleAddMessage}>send
                 </button>
             </div>
         </div>
