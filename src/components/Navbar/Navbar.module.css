@@ -4,28 +4,31 @@
     padding: 20px;
 
 }
+
 .item a {
     color: white;
     text-decoration: none;
 }
+
 .item a.active {
     color: gold;
 }
 
 
 .friends {
-
 }
 
 .friendItem {
-margin-right: 15px;
+    margin-right: 15px;
 }
+
 .friends img {
-    margin-top: 20px ;
+    margin-top: 20px;
     width: 35px;
     height: 30px;
     border-radius: 30px;
 }
+
 .name {
-font-size: 10px;
+    font-size: 10px;
 }

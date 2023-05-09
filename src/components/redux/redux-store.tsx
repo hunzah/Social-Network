@@ -1,17 +1,21 @@
-import {combineReducers, createStore} from 'redux';
+import {combineReducers, createStore, Store} from 'redux';
 import {friendsReducer} from './friends-reducer';
 import {messagesReducer} from './messages-reducer';
 import profileReducer from './profile-reducer';
+import {ActionTypes} from './store';
 
 
-let reducers = combineReducers({
+const reducers = combineReducers({
     friendsReducer,
     messagesReducer,
     profileReducer
 })
 
-let store = createStore(reducers)
+const store = createStore(reducers)
 
-export type RootState = ReturnType<typeof store.getState>
+export type AppReduxStateType=ReturnType<typeof reducers>
+
+export type RootStore = Store<AppReduxStateType,ActionTypes>
+
 
 export default store

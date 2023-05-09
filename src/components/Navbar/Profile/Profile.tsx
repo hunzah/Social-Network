@@ -1,11 +1,11 @@
 import React from 'react';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
-import {StoreType} from '../../redux/store';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
+import {RootStore} from '../../redux/redux-store';
 
 
 type ProfilePropsType = {
-    store: StoreType
+    store: RootStore
 }
 
 

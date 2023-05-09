@@ -2,10 +2,11 @@ import {StoreType,} from '../redux/store';
 import React, {ChangeEvent} from 'react';
 import {messageSendAC, newMessageBodyAC} from '../redux/messages-reducer';
 import {Dialogs} from './Dialogs';
+import {RootStore} from '../redux/redux-store';
 
 
 type DialogsContainerPropsType = {
-    store: StoreType
+    store: RootStore
 }
 export const DialogsContainer = (props: DialogsContainerPropsType) => {
     const state = props.store.getState()
@@ -20,6 +21,6 @@ export const DialogsContainer = (props: DialogsContainerPropsType) => {
     }
 
     return <Dialogs AddMessageHandler={AddMessageHandler} onChangeMessageHandler={onChangeMessageHandler}
-                   messagesPage={state.messagesPage}/>
+                   messagesPage={state.messagesReducer}/>
 
 }

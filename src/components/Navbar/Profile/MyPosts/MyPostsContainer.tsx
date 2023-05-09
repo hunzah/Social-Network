@@ -2,16 +2,17 @@ import React, {RefObject} from 'react';
 import {addPostAC, updateNewPostTextAC} from '../../../redux/profile-reducer';
 import {MyPosts} from './MyPosts';
 import {StateType, StoreType} from '../../../redux/store';
+import {AppReduxStateType, RootStore} from '../../../redux/redux-store';
 
 
 type MyPostsContainerPropsType = {
-    store: StoreType
+    store: RootStore
 }
 
 
 export const MyPostsContainer = (props: MyPostsContainerPropsType) => {
 
-    let state:StateType = props.store.getState()
+    let state:AppReduxStateType = props.store.getState()
 
     const onAddPost = (newPostElement:RefObject<HTMLTextAreaElement>) => {
         const text = newPostElement.current?.value
@@ -28,6 +29,6 @@ export const MyPostsContainer = (props: MyPostsContainerPropsType) => {
         }
 
 
-    return <MyPosts onAddPost={onAddPost} onChangeHandler={onChangeHandler} profilePage={state.profilePage}/>
+    return <MyPosts onAddPost={onAddPost} onChangeHandler={onChangeHandler} profilePage={state.profileReducer}/>
 
 }
