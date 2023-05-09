@@ -6,18 +6,21 @@ import store from './components/redux/redux-store';
 import {BrowserRouter} from 'react-router-dom';
 
 
-export const renderEntireTree = () => {
+export const renderEntireTree = (state: any) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App store={store}/>
+            <App store={store} state={state}/>
         </BrowserRouter>, document.getElementById('root')
     )
 }
 
 
-renderEntireTree()
+renderEntireTree(store.getState())
 
-store.subscribe(renderEntireTree)
+store.subscribe(() => {
+    let state = store.getState()
+    renderEntireTree(state)
+})
 
 
 
