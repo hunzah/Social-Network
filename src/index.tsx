@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import store from './components/redux/redux-store';
+import {BrowserRouter} from 'react-router-dom';
 
 
-
-
-
-export const renderEntireTree= () => {
+export const renderEntireTree = () => {
     ReactDOM.render(
-        <App store={store}/>,
-        document.getElementById('root')
+        <BrowserRouter>
+            <App store={store}/>
+        </BrowserRouter>, document.getElementById('root')
     )
 }
 
