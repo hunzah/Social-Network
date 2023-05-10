@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Navbar.module.css'
 import {NavLink} from 'react-router-dom';
 import {RootStore} from '../redux/redux-store';
-import {Friends} from './Friends/Friends';
 
 type FriendsPropsType = {
     store:RootStore
@@ -27,9 +26,7 @@ export const Navbar:React.FC<FriendsPropsType> = (props) => {
             <div className={s.item}>
                 <NavLink to="/Friends" activeClassName={s.active}>Friends</NavLink>
             </div>
-            {/*<div className={s.friends}>*/}
-            {/*    <Friends Friends={state.profileReducer.Friends}/>*/}
-            {/*</div>*/}
+
             <div className={s.friends}>
                 {/*<Friends store={props.store}/>*/}
             </div>
