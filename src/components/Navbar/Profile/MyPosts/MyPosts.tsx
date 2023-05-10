@@ -1,4 +1,4 @@
-import React, {RefObject} from 'react';
+import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
 import {ProfilePageType} from '../../../redux/store';
@@ -14,7 +14,7 @@ type MyPostsPropsType = {
 export const MyPosts = (props: MyPostsPropsType) => {
 
     const postElements = props.profilePage.postsArr.map(item => <Post key={item.id} message={item.message}
-                                                          count={item.count}/>)
+                                                                      count={item.count}/>)
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const handleAddPost = () => {
@@ -32,7 +32,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
                 <div>
                     <textarea
                         value={props.profilePage.newPostText}
-                        onChange={handleChange }
+                        onChange={handleChange}
                         ref={newPostElement}/>
                 </div>
                 <div>

@@ -8,7 +8,7 @@ type FriendsPropsType = {
 
 }
 
-export const Navbar:React.FC<FriendsPropsType> = (props) => {
+export const Navbar:React.FC = () => {
     return (
         <nav className={s.nav}>
             <div className={`${s.item} ${s.active}`}>
