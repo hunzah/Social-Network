@@ -3,10 +3,10 @@ import s from './Navbar.module.css'
 import {NavLink} from 'react-router-dom';
 import {RootStore} from '../redux/redux-store';
 
-type FriendsPropsType = {
-    store:RootStore
-
-}
+// type FriendsPropsType = {
+//     store:RootStore
+//
+// }
 
 export const Navbar:React.FC = () => {
     return (

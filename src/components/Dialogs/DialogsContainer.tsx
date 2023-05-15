@@ -1,9 +1,10 @@
-import {StoreType,} from '../redux/store';
+import {StateType, StoreType,} from '../redux/store';
 import React, {ChangeEvent} from 'react';
 import {messageSendAC, newMessageBodyAC} from '../redux/messages-reducer';
 import {Dialogs} from './Dialogs';
-import {RootStore} from '../redux/redux-store';
+import {AppReduxStateType, RootStore} from '../redux/redux-store';
 import StoreContext from '../../StoreContext';
+import {connect} from 'react-redux';
 
 
 type DialogsContainerPropsType = {
@@ -31,3 +32,14 @@ export const DialogsContainer = () => {
         }}
     </StoreContext.Consumer>
 }
+
+let f1 = (state:AppReduxStateType)=> {
+return {
+    AddMessageHandler: state.messagesReducer
+}
+}
+let f2 = ()=> {
+
+}
+export const SuperDialogsContainer = connect(f1,f2)(Dialogs)
+
