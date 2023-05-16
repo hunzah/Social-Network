@@ -1,4 +1,23 @@
-import {ActionTypes, MessagesPageType} from './store';
+import {ActionTypes} from './store';
+
+// export type MessageStateType = {
+//     messagesPage:MessagesPageType
+// }
+
+export type MessagesPageType = {
+    dialogsArr: DialogsArrType[]
+    messageArr: MessageArrType[]
+    newMessageBody: string
+}
+export type DialogsArrType = {
+    path: string
+    name: string
+}
+export type MessageArrType = {
+    message: string
+}
+
+
 
 const initialState = {
     dialogsArr: [
@@ -15,7 +34,7 @@ const initialState = {
         newMessageBody: '',
 }
 
-export const messagesReducer = (state: MessagesPageType = initialState, action: ActionTypes) => {
+export const messagesReducer = (state: MessagesPageType = initialState, action: ActionTypes):MessagesPageType => {
     // console.log(state)
 
     switch (action.type) {

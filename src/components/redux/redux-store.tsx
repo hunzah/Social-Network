@@ -6,9 +6,9 @@ import {ActionTypes} from './store';
 
 
 const reducers = combineReducers({
-    friendsReducer,
-    messagesReducer,
-    profileReducer
+    friendsPage:friendsReducer,
+    messagesPage:messagesReducer,
+    profilePage:profileReducer
 })
 
 const store = createStore(reducers)

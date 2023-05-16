@@ -1,4 +1,19 @@
-import {ActionTypes, PostsArrType, ProfilePageType,} from './store';
+import {ActionTypes} from './store';
+
+
+
+export type ProfilePageType = {
+    postsArr: PostsArrType[]
+    newPostText: string
+}
+export type PostsArrType = {
+    id: number
+    message: string
+    count: number
+}
+
+
+
 
 const initialState =  {
     postsArr: [
@@ -8,7 +23,7 @@ const initialState =  {
         newPostText: ''
 }
 
-const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes) => {
+const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes):ProfilePageType => {
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostsArrType = {

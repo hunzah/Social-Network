@@ -1,5 +1,12 @@
-import {ActionTypes, FriendsPageType} from './store';
+import {ActionTypes} from './store';
 import {v1} from 'uuid';
+
+export type FriendsPageType = { Friends: FriendsArrType[] }
+export type FriendsArrType = {
+    id: string, avatar: string, name: string
+}
+
+
 
 const initialState ={
     Friends: [
@@ -12,7 +19,7 @@ const initialState ={
     ]
 }
 
-export const friendsReducer= (state:FriendsPageType = initialState, action:ActionTypes) => {
+export const friendsReducer= (state:FriendsPageType = initialState, action:ActionTypes):FriendsPageType => {
 
     return state
 

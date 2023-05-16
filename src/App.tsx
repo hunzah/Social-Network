@@ -15,13 +15,13 @@ const App: React.FC = () => {
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar />
+            <Navbar/>
             <div className={'app-wrapper-content'}>
-                <Route path="/Dialogs" render={() => <DialogsContainer />}/>
-                <Route path="/Profile" render={() => <Profile />}/>
+                <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
+                <Route path="/Profile" render={() => <Profile/>}/>
                 <Route path="/Music" render={() => <Music/>}/>
                 <Route path="/Settings" render={() => <Settings/>}/>
-                <Route path="/Friends" render={() => <Friends />}/>
+                <Route path="/Friends" render={() => <Friends/>}/>
 
             </div>
         </div>
