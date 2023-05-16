@@ -8,6 +8,7 @@ import {Settings} from './components/Navbar/Setings/Settings';
 import {Profile} from './components/Navbar/Profile/Profile';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import FriendsContainer from './components/Navbar/Friends/FriendsContainer';
+import {Users} from './components/Users/Users';
 
 
 const App: React.FC = () => {
@@ -22,7 +23,7 @@ const App: React.FC = () => {
                 <Route path="/Music" render={() => <Music/>}/>
                 <Route path="/Settings" render={() => <Settings/>}/>
                 <Route path="/Friends" render={() => <FriendsContainer/>}/>
-                <Route path="/Users" render={() => <>vataydi</>}/>
+                <Route path="/Users" render={() => <Users/>}/>
 
             </div>
         </div>

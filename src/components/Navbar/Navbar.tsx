@@ -26,6 +26,9 @@ export const Navbar:React.FC = () => {
             <div className={s.item}>
                 <NavLink to="/Friends" activeClassName={s.active}>Friends</NavLink>
             </div>
+            <div className={s.item}>
+                <NavLink to="/Users" activeClassName={s.active}>Users</NavLink>
+            </div>
 
             <div className={s.friends}>
                 {/*<Friends store={props.store}/>*/}
