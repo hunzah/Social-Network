@@ -20,7 +20,7 @@ const reducers = combineReducers({
     friendsPage: friendsReducer,
     messagesPage: messagesReducer,
     profilePage: profileReducer,
-    userPage: usersReducer
+    usersPage: usersReducer
 })
 
 const store = createStore(reducers)
