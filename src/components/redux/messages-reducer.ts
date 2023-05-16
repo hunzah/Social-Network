@@ -37,13 +37,11 @@ export const messagesReducer = (state: MessagesPageType = initialState, action: 
 
     switch (action.type) {
         case 'NEW-MESSAGE-BODY':
-            state.newMessageBody = action.body;
-            return state;
+            return {...state, newMessageBody: action.body};
         case 'MESSAGE-SEND':
             const body = state.newMessageBody
             state.newMessageBody = ''
-            state.messageArr.unshift({message: body});
-            return state;
+            return {...state, messageArr: [...state.messageArr,{message: body}]};
         default:
             return state
     }
