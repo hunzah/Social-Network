@@ -2,6 +2,7 @@ import {v1} from 'uuid';
 import profileReducer, {addPostAC, updateNewPostTextAC} from './profile-reducer';
 import {messagesReducer,messageSendAC, newMessageBodyAC} from './messages-reducer';
 import {friendsReducer} from './friends-reducer';
+import {DispatchType} from './redux-store';
 
 
 export type StoreType = {
@@ -18,6 +19,9 @@ export type StateType = {
     friendsPage: FriendsPageType
 
 }
+
+// export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
+//     | ReturnType<typeof newMessageBodyAC> | ReturnType<typeof messageSendAC>
 
 // Dialogs
 export type MessagesPageType = {
@@ -51,9 +55,7 @@ export type FriendsArrType = {
 }
 
 //Dispatch
-export type DispatchType = (action: ActionTypes) => void;
-export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
-                          | ReturnType<typeof newMessageBodyAC> | ReturnType<typeof messageSendAC>
+
 
 //
 // const store: StoreType = {

@@ -22,6 +22,7 @@ const App: React.FC = () => {
                 <Route path="/Music" render={() => <Music/>}/>
                 <Route path="/Settings" render={() => <Settings/>}/>
                 <Route path="/Friends" render={() => <FriendsContainer/>}/>
+                <Route path="/Users" render={() => <>vataydi</>}/>
 
             </div>
         </div>

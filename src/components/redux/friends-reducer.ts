@@ -1,5 +1,5 @@
-import {ActionTypes} from './store';
 import {v1} from 'uuid';
+import {ActionTypes} from './redux-store';
 
 export type FriendsPageType = { Friends: FriendsArrType[] }
 export type FriendsArrType = {

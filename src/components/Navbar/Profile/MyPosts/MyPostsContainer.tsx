@@ -1,33 +1,11 @@
 import React, {RefObject} from 'react';
 import {addPostAC, ProfilePageType, updateNewPostTextAC} from '../../../redux/profile-reducer';
 import {MyPosts} from './MyPosts';
-import {DispatchType} from '../../../redux/store';
 import {connect} from 'react-redux';
+import {DispatchType} from '../../../redux/redux-store';
 
 
-// type MyPostsContainerPropsType = {
-//     store: RootStore
-// }
-// export const MyPostsContainer = () => {
-//     return <StoreContext.Consumer>
-//         {(store) => {
-//             let state: AppReduxStateType = store!.getState()
-//
-//             const onAddPost = (newPostElement: RefObject<HTMLTextAreaElement>) => {
-//                 const text = newPostElement.current?.value
-//                 if (text) {
-//                     store!.dispatch(addPostAC(text))
-//                 }
-//             }
-//
-//             function onChangeHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
-//                 store!.dispatch(updateNewPostTextAC(e.currentTarget.value))
-//             }
-//
-//             return <MyPosts onAddPost={onAddPost} onChangeHandler={onChangeHandler} profilePage={state.profileReducer}/>
-//         }}
-//     </StoreContext.Consumer>
-// }
+
 
 type mapStateToPropsType = {
     profilePage:ProfilePageType

@@ -1,4 +1,5 @@
-import {ActionTypes} from './store';
+import {} from './store';
+import {ActionTypes} from './redux-store';
 
 // export type MessageStateType = {
 //     messagesPage:MessagesPageType
