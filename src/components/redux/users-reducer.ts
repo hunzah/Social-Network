@@ -16,8 +16,8 @@ const initialState: UsersType = {
         {id: 1, followed: true, name: 'Curtis James', city: 'New York', avatar: ''},
         {id: 2, followed: true, name: 'Christopher  George', city: 'New York', avatar: ''},
         {id: 3, followed: true, name: 'John Carter', city: 'New York', avatar: ''},
-        {id: 4, followed: true, name: 'Tupac Amaru Shakur', city: 'New York', avatar: ''},
-        {id: 5, followed: true, name: 'Andre Romelle Young', city: 'Compton', avatar: ''}
+        {id: 4, followed: false, name: 'Tupac Amaru Shakur', city: 'New York', avatar: ''},
+        {id: 5, followed: false, name: 'Andre Romelle Young', city: 'Compton', avatar: ''}
     ]
 }
 

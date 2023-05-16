@@ -17,7 +17,8 @@ export const Users = (props: UsersPropsType) => {
                             <img src={u.avatar}/>
                             <div>{u.avatar}</div>
                             <div>{u.name}</div>
-                            <button onClick={() => UnFollowHandler(u.id)}>{u.followed ? 'unfollow' : 'unfollow'}</button>
+                            {u.followed ? <button onClick={() => followHandler(u.id)}>follow</button> :
+                                <button onClick={() => UnFollowHandler(u.id)}>unfollow</button>}
                             <div>{u.city}</div>
                         </div>
                     )
