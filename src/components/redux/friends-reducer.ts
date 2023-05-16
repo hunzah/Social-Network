@@ -6,8 +6,6 @@ export type FriendsArrType = {
     id: string, avatar: string, name: string
 }
 
-
-
 const initialState ={
     Friends: [
         {id: v1(), avatar: 'https://uprostim.com/wp-content/uploads/2021/02/image100-30.jpg', name: 'Victoria'},

@@ -17,8 +17,6 @@ export type MessageArrType = {
     message: string
 }
 
-
-
 const initialState = {
     dialogsArr: [
         {path: '1', name: 'Curtis James'},
@@ -26,15 +24,15 @@ const initialState = {
         {path: '3', name: 'Andre Lauren'},
         {path: '4', name: 'Christopher George'},
     ],
-        messageArr: [
+    messageArr: [
         {message: 'Hi!'},
         {message: 'my name is Curtis James!'},
 
     ],
-        newMessageBody: '',
+    newMessageBody: '',
 }
 
-export const messagesReducer = (state: MessagesPageType = initialState, action: ActionTypes):MessagesPageType => {
+export const messagesReducer = (state: MessagesPageType = initialState, action: ActionTypes): MessagesPageType => {
     // console.log(state)
 
     switch (action.type) {
@@ -51,7 +49,6 @@ export const messagesReducer = (state: MessagesPageType = initialState, action: 
     }
 
 }
-
 
 export const messageSendAC = () => ({type: 'MESSAGE-SEND'} as const)
 export const newMessageBodyAC = (body: string) => ({type: 'NEW-MESSAGE-BODY', body: body} as const)
