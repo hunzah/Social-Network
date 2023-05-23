@@ -15,10 +15,11 @@ export const Users = (props: UsersPropsType) => {
                     return (
                         <div key={u.id}>
                             <img src={u.avatar}/>
-                            <div>{u.avatar}</div>
-                            <div>{u.name}</div>
                             {u.followed ? <button onClick={() => followHandler(u.id)}>follow</button> :
                                 <button onClick={() => UnFollowHandler(u.id)}>unfollow</button>}
+                            <div>{u.avatar}</div>
+                            <div>{u.name}</div>
+
                             <div>{u.city}</div>
                         </div>
                     )
