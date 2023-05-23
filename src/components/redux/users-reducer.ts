@@ -9,7 +9,7 @@ export type UsersArrType = {
     followed: boolean,
     name: string,
     city: string,
-    avatar: string
+    photos:{small:string, large:string}
 }
 
 const initialState: UsersType = {

@@ -6,12 +6,20 @@
 }
 
 .item a {
+    display: flex;
+    margin-bottom: 5px;
     color: white;
     text-decoration: none;
+
+}
+
+.item a {
+
 }
 
 .item a.active {
     color: gold;
+
 }
 
 
