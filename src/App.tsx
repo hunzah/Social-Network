@@ -12,7 +12,6 @@ import {UsersContainer} from './components/Users/UsersContainer';
 
 
 const App: React.FC = () => {
-
     return (
         <div className="app-wrapper">
             <Header/>
@@ -24,7 +23,6 @@ const App: React.FC = () => {
                 <Route path="/Settings" render={() => <Settings/>}/>
                 <Route path="/Friends" render={() => <FriendsContainer/>}/>
                 <Route path="/Users" render={() => <UsersContainer/>}/>
-
             </div>
         </div>
 
