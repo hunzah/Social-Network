@@ -21,7 +21,6 @@ export const Users = (props: UsersPropsType) => {
 
 
     return (
-
         <div>
             <button onClick={getUsers}/>
             {users.map(u => {
