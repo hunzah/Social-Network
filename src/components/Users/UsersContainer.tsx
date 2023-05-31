@@ -33,7 +33,7 @@ export type MapDispatchType = {
 
 type UsersPropsType = MapStateType & MapDispatchType
 
-export class UsersApi extends React.Component<UsersPropsType> {
+export class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
@@ -88,4 +88,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchType => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApi)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
