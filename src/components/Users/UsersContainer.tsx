@@ -10,7 +10,7 @@ import {
 } from '../redux/users-reducer';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import UsersApi from './UsersApi';
+import {UsersApi} from './UsersApi';
 
 
 export type MapStateType = {
