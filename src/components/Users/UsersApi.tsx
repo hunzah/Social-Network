@@ -7,7 +7,7 @@ import defaultPhoto from './../../assets/img/img.png'
 
 type UsersPropsType = MapStateType & MapDispatchType
 
-class UsersC extends React.Component<UsersPropsType> {
+class UsersApi extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
@@ -31,7 +31,7 @@ class UsersC extends React.Component<UsersPropsType> {
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i);
         }
-        return (
+        return <Users/>
             <div>
                 <div>
                     {pages.map(p =>
@@ -65,8 +65,7 @@ class UsersC extends React.Component<UsersPropsType> {
                     </div>
                 ))}
             </div>
-        );
     }
 }
 
-export default UsersC
+export default UsersApi
