@@ -8,7 +8,7 @@ import {Settings} from './components/Navbar/Setings/Settings';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import FriendsContainer from './components/Navbar/Friends/FriendsContainer';
 import {UsersContainer} from './components/Users/UsersContainer';
-import {ProfileContainer} from './components/Navbar/Profile/ProfileInfo/ProfileContainer';
+import ProfileContainer from './components/Navbar/Profile/ProfileContainer';
 
 
 const App: React.FC = () => {
