@@ -1,7 +1,7 @@
 import s from './users.module.css';
 import React from 'react';
 // @ts-ignore
-import defaultPhoto from './../../assets/img/img.png'
+import defaultPhoto from './../../assets/img/default avatar.png'
 import {UsersArrType} from '../redux/users-reducer';
 
 type PropsType = {

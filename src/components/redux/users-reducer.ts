@@ -42,7 +42,8 @@ export const usersReducer = (state: UsersType = initialState, action: ActionType
             return {...state, currentPage: action.currentPage}
         case 'SET-TOTAL-COUNT':
             return {...state, totalUsersCount: action.totalCount}
-        case ''
+        case 'TOGGLE-IS-FETCHING':
+        return {...state,isFetching:action.isFetching}
         default:
             return state
     }
@@ -54,4 +55,4 @@ export const UnFollowAC = (userId: number) => ({type: 'UNFOLLOW', userId}) as co
 export const SetUsersAC = (users: UsersArrType[]) => ({type: 'SET-USERS', users}) as const
 export const SetCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage: currentPage}) as const
 export const SetTotalUsersCountAC = (totalCount: number) => ({type: 'SET-TOTAL-COUNT', totalCount: totalCount}) as const
-export const SetIsFetchingTrueAC = (totalCount: number) => ({type: 'SET-TOTAL-COUNT', totalCount: totalCount}) as const
+export const SetIsFetchingTrueAC = (isFetching:boolean) => ({type: 'TOGGLE-IS-FETCHING',isFetching:isFetching}) as const
