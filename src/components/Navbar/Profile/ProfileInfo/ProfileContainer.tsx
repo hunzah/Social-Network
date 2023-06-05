@@ -18,23 +18,28 @@ export class ProfileContainer extends React.Component<ProfilesPropsType> {
         return (
             <div>
                 <Profile {...this.props} />
-
             </div>
         )
     }
 }
 
-export type MapStateType = {}
+export type MapStateType = {
+    profile: any
+}
 export type MapDispatchType = {
     setUserProfile: (profile: any) => void
 }
 
 
-const mapStateToProps = (state:any)=>{
-    profile:state.profilePage.profile
+const mapStateToProps = (state: any): MapStateType => {
+    return (
+        {
+            profile: state.profilePage.profile
+        }
+    )
 }
-const mapDispatchToProps =()=> {
-    return({
+const mapDispatchToProps = (): MapDispatchType => {
+    return ({
             setUserProfile: setUserProfileAC
         }
     )
