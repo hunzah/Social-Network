@@ -2,18 +2,16 @@ import React from 'react';
 import {AppReduxStateType} from '../redux/redux-store';
 import {
     followAC,
-    SetCurrentPageAC, SetIsFetchingTrueAC,
+    SetCurrentPageAC,
+    SetFetchingAC,
     SetTotalUsersCountAC,
     SetUsersAC,
     UnFollowAC,
     UsersArrType
 } from '../redux/users-reducer';
-import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {Users} from './Users';
-// @ts-ignore
-import preloader from './../../assets/img/preloader.svg'
 import {Preloader} from '../common/Preloader/Preloader';
 
 export type MapStateType = {
@@ -63,7 +61,7 @@ export class UsersApi extends React.Component<UsersPropsType> {
     }
 
     render() {
-
+        console.log(this.props.users)
         return (
             <>
                 {this.props.isFetching &&
@@ -88,27 +86,13 @@ const mapStateToProps = (state: AppReduxStateType): MapStateType => {
         isFetching: state.usersPage.isFetching
     }
 }
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchType => {
-    return {
-        followHandler: (userId) => {
-            dispatch(followAC(userId))
-        },
-        unFollowHandler: (userId: number) => {
-            dispatch(UnFollowAC(userId))
-        },
-        setUsers: (users: UsersArrType[]) => {
-            dispatch(SetUsersAC(users))
-        },
-        setCurrentPage: (p: number) => {
-            dispatch(SetCurrentPageAC(p))
-        },
-        setTotalUsersCount: (totalCount: number) => {
-            dispatch(SetTotalUsersCountAC(totalCount))
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(SetIsFetchingTrueAC(isFetching))
-        }
-    }
-}
+const mapDispatchToProps: MapDispatchType = {
+    followHandler: followAC,
+    unFollowHandler: UnFollowAC,
+    setUsers: SetUsersAC,
+    setCurrentPage: SetCurrentPageAC,
+    setTotalUsersCount: SetTotalUsersCountAC,
+    toggleIsFetching: SetFetchingAC,
+};
 
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApi)

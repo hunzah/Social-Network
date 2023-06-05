@@ -55,4 +55,4 @@ export const UnFollowAC = (userId: number) => ({type: 'UNFOLLOW', userId}) as co
 export const SetUsersAC = (users: UsersArrType[]) => ({type: 'SET-USERS', users}) as const
 export const SetCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage: currentPage}) as const
 export const SetTotalUsersCountAC = (totalCount: number) => ({type: 'SET-TOTAL-COUNT', totalCount: totalCount}) as const
-export const SetIsFetchingTrueAC = (isFetching:boolean) => ({type: 'TOGGLE-IS-FETCHING',isFetching:isFetching}) as const
+export const SetFetchingAC = (isFetching:boolean) => ({type: 'TOGGLE-IS-FETCHING',isFetching:isFetching}) as const

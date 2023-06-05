@@ -9,7 +9,7 @@ import {
     SetUsersAC,
     UnFollowAC,
     SetTotalUsersCountAC,
-    SetIsFetchingTrueAC
+    SetFetchingAC
 } from './users-reducer';
 
 
@@ -25,7 +25,7 @@ export type ActionTypes =
     | ReturnType<typeof SetUsersAC>
     | ReturnType<typeof SetCurrentPageAC>
     | ReturnType<typeof SetTotalUsersCountAC>
-    | ReturnType<typeof SetIsFetchingTrueAC>
+    | ReturnType<typeof SetFetchingAC>
 
 
 const reducers = combineReducers({

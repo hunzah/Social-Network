@@ -3,6 +3,7 @@ import React from 'react';
 // @ts-ignore
 import defaultPhoto from './../../assets/img/default avatar.png'
 import {UsersArrType} from '../redux/users-reducer';
+import {NavLink} from 'react-router-dom';
 
 type PropsType = {
     users:UsersArrType[]
@@ -31,15 +32,10 @@ export const Users = (props: PropsType) => {
         </div>
         {props.users.map(u => (
             <div key={u.id}>
-                <img
-                    alt={'profile'}
-                    src={
-                        u.photos.small !== null
-                            ? u.photos.small
-                            : defaultPhoto
-                    }
+                <NavLink to={'/profile/' + u.id}>
+                    <img alt={'profile'} src={u.photos.small !== null ? u.photos.small : defaultPhoto}
                     className={s.avatar}
-                />
+                /></NavLink>
                 {u.followed ? (
                     <button onClick={() => props.followHandler(u.id)}>
                         follow
