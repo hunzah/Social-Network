@@ -1,7 +1,7 @@
 import {combineReducers, createStore, Store} from 'redux';
 import {friendsReducer} from './friends-reducer';
 import {messageSendAC, messagesReducer, newMessageBodyAC} from './messages-reducer';
-import profileReducer, {addPostAC, updateNewPostTextAC} from './profile-reducer';
+import profileReducer, {addPostAC, setUserProfileAC, updateNewPostTextAC} from './profile-reducer';
 import {
     usersReducer,
     followAC,
@@ -18,6 +18,7 @@ export type DispatchType = (action: ActionTypes) => void;
 export type ActionTypes =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof newMessageBodyAC>
     | ReturnType<typeof messageSendAC>
     | ReturnType<typeof followAC>

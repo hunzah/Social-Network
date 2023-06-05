@@ -4,6 +4,7 @@ import {ActionTypes} from './redux-store';
 export type ProfilePageType = {
     postsArr: PostsArrType[]
     newPostText: string
+    profile:any
 }
 export type PostsArrType = {
     id: number
@@ -17,7 +18,8 @@ const initialState = {
         {id: 1, message: 'Hi, how are you?', count: 15},
         {id: 2, message: 'It\'s my first post', count: 16},
     ],
-    newPostText: ''
+    newPostText: '',
+    profile:null
 }
 
 const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes): ProfilePageType => {
@@ -33,6 +35,8 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
 
         case 'UPDATE-NEW-POST-TEXT':
             return {...state, newPostText: action.newText};
+        case 'SET-USER-PROFILE':
+            return {...state, profile:action.profile}
         default:
             return state
     }
@@ -40,5 +44,6 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
 
 export const addPostAC = (text: string) => ({type: 'ADD-POST', text: text} as const)
 export const updateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
+export const setUserProfileAC = (profile:any) => ({type: 'SET-USER-PROFILE',profile:profile} as const)
 
 export default profileReducer
