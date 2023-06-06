@@ -1,6 +1,7 @@
 import {ActionTypes} from './redux-store';
 
 
+
 export type ProfilePageType = {
     postsArr: PostsArrType[]
     newPostText: string
@@ -11,7 +12,29 @@ export type PostsArrType = {
     message: string
     count: number
 }
-
+export type ProfileType = {
+    profile: {
+        "aboutMe": string | undefined,
+        "contacts": {
+            "facebook": string | undefined,
+            "website": string | undefined,
+            "vk": string | undefined,
+            "twitter": string | undefined,
+            "instagram": string | undefined,
+            "youtube": string | undefined,
+            "github": string | undefined,
+            "mainLink": string | undefined
+        },
+        "lookingForAJob": boolean,
+        "lookingForAJobDescription": string | undefined,
+        "fullName": string | undefined,
+        "userId": number,
+        "photos": {
+            "small": string | undefined,
+            "large": string | undefined
+        }
+    } | null
+}
 
 const initialState = {
     postsArr: [
@@ -44,6 +67,6 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
 
 export const addPostAC = (text: string) => ({type: 'ADD-POST', text: text} as const)
 export const updateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
-export const setUserProfileAC = (profile:any) => ({type: 'SET-USER-PROFILE',profile:profile} as const)
+export const setUserProfile = (profile:ProfileType) => ({type: 'SET-USER-PROFILE',profile:profile} as const)
 
 export default profileReducer
