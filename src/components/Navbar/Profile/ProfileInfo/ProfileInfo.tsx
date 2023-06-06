@@ -1,13 +1,15 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileType} from '../../../redux/profile-reducer';
-
-
+// @ts-ignore
+import defaultPhoto from './../../../../assets/img/default avatar.png'
 
 export const ProfileInfo = (props: ProfileType) => {
 
+    const photo = props?.profile?.photos.large
     const aboutMe = props?.profile?.aboutMe
-
+    const contacts = props?.profile?.contacts
+    // const contactsArray = Object.entries(contacts);
     return (
         <div>
             <div>
@@ -16,11 +18,21 @@ export const ProfileInfo = (props: ProfileType) => {
             </div>
             <div className={s.descriptionBlock}>
                 {
-                    props.profile && props.profile && props.profile.photos &&
-                    <img src={props.profile.photos.large} alt="profile"/>
+                    photo ? <img src={photo} alt="profile"/> :
+                        <img src={defaultPhoto} alt="profile"/>
                 }
-                {aboutMe &&
-                    <h1>{aboutMe}</h1>}
+                {aboutMe && <div>about me: {aboutMe}</div>}
+                {contacts &&
+                    <div> My Contacts:
+                        <div>facebook: {contacts.facebook}</div>
+                        <div>github: {contacts.github}</div>
+                        <div>vk: {contacts.vk}</div>
+                        <div>instagram: {contacts.instagram}</div>
+                        <div>mainLink: {contacts.mainLink}</div>
+                        <div>website: {contacts.website}</div>
+                        <div>youtube: {contacts.youtube}</div>
+                    </div>
+                }
             </div>
         </div>
     )
