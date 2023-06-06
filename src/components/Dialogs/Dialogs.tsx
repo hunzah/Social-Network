@@ -30,7 +30,7 @@ export const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={s.messages}>
                 {props.messagesPage.messageArr.map((item, id) => {
-                    return (<Message text={item.message}/>)
+                    return (<Message key={id} text={item.message}/>)
                 })}
                 <textarea value={props.messagesPage.newMessageBody} onChange={handleChange}></textarea>
                 <button

@@ -5,11 +5,6 @@ import {Friends} from './Friends';
 import {FriendsPageType} from '../../redux/friends-reducer';
 
 
-// const FriendsContainer = () => {
-//     return (
-// <Friends/>
-//     );
-// };
 
 
 const mapStateProps = (state: AppReduxStateType): FriendsPageType => {
@@ -18,10 +13,7 @@ const mapStateProps = (state: AppReduxStateType): FriendsPageType => {
             Friends: state.friendsPage.Friends
         })
 }
-const mapDispatchProps = () => {
 
-}
 
-export const FriendsContainer = connect(mapStateProps, mapDispatchProps)(Friends)
+export const FriendsContainer = connect(mapStateProps)(Friends)
 
-export default FriendsContainer;

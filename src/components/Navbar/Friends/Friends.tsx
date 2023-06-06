@@ -2,9 +2,6 @@ import React from 'react';
 import s from './Friend.module.css';
 import {FriendsPageType} from '../../redux/friends-reducer';
 
-// type FriendsPropsType = {
-//     store: RootStore
-// }
 
 
 export const Friends = (Friends:FriendsPageType) => {
@@ -14,9 +11,9 @@ export const Friends = (Friends:FriendsPageType) => {
                 {Friends.Friends.map(item => {
                     return (<li className={s.items} key={item.id}>
                             <img className={s.img} src={item.avatar} alt="avatars"/>
-                            <li className={s.items}>
+                            <span className={s.items}>
                                 {item.name}
-                            </li>
+                            </span>
                         </li>
                     )
                 })}
@@ -25,5 +22,5 @@ export const Friends = (Friends:FriendsPageType) => {
     );
 
 }
-;
+
 

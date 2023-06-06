@@ -53,7 +53,7 @@ export class UsersApi extends React.Component<UsersPropsType> {
                 return response;
             })
             .catch(error => {
-                console.log(error);
+
                 this.props.toggleIsFetching(false);
                 return error;
             });
@@ -61,7 +61,7 @@ export class UsersApi extends React.Component<UsersPropsType> {
     }
 
     render() {
-        console.log(this.props.users)
+
         return (
             <>
                 {this.props.isFetching &&
