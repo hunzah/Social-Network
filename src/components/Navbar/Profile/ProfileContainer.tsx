@@ -4,9 +4,10 @@ import {ProfileType, setUserProfile} from '../../redux/profile-reducer';
 import {AppReduxStateType} from '../../redux/redux-store';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 
 
-type ProfilesPropsType = MapStateType & MapDispatchType
+type ProfilesPropsType = MapStateType & MapDispatchType & RouteComponentProps;
 
 class ProfileContainer extends React.Component<ProfilesPropsType> {
     componentDidMount() {
@@ -16,6 +17,7 @@ class ProfileContainer extends React.Component<ProfilesPropsType> {
                 this.props.setUserProfile(profile);
             });
     }
+
     render() {
         return (
             <div>
@@ -34,8 +36,8 @@ export type MapDispatchType = {
     setUserProfile: (profile: ProfileType) => void
 }
 
-
-export default connect(mapStateToProps, {setUserProfile})(ProfileContainer)
+const withUrlDataContainerComponent = withRouter(ProfileContainer)
+export default connect(mapStateToProps, {setUserProfile})(withUrlDataContainerComponent)
 
 
 

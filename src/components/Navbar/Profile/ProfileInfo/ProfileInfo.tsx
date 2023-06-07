@@ -3,13 +3,22 @@ import s from './ProfileInfo.module.css';
 import {ProfileType} from '../../../redux/profile-reducer';
 // @ts-ignore
 import defaultPhoto from './../../../../assets/img/default avatar.png'
+type ContactType = {
+    facebook?: string | undefined;
+    website?: string | undefined;
+    vk?: string | undefined;
+    twitter?: string | undefined;
+    instagram?: string | undefined;
+    youtube?: string | undefined;
+    github?: string | undefined;
+    mainLink?: string | undefined } | undefined
 
 export const ProfileInfo = (props: ProfileType) => {
 
     const photo = props?.profile?.photos.large
     const aboutMe = props?.profile?.aboutMe
-    const contacts = props?.profile?.contacts
-    // const contactsArray = Object.entries(contacts);
+    const contacts:ContactType = props?.profile?.contacts
+    const contactsArray = contacts ? Object.entries(contacts) : [];
     return (
         <div>
             <div>
@@ -24,13 +33,9 @@ export const ProfileInfo = (props: ProfileType) => {
                 {aboutMe && <div>about me: {aboutMe}</div>}
                 {contacts &&
                     <div> My Contacts:
-                        <div>facebook: {contacts.facebook}</div>
-                        <div>github: {contacts.github}</div>
-                        <div>vk: {contacts.vk}</div>
-                        <div>instagram: {contacts.instagram}</div>
-                        <div>mainLink: {contacts.mainLink}</div>
-                        <div>website: {contacts.website}</div>
-                        <div>youtube: {contacts.youtube}</div>
+                        {contactsArray.map((i,id)=>{
+                            return <div key={id}>{`${i[0]}: ${i[0]}`}</div>
+                        })}
                     </div>
                 }
             </div>
