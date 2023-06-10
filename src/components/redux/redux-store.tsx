@@ -11,6 +11,7 @@ import {
     SetTotalUsersCountAC,
     SetFetchingAC
 } from './users-reducer';
+import {authReducer, SetUserDataAC} from './auth-reducer';
 
 
 export type DispatchType = (action: ActionTypes) => void;
@@ -27,13 +28,15 @@ export type ActionTypes =
     | ReturnType<typeof SetCurrentPageAC>
     | ReturnType<typeof SetTotalUsersCountAC>
     | ReturnType<typeof SetFetchingAC>
+    | ReturnType<typeof SetUserDataAC>
 
 
 const reducers = combineReducers({
     friendsPage: friendsReducer,
     messagesPage: messagesReducer,
     profilePage: profileReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 })
 
 const store = createStore(reducers)
