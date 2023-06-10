@@ -6,40 +6,35 @@ export type ResponseDataType = {
     data: DataType
 }
 export type DataType = {
-    userId: string | null,
+    id: string | null,
     email: string | null,
     login: string | null,
-    isAuth: boolean, // add isAuth here
+    isAuth?: boolean, // add isAuth here
 }
 
 const initialState = {
-    resultCode: 0,
-    messages: [],
-    data:
-        {
-            userId: null,
-            email: null,
-            login: null,
-            isAuth: false,
-        }
+    id: null,
+    email: null,
+    login: null,
+    isAuth: false,
 }
 
-export const authReducer = (state: ResponseDataType = initialState, action: ActionTypes): ResponseDataType => {
+export const authReducer = (state: DataType = initialState, action: ActionTypes): DataType => {
     switch (action.type) {
+
         case 'SET-USERS-DATA':
             return {
                 ...state,
-                ...action.data,
-                data: {
-                    ...action.data,
-                    isAuth: true,
-                },
+                ...action.data, isAuth:true
             };
     }
     return state;
 };
 
-export const SetUserDataAC = (data: DataType) => ({type: 'SET-USERS-DATA', data: data} as const);
+export const SetUserDataAC = (id: string | null, email: string | null, login: string | null) => ({
+    type: 'SET-USERS-DATA',
+    data: {id, email, login}
+} as const);
 
 
 
