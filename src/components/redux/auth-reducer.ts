@@ -1,6 +1,6 @@
 import {ActionTypes} from './redux-store';
 
-export type InitialStateType = {
+export type ResponseDataType = {
     resultCode: number,
     messages: string[],
     data: DataType
@@ -8,7 +8,8 @@ export type InitialStateType = {
 export type DataType = {
     userId: string | null,
     email: string | null,
-    login: string | null
+    login: string | null,
+    isAuth: boolean, // add isAuth here
 }
 
 const initialState = {
@@ -18,24 +19,27 @@ const initialState = {
         {
             userId: null,
             email: null,
-            login: null
+            login: null,
+            isAuth: false,
         }
 }
 
-export const authReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
+export const authReducer = (state: ResponseDataType = initialState, action: ActionTypes): ResponseDataType => {
     switch (action.type) {
         case 'SET-USERS-DATA':
             return {
                 ...state,
-                ...action.data
-            }
-
+                ...action.data,
+                data: {
+                    ...action.data,
+                    isAuth: true,
+                },
+            };
     }
-    return state
-
+    return state;
 };
 
-export const SetUserDataAC = (data: DataType) => ({type: 'SET-USERS-DATA', data: data} as const)
+export const SetUserDataAC = (data: DataType) => ({type: 'SET-USERS-DATA', data: data} as const);
 
 
 

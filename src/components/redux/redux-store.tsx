@@ -45,5 +45,7 @@ export type AppReduxStateType = ReturnType<typeof reducers>
 
 export type RootStore = Store<AppReduxStateType, ActionTypes>
 
+ // @ts-ignore
+window.store = store
 
 export default store
