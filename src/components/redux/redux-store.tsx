@@ -3,15 +3,15 @@ import {friendsReducer} from './friends-reducer';
 import {messageSendAC, messagesReducer, newMessageBodyAC} from './messages-reducer';
 import profileReducer, {addPostAC, setUserProfile, updateNewPostTextAC} from './profile-reducer';
 import {
-    usersReducer,
     followAC,
     SetCurrentPageAC,
+    SetFetchingAC,
+    SetTotalUsersCountAC,
     SetUsersAC,
     UnFollowAC,
-    SetTotalUsersCountAC,
-    SetFetchingAC
+    usersReducer
 } from './users-reducer';
-import {authReducer, SetUserDataAC} from './auth-reducer';
+import {authReducer, setUserData} from './auth-reducer';
 
 
 export type DispatchType = (action: ActionTypes) => void;
@@ -28,7 +28,7 @@ export type ActionTypes =
     | ReturnType<typeof SetCurrentPageAC>
     | ReturnType<typeof SetTotalUsersCountAC>
     | ReturnType<typeof SetFetchingAC>
-    | ReturnType<typeof SetUserDataAC>
+    | ReturnType<typeof setUserData>
 
 
 const reducers = combineReducers({
@@ -45,7 +45,7 @@ export type AppReduxStateType = ReturnType<typeof reducers>
 
 export type RootStore = Store<AppReduxStateType, ActionTypes>
 
- // @ts-ignore
+// @ts-ignore
 window.store = store
 
 export default store
