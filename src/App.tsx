@@ -9,12 +9,13 @@ import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import {FriendsContainer} from './components/Navbar/Friends/FriendsContainer';
 import {UsersContainer} from './components/Users/UsersContainer';
 import ProfileContainerWithUrlComponent from './components/Navbar/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 
 const App: React.FC = () => {
     return (
         <div className="app-wrapper">
-            <Header/>
+            <HeaderContainer/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
                 <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
