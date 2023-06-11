@@ -37,7 +37,9 @@ type UsersPropsType = MapStateType & MapDispatchType
 export class UsersApi extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+            {withCredentials: true})
+    .then(response => {
             this.props.setUsers(response.data.items);
             this.props.setTotalUsersCount(response.data.totalCount)
         })
@@ -46,20 +48,18 @@ export class UsersApi extends React.Component<UsersPropsType> {
     onPageChanged = (p: number) => {
         this.props.setCurrentPage(p)
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`,
+            {withCredentials: true})
             .then(response => {
                 this.props.setUsers(response.data.items)
                 this.props.toggleIsFetching(false)
                 return response;
             })
             .catch(error => {
-
                 this.props.toggleIsFetching(false);
                 return error;
             });
-
     }
-
     render() {
 
         return (

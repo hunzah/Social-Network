@@ -1,14 +1,9 @@
 import React from 'react';
 import s from './Navbar.module.css'
 import {NavLink} from 'react-router-dom';
-import {RootStore} from '../redux/redux-store';
 
-// type FriendsPropsType = {
-//     store:RootStore
-//
-// }
 
-export const Navbar:React.FC = () => {
+export const Navbar: React.FC = () => {
     return (
         <nav className={s.nav}>
             <div className={`${s.item} ${s.active}`}>

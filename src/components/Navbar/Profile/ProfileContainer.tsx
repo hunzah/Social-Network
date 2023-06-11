@@ -29,7 +29,7 @@ class ProfileContainer extends React.Component<ProfilesPropsType> {
     render() {
         return (
             <div>
-                <Profile {...this.props} profile={this.props?.profile}/>
+                <Profile {...this.props} />
             </div>
         )
     }
