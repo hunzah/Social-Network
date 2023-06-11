@@ -6,7 +6,7 @@ export type UsersType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
-    followingInProgress: boolean
+    followingInProgress: number[]
 }
 
 export type UsersArrType = {
@@ -23,11 +23,10 @@ const initialState: UsersType = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: false
+    followingInProgress: []
 }
 
 export const usersReducer = (state: UsersType = initialState, action: ActionTypes): UsersType => {
-
     switch (action.type) {
         case 'FOLLOW':
             return {
@@ -48,8 +47,12 @@ export const usersReducer = (state: UsersType = initialState, action: ActionType
         case 'TOGGLE-IS-FETCHING':
             return {...state, isFetching: action.isFetching}
         case 'TOGGLE-IS-FOLLOWING-PROGRESS':
-            console.log(action.followingInProgress)
-            return {...state, followingInProgress: action.followingInProgress}
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                    ? state.followingInProgress.concat(action.userId)
+                    : state.followingInProgress.filter(id => id !== action.userId)
+            }
         default:
             return state
     }
@@ -62,7 +65,8 @@ export const SetUsersAC = (users: UsersArrType[]) => ({type: 'SET-USERS', users}
 export const SetCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage: currentPage}) as const
 export const SetTotalUsersCountAC = (totalCount: number) => ({type: 'SET-TOTAL-COUNT', totalCount: totalCount}) as const
 export const SetFetchingAC = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching: isFetching}) as const
-export const followingInProgressAC = (followingInProgress: boolean) => ({
+export const toggleFollowingInProgressAC = (isFetching: boolean,userId:number) => ({
     type: 'TOGGLE-IS-FOLLOWING-PROGRESS',
-    followingInProgress: followingInProgress
+    isFetching: isFetching,
+    userId:userId
 }) as const

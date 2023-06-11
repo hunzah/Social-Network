@@ -13,8 +13,8 @@ type PropsType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
-    toggleFollowingInProgress: (following: boolean) => void
-    followingInProgress: boolean
+    toggleFollowingInProgress: (isFetching:boolean,userId:number) => void
+    followingInProgress:number[]
 }
 
 export const Users = (props: PropsType) => {
@@ -43,30 +43,32 @@ export const Users = (props: PropsType) => {
                 {u.followed ?
 
                     (<button onClick={() => {
-                        props.toggleFollowingInProgress(true)
+                        props.followingInProgress.some(id=>id===u.id)
+                        props.toggleFollowingInProgress(true,u.id)
                         usersApi.followUsers(u.id)
                             .then(data => {
                                 if (data.resultCode === 0) {
                                     props.unFollowHandler(u.id)
                                 }
-                                props.toggleFollowingInProgress(false)
+                                props.toggleFollowingInProgress(false,u.id)
                             })
                     }}
-                             disabled={props.followingInProgress}
+                             disabled={props.followingInProgress.some(id=>id===u.id)}
                     >unfollow</button>)
                     :
                     (<button onClick={() => {
-                        props.toggleFollowingInProgress(true)
+                        props.followingInProgress.some(id=>id===u.id)
+                        props.toggleFollowingInProgress(true,u.id)
                         usersApi.UnfollowUsers(u.id)
                             .then(data => {
                                 if (data.resultCode === 0) {
                                     props.followHandler(u.id)
                                 }
-                                props.toggleFollowingInProgress(false)
+                                props.toggleFollowingInProgress(false,u.id)
 
                             })
                     }}
-                             disabled={props.followingInProgress}
+                             disabled={props.followingInProgress.some(id=>id===u.id)}
                     >follow</button>)
                 }
                 <div>{u.name}</div>

@@ -2,11 +2,10 @@ import React from 'react';
 import {AppReduxStateType} from '../redux/redux-store';
 import {
     followAC,
-    followingInProgressAC,
     SetCurrentPageAC,
     SetFetchingAC,
     SetTotalUsersCountAC,
-    SetUsersAC,
+    SetUsersAC, toggleFollowingInProgressAC,
     UnFollowAC,
     UsersArrType
 } from '../redux/users-reducer';
@@ -21,7 +20,7 @@ export type MapStateType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
-    followingInProgress:boolean
+    followingInProgress: number[]
 }
 
 export type MapDispatchType = {
@@ -31,7 +30,7 @@ export type MapDispatchType = {
     setCurrentPage: (p: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
-    toggleFollowingInProgress: (following: boolean) => void
+    toggleFollowingInProgress: (isFetching: boolean,userId:number) => void
 }
 
 
@@ -88,7 +87,7 @@ const mapStateToProps = (state: AppReduxStateType): MapStateType => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followingInProgress:state.usersPage.followingInProgress
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 const mapDispatchToProps: MapDispatchType = {
@@ -98,7 +97,7 @@ const mapDispatchToProps: MapDispatchType = {
     setCurrentPage: SetCurrentPageAC,
     setTotalUsersCount: SetTotalUsersCountAC,
     toggleIsFetching: SetFetchingAC,
-    toggleFollowingInProgress: followingInProgressAC
+    toggleFollowingInProgress: toggleFollowingInProgressAC
 };
 
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApi)
