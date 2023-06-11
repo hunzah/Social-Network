@@ -5,7 +5,8 @@ import {
     SetCurrentPageAC,
     SetFetchingAC,
     SetTotalUsersCountAC,
-    SetUsersAC, toggleFollowingInProgressAC,
+    SetUsersAC,
+    toggleFollowingInProgressAC,
     UnFollowAC,
     UsersArrType
 } from '../redux/users-reducer';
@@ -30,7 +31,7 @@ export type MapDispatchType = {
     setCurrentPage: (p: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
-    toggleFollowingInProgress: (isFetching: boolean,userId:number) => void
+    toggleFollowingInProgress: (isFetching: boolean, userId: number) => void
 }
 
 
