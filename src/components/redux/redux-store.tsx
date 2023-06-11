@@ -3,7 +3,7 @@ import {friendsReducer} from './friends-reducer';
 import {messageSendAC, messagesReducer, newMessageBodyAC} from './messages-reducer';
 import profileReducer, {addPostAC, setUserProfile, updateNewPostTextAC} from './profile-reducer';
 import {
-    followAC,
+    followAC, followingInProgressAC,
     SetCurrentPageAC,
     SetFetchingAC,
     SetTotalUsersCountAC,
@@ -29,6 +29,7 @@ export type ActionTypes =
     | ReturnType<typeof SetTotalUsersCountAC>
     | ReturnType<typeof SetFetchingAC>
     | ReturnType<typeof setUserData>
+    | ReturnType<typeof followingInProgressAC>
 
 
 const reducers = combineReducers({

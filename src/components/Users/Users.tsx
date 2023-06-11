@@ -13,6 +13,7 @@ type PropsType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
+    toggleFollowingInProgress: (following: boolean) => void
 }
 
 export const Users = (props: PropsType) => {
@@ -22,6 +23,7 @@ export const Users = (props: PropsType) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
+
     return <div>
         <div>
             {pages.map(p =>
@@ -38,22 +40,30 @@ export const Users = (props: PropsType) => {
                     /></NavLink>
 
                 {u.followed ?
-                    (<button onClick={() =>
+
+                    (<button onClick={() => {
+                        props.toggleFollowingInProgress(true)
                         usersApi.followUsers(u.id)
                             .then(data => {
                                 if (data.resultCode === 0) {
                                     props.unFollowHandler(u.id)
-                                }
-                            })}
+                                }props.toggleFollowingInProgress(false)
+                            })
+                    }}
                     >unfollow</button>)
                     :
-                    (<button onClick={() =>
+                    (<button onClick={() => {
+                        props.toggleFollowingInProgress(true)
                         usersApi.UnfollowUsers(u.id)
                             .then(data => {
                                 if (data.resultCode === 0) {
                                     props.followHandler(u.id)
                                 }
-                            })}
+                                props.toggleFollowingInProgress(false)
+
+                            })
+                    }}
+                             disabled={}
                     >follow</button>)
                 }
                 <div>{u.name}</div>
