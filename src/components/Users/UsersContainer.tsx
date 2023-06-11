@@ -21,6 +21,7 @@ export type MapStateType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress:boolean
 }
 
 export type MapDispatchType = {
@@ -71,7 +72,8 @@ export class UsersApi extends React.Component<UsersPropsType> {
                        pageSize={this.props.pageSize} currentPage={this.props.currentPage}
                        followHandler={this.props.followHandler}
                        unFollowHandler={this.props.unFollowHandler} users={this.props.users}
-                       toggleFollowingInProgress={this.props.toggleFollowingInProgress}/>
+                       toggleFollowingInProgress={this.props.toggleFollowingInProgress}
+                       followingInProgress={this.props.followingInProgress}/>
             </>
         )
 
@@ -85,7 +87,8 @@ const mapStateToProps = (state: AppReduxStateType): MapStateType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress:state.usersPage.followingInProgress
     }
 }
 const mapDispatchToProps: MapDispatchType = {

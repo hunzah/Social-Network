@@ -14,6 +14,7 @@ type PropsType = {
     pageSize: number
     currentPage: number
     toggleFollowingInProgress: (following: boolean) => void
+    followingInProgress: boolean
 }
 
 export const Users = (props: PropsType) => {
@@ -47,9 +48,11 @@ export const Users = (props: PropsType) => {
                             .then(data => {
                                 if (data.resultCode === 0) {
                                     props.unFollowHandler(u.id)
-                                }props.toggleFollowingInProgress(false)
+                                }
+                                props.toggleFollowingInProgress(false)
                             })
                     }}
+                             disabled={props.followingInProgress}
                     >unfollow</button>)
                     :
                     (<button onClick={() => {
@@ -63,7 +66,7 @@ export const Users = (props: PropsType) => {
 
                             })
                     }}
-                             disabled={}
+                             disabled={props.followingInProgress}
                     >follow</button>)
                 }
                 <div>{u.name}</div>
