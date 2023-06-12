@@ -1,9 +1,10 @@
-import {ActionTypes} from './redux-store';
+import {ActionTypes, DispatchType} from './redux-store';
+import {usersApi} from '../../api/api';
 
 export type ProfilePageType = {
     postsArr: PostsArrType[]
     newPostText: string
-    profile:any
+    profile: any
 }
 export type PostsArrType = {
     id: number
@@ -12,24 +13,24 @@ export type PostsArrType = {
 }
 export type ProfileType = {
     profile: {
-        "aboutMe": string | undefined,
-        "contacts": {
-            "facebook": string | undefined,
-            "website": string | undefined,
-            "vk": string | undefined,
-            "twitter": string | undefined,
-            "instagram": string | undefined,
-            "youtube": string | undefined,
-            "github": string | undefined,
-            "mainLink": string | undefined
+        'aboutMe': string | undefined,
+        'contacts': {
+            'facebook': string | undefined,
+            'website': string | undefined,
+            'vk': string | undefined,
+            'twitter': string | undefined,
+            'instagram': string | undefined,
+            'youtube': string | undefined,
+            'github': string | undefined,
+            'mainLink': string | undefined
         },
-        "lookingForAJob": boolean,
-        "lookingForAJobDescription": string | undefined,
-        "fullName": string | undefined,
-        "userId": number,
-        "photos": {
-            "small": string | undefined,
-            "large": string | undefined
+        'lookingForAJob': boolean,
+        'lookingForAJobDescription': string | undefined,
+        'fullName': string | undefined,
+        'userId': number,
+        'photos': {
+            'small': string | undefined,
+            'large': string | undefined
         }
     } | null
 }
@@ -40,7 +41,7 @@ const initialState = {
         {id: 2, message: 'It\'s my first post', count: 16},
     ],
     newPostText: '',
-    profile:null
+    profile: null
 }
 
 const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes): ProfilePageType => {
@@ -52,7 +53,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
                 count: 0
             }
             state.newPostText = ''
-            return {...state, postsArr: [newPost,...state.postsArr]};
+            return {...state, postsArr: [newPost, ...state.postsArr]};
         case 'UPDATE-NEW-POST-TEXT':
             return {...state, newPostText: action.newText};
         case 'SET-USER-PROFILE':
@@ -64,6 +65,17 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
 
 export const addPostAC = (text: string) => ({type: 'ADD-POST', text: text} as const)
 export const updateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
-export const setUserProfile = (profile:ProfileType) => ({type: 'SET-USER-PROFILE',profile:profile} as const)
+export const setUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile: profile} as const)
+
+export const setProfileThunkCreator = (userId: string) => {
+    return (dispatch: DispatchType) => {
+        usersApi.getProfiles(userId)
+            .then(data => {
+                console.log(data)
+                dispatch(setUserProfile(data));
+            });
+    }
+}
+
 
 export default profileReducer;
