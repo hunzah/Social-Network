@@ -45,13 +45,8 @@ const mapStateToProps = (state: AppReduxStateType) => {
     }
 }
 
-const mapDispatchToProps = () => {
-    return {
-        // setUserData: (userId: string | null, email: string | null, login: string | null) => {
-        //     dispatch(setUserDataAC(userId, email, login));
+const mapDispatchToProps = {
         authUserThunk:authUserThunk
-    };
-
 };
 
 

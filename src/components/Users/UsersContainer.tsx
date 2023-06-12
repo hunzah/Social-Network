@@ -79,7 +79,6 @@ const mapStateToProps = (state: AppReduxStateType): MapStateType => {
     }
 }
 const mapDispatchToProps: MapDispatchType = {
-
     setUsers: SetUsersAC,
     setCurrentPage: SetCurrentPageAC,
     setTotalUsersCount: SetTotalUsersCountAC,
@@ -88,5 +87,4 @@ const mapDispatchToProps: MapDispatchType = {
     followThunk: followThunkCreator,
     unFollowThunk: unFollowThunkCreator
 };
-
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApi)
