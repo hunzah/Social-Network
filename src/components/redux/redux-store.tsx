@@ -12,8 +12,8 @@ import {
     UnFollowAC,
     usersReducer
 } from './users-reducer';
-import {authReducer, setUserData} from './auth-reducer';
-import  thunkMiddleware from 'redux-thunk'
+import {authReducer, setUserDataAC} from './auth-reducer';
+import thunkMiddleware from 'redux-thunk'
 
 
 export type DispatchType = (action: ActionTypes) => void;
@@ -30,7 +30,7 @@ export type ActionTypes =
     | ReturnType<typeof SetCurrentPageAC>
     | ReturnType<typeof SetTotalUsersCountAC>
     | ReturnType<typeof SetFetchingAC>
-    | ReturnType<typeof setUserData>
+    | ReturnType<typeof setUserDataAC>
     | ReturnType<typeof toggleFollowingInProgressAC>
 
 

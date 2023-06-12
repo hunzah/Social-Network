@@ -1,4 +1,5 @@
-import {ActionTypes} from './redux-store';
+import {ActionTypes, DispatchType} from './redux-store';
+import {usersApi} from '../../api/api';
 
 export type ResponseDataType = {
     resultCode: number,
@@ -31,11 +32,22 @@ export const authReducer = (state: DataType = initialState, action: ActionTypes)
     return state;
 };
 
-export const setUserData = (id: string | null, email: string | null, login: string | null) => ({
+
+export const setUserDataAC = (id: string | null, email: string | null, login: string | null) => ({
     type: 'SET-USERS-DATA',
     data: {id, email, login}
 } as const);
 
 
 
-
+export const authUserThunk = () => {
+    return (dispatch: DispatchType) => {
+        debugger
+        usersApi.userLogin().then((data) => {
+            if (data.resultCode === 0) {
+                let { id, email, login } = data.data;
+                dispatch(setUserDataAC(id, email, login));
+            }
+        });
+    };
+};

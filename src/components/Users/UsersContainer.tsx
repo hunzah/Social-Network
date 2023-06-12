@@ -30,7 +30,6 @@ export type MapDispatchType = {
     setCurrentPage: (p: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
-    // toggleFollowingInProgress: (isFetching: boolean, userId: number) => void
     getUsersThunk: (currentPage: number, pageSize: number) => void
     followThunk: (userId: number) => void
     unFollowThunk: (userId: number) => void
@@ -85,7 +84,6 @@ const mapDispatchToProps: MapDispatchType = {
     setCurrentPage: SetCurrentPageAC,
     setTotalUsersCount: SetTotalUsersCountAC,
     toggleIsFetching: SetFetchingAC,
-    // toggleFollowingInProgress: toggleFollowingInProgressAC,
     getUsersThunk: getUsersThunkCreator,
     followThunk: followThunkCreator,
     unFollowThunk: unFollowThunkCreator
