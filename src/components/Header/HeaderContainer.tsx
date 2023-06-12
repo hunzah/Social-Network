@@ -47,9 +47,14 @@ const mapStateToProps = (state: AppReduxStateType) => {
 
 const mapDispatchToProps = () => {
     return {
+        // setUserData: (userId: string | null, email: string | null, login: string | null) => {
+        //     dispatch(setUserDataAC(userId, email, login));
         authUserThunk:authUserThunk
     };
 
 };
 
+
 export default connect(mapStateToProps,mapDispatchToProps)(HeaderContainer);
+
+
