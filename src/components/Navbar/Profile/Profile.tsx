@@ -4,8 +4,6 @@ import {ProfileType} from '../../redux/profile-reducer';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 
 
-
-
 export const Profile = (props: ProfileType) => {
     return (
         <div>

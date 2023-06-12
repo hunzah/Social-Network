@@ -8,18 +8,19 @@ import {RouteComponentProps, withRouter} from 'react-router-dom';
 interface MatchParams {
     userId: string;
 }
-type ProfilesPropsType = MapStateType & MapDispatchType & RouteComponentProps<MatchParams>;
 
+type ProfilesPropsType = MapStateType & MapDispatchType & RouteComponentProps<MatchParams>;
 
 
 class ProfileContainer extends React.Component<ProfilesPropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId;
-            if(!userId){
-                userId = '2'
-            }
+        if (!userId) {
+            userId = '2'
+        }
         this.props.setProfileThunk(userId)
     }
+
     render() {
         return (
             <div>
@@ -36,16 +37,16 @@ const mapStateToProps = (state: AppReduxStateType): MapStateType => ({
 })
 export type MapDispatchType = {
     // setUserProfile: (profile: ProfileType) => void
-    setProfileThunk:(userId:string) => void
+    setProfileThunk: (userId: string) => void
 }
 
-const mapDispatchToProps:MapDispatchType = {
-    setProfileThunk:setProfileThunkCreator
+const mapDispatchToProps: MapDispatchType = {
+    setProfileThunk: setProfileThunkCreator
 }
 
 const ProfileContainerWithUrlComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps,mapDispatchToProps )(ProfileContainerWithUrlComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainerWithUrlComponent)
 
 
 

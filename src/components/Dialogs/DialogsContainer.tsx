@@ -1,9 +1,8 @@
 import React, {ChangeEvent} from 'react';
-import {messageSendAC, newMessageBodyAC} from '../redux/messages-reducer';
+import {messageSendAC, MessagesPageType, newMessageBodyAC} from '../redux/messages-reducer';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import {AppReduxStateType, DispatchType} from '../redux/redux-store';
-import {MessagesPageType} from '../redux/messages-reducer';
 
 type mapStateToPropsType = {
     messagesPage: MessagesPageType

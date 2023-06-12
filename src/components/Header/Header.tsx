@@ -16,7 +16,7 @@ export const Header = (props: PropsType) => {
             <div className={s.loginBlock}>
                 {props.isAuth ? props.login :
                     (<NavLink to={'/login'}>log in</NavLink>)
-                    }
+                }
             </div>
         </header>
     )

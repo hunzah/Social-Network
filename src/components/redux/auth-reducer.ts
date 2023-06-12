@@ -26,7 +26,7 @@ export const authReducer = (state: DataType = initialState, action: ActionTypes)
         case 'SET-USERS-DATA':
             return {
                 ...state,
-                ...action.data, isAuth:true
+                ...action.data, isAuth: true
             };
     }
     return state;
@@ -39,13 +39,12 @@ export const setUserDataAC = (id: string | null, email: string | null, login: st
 } as const);
 
 
-
 export const authUserThunk = () => {
     return (dispatch: DispatchType) => {
 
         usersApi.userLogin().then((data) => {
             if (data.resultCode === 0) {
-                let { id, email, login } = data.data;
+                let {id, email, login} = data.data;
                 dispatch(setUserDataAC(id, email, login));
             }
         });

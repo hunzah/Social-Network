@@ -1,5 +1,5 @@
 export const Settings = () => {
-return (
-    <div>Settings</div>
-)
+    return (
+        <div>Settings</div>
+    )
 }

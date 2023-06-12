@@ -5,12 +5,10 @@ import {connect} from 'react-redux';
 import {DispatchType} from '../../../redux/redux-store';
 
 
-
-
 type mapStateToPropsType = {
-    profilePage:ProfilePageType
+    profilePage: ProfilePageType
 }
-const mapStateToProps = (state:mapStateToPropsType) => {
+const mapStateToProps = (state: mapStateToPropsType) => {
     return ({
         profilePage: state.profilePage
     })

@@ -33,7 +33,7 @@ type MapStateType = {
 }
 
 type MapDispatchType = {
-    authUserThunk:()=>void
+    authUserThunk: () => void
 }
 
 const mapStateToProps = (state: AppReduxStateType) => {
@@ -46,10 +46,10 @@ const mapStateToProps = (state: AppReduxStateType) => {
 }
 
 const mapDispatchToProps = {
-        authUserThunk:authUserThunk
+    authUserThunk: authUserThunk
 };
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(HeaderContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
 
 

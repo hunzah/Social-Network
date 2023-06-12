@@ -7,17 +7,16 @@ import React, {ChangeEvent} from 'react';
 
 type DialogsPropsType = {
     AddMessageHandler: () => void
-    onChangeMessageHandler: (e:ChangeEvent<HTMLTextAreaElement>) => void
+    onChangeMessageHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void
     messagesPage: MessagesPageType
 }
 export const Dialogs = (props: DialogsPropsType) => {
     const handleAddMessage = () => {
         props.AddMessageHandler()
     }
-    const handleChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.onChangeMessageHandler(e)
     }
-
 
 
     return (

@@ -1,4 +1,3 @@
-import {} from './store';
 import {ActionTypes} from './redux-store';
 
 // export type MessageStateType = {
@@ -42,7 +41,7 @@ export const messagesReducer = (state: MessagesPageType = initialState, action: 
         case 'MESSAGE-SEND':
             const body = state.newMessageBody
             state.newMessageBody = ''
-            return {...state, messageArr: [...state.messageArr,{message: body}]};
+            return {...state, messageArr: [...state.messageArr, {message: body}]};
         default:
             return state
     }
