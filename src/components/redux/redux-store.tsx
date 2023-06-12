@@ -1,4 +1,4 @@
-import {combineReducers, createStore, Store} from 'redux';
+import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
 import {friendsReducer} from './friends-reducer';
 import {messageSendAC, messagesReducer, newMessageBodyAC} from './messages-reducer';
 import profileReducer, {addPostAC, setUserProfile, updateNewPostTextAC} from './profile-reducer';
@@ -13,6 +13,7 @@ import {
     usersReducer
 } from './users-reducer';
 import {authReducer, setUserData} from './auth-reducer';
+import  thunkMiddleware from 'redux-thunk'
 
 
 export type DispatchType = (action: ActionTypes) => void;
@@ -41,7 +42,7 @@ const reducers = combineReducers({
     auth: authReducer
 })
 
-const store = createStore(reducers)
+const store = createStore(reducers, applyMiddleware(thunkMiddleware))
 
 export type AppReduxStateType = ReturnType<typeof reducers>
 

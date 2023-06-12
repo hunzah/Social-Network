@@ -15,6 +15,7 @@ type PropsType = {
     currentPage: number
     toggleFollowingInProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: number[]
+    followThunk: (userId: number, followingInProgress: number[]) => void
 }
 
 export const Users = (props: PropsType) => {
@@ -39,26 +40,17 @@ export const Users = (props: PropsType) => {
                     <img alt={'profile'} src={u.photos.small !== null ? u.photos.small : defaultPhoto}
                          className={s.avatar}
                     /></NavLink>
-
                 {u.followed ?
-
-                    (<button onClick={() => {
-                        props.followingInProgress.some(id => id === u.id)
-                        props.toggleFollowingInProgress(true, u.id)
-                        usersApi.followUsers(u.id)
-                            .then(data => {
-                                if (data.resultCode === 0) {
-                                    props.unFollowHandler(u.id)
-                                }
-                                props.toggleFollowingInProgress(false, u.id)
-                            })
+                    <button onClick={() => {
+                        props.followThunk(u.id, props.followingInProgress)
                     }}
-                             disabled={props.followingInProgress.some(id => id === u.id)}
-                    >unfollow</button>)
+                            disabled={props.followingInProgress.some(id => id === u.id)}
+
+                    >unfollow</button>
                     :
                     (<button onClick={() => {
-                        props.followingInProgress.some(id => id === u.id)
                         props.toggleFollowingInProgress(true, u.id)
+                        props.followingInProgress.some(id => id === u.id)
                         usersApi.UnfollowUsers(u.id)
                             .then(data => {
                                 if (data.resultCode === 0) {
