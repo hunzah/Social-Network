@@ -28,7 +28,7 @@ export const usersApi = {
         return instance.get(`auth/me`).then((response: AxiosResponse<ResponseDataType>) => response.data)
     },
     getProfiles(userId:string){
-        return instance.get(`profile/${userId}`)
+        return instance.get(`profile/${userId}`).then((response)=>response.data)
     }
 
 }

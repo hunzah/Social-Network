@@ -42,6 +42,7 @@ export const setUserDataAC = (id: string | null, email: string | null, login: st
 
 export const authUserThunk = () => {
     return (dispatch: DispatchType) => {
+
         usersApi.userLogin().then((data) => {
             if (data.resultCode === 0) {
                 let { id, email, login } = data.data;
