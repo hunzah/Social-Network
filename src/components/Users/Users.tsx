@@ -3,7 +3,6 @@ import React from 'react';
 import defaultPhoto from './../../assets/img/default avatar.png'
 import {UsersArrType} from '../redux/users-reducer';
 import {NavLink} from 'react-router-dom';
-import {usersApi} from '../../api/api';
 
 type PropsType = {
     users: UsersArrType[]
@@ -14,8 +13,9 @@ type PropsType = {
     pageSize: number
     currentPage: number
     toggleFollowingInProgress: (isFetching: boolean, userId: number) => void
+    followThunk: (userId: number) => void
+    unFollowThunk: (userId: number) => void
     followingInProgress: number[]
-    followThunk: (userId: number, followingInProgress: number[]) => void
 }
 
 export const Users = (props: PropsType) => {
@@ -42,26 +42,17 @@ export const Users = (props: PropsType) => {
                     /></NavLink>
                 {u.followed ?
                     <button onClick={() => {
-                        props.followThunk(u.id, props.followingInProgress)
+                        props.followThunk(u.id)
                     }}
                             disabled={props.followingInProgress.some(id => id === u.id)}
 
                     >unfollow</button>
                     :
-                    (<button onClick={() => {
-                        props.toggleFollowingInProgress(true, u.id)
-                        props.followingInProgress.some(id => id === u.id)
-                        usersApi.UnfollowUsers(u.id)
-                            .then(data => {
-                                if (data.resultCode === 0) {
-                                    props.followHandler(u.id)
-                                }
-                                props.toggleFollowingInProgress(false, u.id)
-
-                            })
+                    <button onClick={() => {
+                        props.unFollowThunk(u.id)
                     }}
-                             disabled={props.followingInProgress.some(id => id === u.id)}
-                    >follow</button>)
+                            disabled={props.followingInProgress.some(id => id === u.id)}
+                    >follow</button>
                 }
                 <div>{u.name}</div>
                 <div>{u.city}</div>

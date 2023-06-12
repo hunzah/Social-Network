@@ -86,10 +86,10 @@ export const getUsersThunkCreator = (pageNumber: number, pageSize: number) => {
     }
 }
 
-export const followThunkCreator = (userId: number, followingInProgress: number[]) => {
+export const followThunkCreator = (userId: number) => {
     return (dispatch: DispatchType) => {
         dispatch(toggleFollowingInProgressAC(true, userId))
-        followingInProgress.some(id => id === userId)
+        initialState.followingInProgress.some(id => id === userId)
         usersApi.followUsers(userId)
             .then(data => {
                 if (data.resultCode === 0) {
@@ -99,4 +99,16 @@ export const followThunkCreator = (userId: number, followingInProgress: number[]
             })
     }
 }
-
+export const unFollowThunkCreator = (userId: number) => {
+    return (dispatch: DispatchType) => {
+        dispatch(toggleFollowingInProgressAC(true, userId))
+        initialState.followingInProgress.some(id => id === userId)
+        usersApi.UnfollowUsers(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(followAC(userId))
+                }
+                dispatch(toggleFollowingInProgressAC(false, userId))
+            })
+    }
+}
