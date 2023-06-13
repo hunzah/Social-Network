@@ -24,11 +24,12 @@ export const usersApi = {
         return instance.post(`follow/${id}`).then((response) => response.data )
 
     },
-    userLogin() {
-        return instance.get(`auth/me`).then((response: AxiosResponse<ResponseDataType>) => response.data)
-    },
     getProfiles(userId:string){
         return instance.get(`profile/${userId}`).then((response)=>response.data)
     }
 
 }
+export const authApi = {
+    userLogin() { return instance.get(`auth/me`).then((response: AxiosResponse<ResponseDataType>) => response.data)}
+}
+

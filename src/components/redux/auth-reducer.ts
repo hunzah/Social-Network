@@ -1,5 +1,5 @@
 import {ActionTypes, DispatchType} from './redux-store';
-import {usersApi} from '../../api/api';
+import {authApi, usersApi} from '../../api/api';
 
 export type ResponseDataType = {
     resultCode: number,
@@ -42,7 +42,7 @@ export const setUserDataAC = (id: string | null, email: string | null, login: st
 export const authUserThunk = () => {
     return (dispatch: DispatchType) => {
 
-        usersApi.userLogin().then((data) => {
+        authApi.userLogin().then((data) => {
             if (data.resultCode === 0) {
                 let {id, email, login} = data.data;
                 dispatch(setUserDataAC(id, email, login));
