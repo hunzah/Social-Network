@@ -30,6 +30,6 @@ export const usersApi = {
 
 }
 export const authApi = {
-    userLogin() { return instance.get(`auth/me`).then((response: AxiosResponse<ResponseDataType>) => response.data)}
+    me() { return instance.get(`auth/me`).then((response: AxiosResponse<ResponseDataType>) => response.data)}
 }
 
