@@ -15,7 +15,7 @@ export const Header = (props: PropsType) => {
                  src="https://vowels.ae/blog/wp-content/uploads/2022/07/best-ideas-for-tech-logo-design.jpg"/>
             <div className={s.loginBlock}>
                 {props.isAuth ? props.login :
-                    (<NavLink to={'/login'}>log in</NavLink>)
+                    (<NavLink to={'/Login'}>log in</NavLink>)
                 }
             </div>
         </header>

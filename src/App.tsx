@@ -9,6 +9,7 @@ import {FriendsContainer} from './components/Navbar/Friends/FriendsContainer';
 import {UsersContainer} from './components/Users/UsersContainer';
 import ProfileContainerWithUrlComponent from './components/Navbar/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import {LogIn} from './Login/LogIn';
 
 
 const App: React.FC = () => {
@@ -23,6 +24,7 @@ const App: React.FC = () => {
                 <Route path="/Settings" render={() => <Settings/>}/>
                 <Route path="/Friends" render={() => <FriendsContainer/>}/>
                 <Route path="/Users" render={() => <UsersContainer/>}/>
+                <Route path="/Login" render={() => <LogIn/>}/>
             </div>
         </div>
     );

@@ -6,11 +6,13 @@ import {AppReduxStateType, DispatchType} from '../redux/redux-store';
 
 type mapStateToPropsType = {
     messagesPage: MessagesPageType
+    isAuth:boolean | undefined
 }
 
 const mapStateToProps = (state: AppReduxStateType): mapStateToPropsType => {
     return {
-        messagesPage: state.messagesPage
+        messagesPage: state.messagesPage,
+        isAuth:state.auth.isAuth
     }
 }
 const mapDispatchToProps = (dispatch: DispatchType) => {
@@ -24,5 +26,6 @@ const mapDispatchToProps = (dispatch: DispatchType) => {
         }
     )
 }
+
 export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 

@@ -1,5 +1,5 @@
 import {ActionTypes, DispatchType} from './redux-store';
-import {authApi, usersApi} from '../../api/api';
+import {authApi} from '../../api/api';
 
 export type ResponseDataType = {
     resultCode: number,
