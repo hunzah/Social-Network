@@ -3,19 +3,28 @@ import {messageSendAC, MessagesPageType, newMessageBodyAC} from '../redux/messag
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import {AppReduxStateType, DispatchType} from '../redux/redux-store';
+import {Redirect} from 'react-router-dom';
 
-type mapStateToPropsType = {
+
+type MapStateToPropsType = {
     messagesPage: MessagesPageType
-    isAuth:boolean | undefined
+    isAuth?: boolean | undefined
+}
+type MapDispatchType = {
+    AddMessageHandler: () => void
+    onChangeMessageHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void
+
 }
 
-const mapStateToProps = (state: AppReduxStateType): mapStateToPropsType => {
+type PropsType = MapStateToPropsType & MapDispatchType
+
+const mapStateToProps = (state: AppReduxStateType): MapStateToPropsType => {
     return {
         messagesPage: state.messagesPage,
-        isAuth:state.auth.isAuth
+        isAuth: state.auth.isAuth
     }
 }
-const mapDispatchToProps = (dispatch: DispatchType) => {
+const mapDispatchToProps = (dispatch: DispatchType): MapDispatchType => {
     return ({
             AddMessageHandler: () => {
                 dispatch(messageSendAC());
@@ -27,5 +36,17 @@ const mapDispatchToProps = (dispatch: DispatchType) => {
     )
 }
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+
+let AuthRedirectComponent = (props: PropsType) => {
+    return (
+        !props.isAuth ?
+            <Redirect to={'./login'}/> :
+            <Dialogs AddMessageHandler={props.AddMessageHandler}
+                     onChangeMessageHandler={props.onChangeMessageHandler}
+                     messagesPage={props.messagesPage}/>
+    )
+}
+
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
 

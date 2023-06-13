@@ -10,7 +10,6 @@ type DialogsPropsType = {
     AddMessageHandler: () => void
     onChangeMessageHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void
     messagesPage: MessagesPageType
-    isAuth: boolean | undefined
 }
 export const Dialogs = (props: DialogsPropsType) => {
     const handleAddMessage = () => {
@@ -20,9 +19,6 @@ export const Dialogs = (props: DialogsPropsType) => {
         props.onChangeMessageHandler(e)
     }
     return (
-        !props.isAuth ?
-            <Redirect to={'./login'}/>
-            :
             <div className={s.dialogs}>
                 <div className={s.dialogsItem}>
                     {props.messagesPage.dialogsArr.map((item, id) => {
