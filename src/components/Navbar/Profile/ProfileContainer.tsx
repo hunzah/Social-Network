@@ -32,13 +32,13 @@ class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
     render() {
         return (
             <div>
-                <AuthRedirectComponent {...this.props}  />
+                <ProfileContainerWithUrlComponent {...this.props}  />
             </div>
         )
     }
 }
 
-export let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+// export let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
 const mapStateToProps = (state: AppReduxStateType): MapStateType => ({
     profile: state.profilePage.profile,
@@ -52,7 +52,7 @@ const mapDispatchToProps: MapDispatchType = {
 
 const ProfileContainerWithUrlComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainerWithUrlComponent)
+export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(ProfileContainerWithUrlComponent))
 
 
 
