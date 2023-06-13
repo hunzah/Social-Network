@@ -1,9 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import {messageSendAC, MessagesPageType, newMessageBodyAC} from '../redux/messages-reducer';
-import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import {AppReduxStateType, DispatchType} from '../redux/redux-store';
-import {Redirect} from 'react-router-dom';
+import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
 
 
 type MapStateToPropsType = {
@@ -16,7 +15,7 @@ type MapDispatchType = {
 
 }
 
-type PropsType = MapStateToPropsType & MapDispatchType
+export type DialogsContainerPropsType = MapStateToPropsType & MapDispatchType
 
 const mapStateToProps = (state: AppReduxStateType): MapStateToPropsType => {
     return {
@@ -37,15 +36,7 @@ const mapDispatchToProps = (dispatch: DispatchType): MapDispatchType => {
 }
 
 
-let AuthRedirectComponent = (props: PropsType) => {
-    return (
-        !props.isAuth ?
-            <Redirect to={'./login'}/> :
-            <Dialogs AddMessageHandler={props.AddMessageHandler}
-                     onChangeMessageHandler={props.onChangeMessageHandler}
-                     messagesPage={props.messagesPage}/>
-    )
-}
+let AuthRedirectComponent = withAuthRedirect
 
 
 export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)

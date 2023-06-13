@@ -13,7 +13,6 @@ import {
 import {connect} from 'react-redux';
 import {Users} from './Users';
 import {Preloader} from '../common/Preloader/Preloader';
-import {Redirect} from 'react-router-dom';
 
 export type MapStateType = {
     users: UsersArrType[]
@@ -22,7 +21,6 @@ export type MapStateType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: number[]
-    isAuth:boolean | undefined
 
 }
 
@@ -38,9 +36,9 @@ export type MapDispatchType = {
 }
 
 
-type PropsType = MapStateType & MapDispatchType
+type UsersPropsType = MapStateType & MapDispatchType
 
-export class UsersApi extends React.Component<PropsType> {
+export class UsersApi extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
@@ -57,7 +55,12 @@ export class UsersApi extends React.Component<PropsType> {
             <>
                 {this.props.isFetching &&
                     <Preloader/>}
-                <AuthRedirectComponent {...this.props} />
+                <Users onPageChanged={this.onPageChanged} totalUsersCount={this.props.totalUsersCount}
+                       pageSize={this.props.pageSize} currentPage={this.props.currentPage}
+                       users={this.props.users}
+                       followThunk={this.props.followThunk} unFollowThunk={this.props.unFollowThunk}
+                       followingInProgress={this.props.followingInProgress}
+                />
             </>
         )
 
@@ -72,8 +75,7 @@ const mapStateToProps = (state: AppReduxStateType): MapStateType => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
-        isAuth:state.auth.isAuth
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 const mapDispatchToProps: MapDispatchType = {
@@ -85,20 +87,6 @@ const mapDispatchToProps: MapDispatchType = {
     followThunk: followThunkCreator,
     unFollowThunk: unFollowThunkCreator
 };
-
-
-let AuthRedirectComponent = (props:PropsType ) => {
-    return (
-        !props.isAuth ?
-            <Redirect to={'./login'}/> :
-            <Users onPageChanged={props.onPageChanged} totalUsersCount={props.totalUsersCount}
-                   pageSize={props.pageSize} currentPage={props.currentPage}
-                   users={props.users}
-                   followThunk={props.followThunk} unFollowThunk={props.unFollowThunk}
-                   followingInProgress={props.followingInProgress}/>
-    )
-}
-
 
 
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApi)

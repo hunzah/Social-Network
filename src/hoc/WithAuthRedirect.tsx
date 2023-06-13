@@ -2,9 +2,10 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {UserContainerPropsType} from '../components/Users/UsersContainer';
 import {ProfilesContainerPropsType} from '../components/Navbar/Profile/ProfileContainer';
+import {DialogsContainerPropsType} from '../components/Dialogs/DialogsContainer';
 
 
-type PropsType = UserContainerPropsType | ProfilesContainerPropsType
+type PropsType = UserContainerPropsType | ProfilesContainerPropsType | DialogsContainerPropsType
 
 
 
