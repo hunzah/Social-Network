@@ -21,6 +21,8 @@ export const withAuthRedirect = <P extends object>(Component: React.ComponentTyp
         }
     }
 
+
+
     // @ts-ignore
     let ConnectedRedirectComponent = connect (mapStateToPropsForRedirect)(RedirectComponent)
     return ConnectedRedirectComponent;

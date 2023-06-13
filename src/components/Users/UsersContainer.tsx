@@ -14,6 +14,7 @@ import {connect} from 'react-redux';
 import {Users} from './Users';
 import {Preloader} from '../common/Preloader/Preloader';
 import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
+import {compose} from 'redux';
 
 export type MapStateType = {
     users: UsersArrType[]
@@ -89,5 +90,7 @@ const mapDispatchToProps: MapDispatchType = {
     unFollowThunk: unFollowThunkCreator
 };
 
-// let  AuthRedirectComponent = withAuthRedirect(UsersApi);
-export const UsersContainer =withAuthRedirect (connect(mapStateToProps, mapDispatchToProps)(UsersApi))
+compose(
+    connect(mapStateToProps, mapDispatchToProps)(UsersApi),
+    withAuthRedirect
+)(Users)
