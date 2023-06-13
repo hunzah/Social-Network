@@ -11,7 +11,7 @@ interface MatchParams {
 
 export type MapStateType = {
     profile: ProfileType
-    isAuth?: boolean | undefined
+
 }
 export type MapDispatchType = {
     setProfileThunk: (userId: string) => void
@@ -38,14 +38,19 @@ class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
         }
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+export let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
 
 const mapStateToProps = (state: AppReduxStateType): MapStateType => ({
     profile: state.profilePage.profile,
+
+})
+const mapStateToPropsForRedirect = (state: AppReduxStateType) => ({
     isAuth: state.auth.isAuth
 })
 
+// @ts-ignore
+AuthRedirectComponent = connect (mapStateToPropsForRedirect)(AuthRedirectComponent)
 
 const mapDispatchToProps: MapDispatchType = {
     setProfileThunk: setProfileThunkCreator
