@@ -22,17 +22,22 @@ class ProfileContainer extends React.Component<ProfilesPropsType> {
     }
 
     render() {
-        if (!this.props.isAuth) {
-            return <Redirect to={'./login'}/>
-        } else {
             return (
                 <div>
-                    <Profile profile={this.props.profile.profile}  />
+                    <AuthRedirectComponent {...this.props}  />
                 </div>
             )
         }
-    }
 }
+
+let AuthRedirectComponent = (props:MapStateType)=> {
+    return(
+    !props.isAuth ?
+<Redirect to={'./login'}/> :
+  <Profile profile={props.profile.profile} />
+)
+}
+
 
 export type MapStateType = {
     profile: ProfileType
@@ -44,7 +49,6 @@ const mapStateToProps = (state: AppReduxStateType): MapStateType => ({
     isAuth: state.auth.isAuth
 })
 export type MapDispatchType = {
-    // setUserProfile: (profile: ProfileType) => void
     setProfileThunk: (userId: string) => void
 }
 
