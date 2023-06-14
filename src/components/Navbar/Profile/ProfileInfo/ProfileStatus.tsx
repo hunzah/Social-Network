@@ -6,6 +6,7 @@ type PropsType = {
 }
 
 export class ProfileStatus extends React.Component<PropsType> {
+
     state = {
         editMode: false
     }
@@ -13,6 +14,11 @@ export class ProfileStatus extends React.Component<PropsType> {
     editMode = () => {
         this.setState({
             editMode: true
+        });
+    }
+    deActivateEditMode = () => {
+        this.setState({
+            editMode: false
         });
     }
     render() {
@@ -24,7 +30,7 @@ export class ProfileStatus extends React.Component<PropsType> {
                     </div>
                     :
                     <div>
-                        <input value={this.props.value}/>
+                        <input onBlur={this.deActivateEditMode} value={this.props.value} />
                     </div>
                 }
             </div>
