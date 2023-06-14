@@ -6,17 +6,23 @@ import {AppReduxStateType, DispatchType} from '../redux/redux-store';
 import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
 import {compose} from 'redux';
 
-type mapStateToPropsType = {
+type MapStateToPropsType = {
     messagesPage: MessagesPageType
 }
+type MapDispatchToPropsType = {
+    AddMessageHandler: () => void
+    onChangeMessageHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void
 
-const mapStateToProps = (state: AppReduxStateType): mapStateToPropsType => {
+}
+type PropsType = MapStateToPropsType & MapDispatchToPropsType
+
+const mapStateToProps = (state: AppReduxStateType): MapStateToPropsType => {
     return {
         messagesPage: state.messagesPage
     }
 }
 
-const mapDispatchToProps = (dispatch: DispatchType) => {
+const mapDispatchToProps = (dispatch: DispatchType): MapDispatchToPropsType => {
     return ({
             AddMessageHandler: () => {
                 dispatch(messageSendAC());
@@ -28,10 +34,20 @@ const mapDispatchToProps = (dispatch: DispatchType) => {
     )
 }
 
+export class DialogsContainer extends React.Component<PropsType> {
+    render() {
+        return (
+            <Dialogs messagesPage={this.props.messagesPage} onChangeMessageHandler={this.props.onChangeMessageHandler}
+                     AddMessageHandler={this.props.AddMessageHandler}/>
+        )
+    }
 
-compose(
+}
+
+
+export default compose(
+    withAuthRedirect,
     connect(mapStateToProps, mapDispatchToProps),
-    withAuthRedirect
-)(Dialogs)
+)(DialogsContainer) as React.ComponentType
 
 

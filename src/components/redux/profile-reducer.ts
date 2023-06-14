@@ -4,35 +4,34 @@ import {usersApi} from '../../api/api';
 export type ProfilePageType = {
     postsArr: PostsArrType[]
     newPostText: string
-    profile: any
+    profile: ProfileType | null
 }
 export type PostsArrType = {
     id: number
     message: string
     count: number
 }
+export type ContactType = {
+    facebook?: string | null;
+    website?: string | null;
+    vk?: string | null;
+    twitter?: string | null;
+    instagram?: string | null;
+    youtube?: string | null;
+    github?: string | null;
+    mainLink?: string | null
+}
 export type ProfileType = {
-    profile: {
-        'aboutMe': string | undefined,
-        'contacts': {
-            'facebook': string | undefined,
-            'website': string | undefined,
-            'vk': string | undefined,
-            'twitter': string | undefined,
-            'instagram': string | undefined,
-            'youtube': string | undefined,
-            'github': string | undefined,
-            'mainLink': string | undefined
-        },
-        'lookingForAJob': boolean,
-        'lookingForAJobDescription': string | undefined,
-        'fullName': string | undefined,
-        'userId': number,
-        'photos': {
-            'small': string | undefined,
-            'large': string | undefined
-        }
-    } | null
+    'aboutMe': string | null,
+    'contacts': ContactType,
+    'lookingForAJob': boolean,
+    'lookingForAJobDescription': string | undefined,
+    'fullName': string | undefined,
+    'userId': number,
+    'photos': {
+        'small': string | undefined,
+        'large': string | undefined
+    }
 }
 
 const initialState = {
@@ -43,6 +42,7 @@ const initialState = {
     newPostText: '',
     profile: null
 }
+
 
 const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes): ProfilePageType => {
     switch (action.type) {
@@ -71,8 +71,8 @@ export const setProfileThunkCreator = (userId: string) => {
     return (dispatch: DispatchType) => {
         usersApi.getProfiles(userId)
             .then(data => {
-                console.log(data)
                 dispatch(setUserProfile(data));
+
             });
     }
 }

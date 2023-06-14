@@ -40,7 +40,7 @@ export type MapDispatchType = {
 
 type UsersPropsType = MapStateType & MapDispatchType
 
-export class UsersApi extends React.Component<UsersPropsType> {
+export class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
@@ -90,7 +90,7 @@ const mapDispatchToProps: MapDispatchType = {
     unFollowThunk: unFollowThunkCreator
 };
 
-compose(
-    connect(mapStateToProps, mapDispatchToProps)(UsersApi),
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
     withAuthRedirect
-)(Users)
+)(UsersContainer) as React.ComponentType

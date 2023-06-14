@@ -1,16 +1,18 @@
 import {ActionTypes, DispatchType} from './redux-store';
 import {authApi} from '../../api/api';
 
-export type ResponseDataType = {
+export type ResponseDataType<T> = {
     resultCode: number,
     messages: string[],
-    data: DataType
+    data: T
 }
 export type DataType = {
     id: string | null,
     email: string | null,
     login: string | null,
-    isAuth?: boolean, // add isAuth here
+    isAuth: boolean,
+    isLoading: boolean,
+
 }
 
 const initialState = {
@@ -18,6 +20,7 @@ const initialState = {
     email: null,
     login: null,
     isAuth: false,
+    isLoading: true
 }
 
 export const authReducer = (state: DataType = initialState, action: ActionTypes): DataType => {
@@ -28,6 +31,11 @@ export const authReducer = (state: DataType = initialState, action: ActionTypes)
                 ...state,
                 ...action.data, isAuth: true
             };
+        case 'SET-LOADING':
+            return {
+                ...state,
+                isLoading: action.isLoading
+            };
     }
     return state;
 };
@@ -36,6 +44,10 @@ export const authReducer = (state: DataType = initialState, action: ActionTypes)
 export const setUserDataAC = (id: string | null, email: string | null, login: string | null) => ({
     type: 'SET-USERS-DATA',
     data: {id, email, login}
+} as const);
+export const setLoadingAC = (isLoading: boolean) => ({
+    type: 'SET-LOADING',
+    isLoading
 } as const);
 
 
@@ -47,6 +59,7 @@ export const authUserThunk = () => {
                 let {id, email, login} = data.data;
                 dispatch(setUserDataAC(id, email, login));
             }
+            dispatch(setLoadingAC(false))
         });
     };
 };

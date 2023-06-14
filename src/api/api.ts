@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {AxiosResponse} from 'axios';
-import {ResponseDataType} from '../components/redux/auth-reducer';
+import {DataType, ResponseDataType} from '../components/redux/auth-reducer';
+import {ProfileType} from '../components/redux/profile-reducer';
 
 
 const instance = axios.create({
@@ -24,12 +24,13 @@ export const usersApi = {
         return instance.post(`follow/${id}`).then((response) => response.data )
 
     },
+
     getProfiles(userId:string){
-        return instance.get(`profile/${userId}`).then((response)=>response.data)
+        return instance.get<ProfileType>(`profile/${userId}`).then((response)=> response.data)
     }
 
 }
 export const authApi = {
-    me() { return instance.get(`auth/me`).then((response: AxiosResponse<ResponseDataType>) => response.data)}
+    me() { return instance.get<ResponseDataType<DataType>>(`auth/me`).then((response) => response.data)}
 }
 
