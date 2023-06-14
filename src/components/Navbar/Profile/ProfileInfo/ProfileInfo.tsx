@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import {ContactType, ProfileType} from '../../../redux/profile-reducer';
 import defaultPhoto from './../../../../assets/img/default avatar.png'
+import {ProfileStatus} from './ProfileStatus';
 
 type PropsType = { profile: ProfileType }
 export const ProfileInfo = (props: PropsType) => {
@@ -29,6 +30,7 @@ export const ProfileInfo = (props: PropsType) => {
                     </div>
                 }
             </div>
+            <ProfileStatus/>
         </div>
     )
 }
