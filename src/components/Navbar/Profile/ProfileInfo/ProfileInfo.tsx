@@ -30,7 +30,7 @@ export const ProfileInfo = (props: PropsType) => {
                     </div>
                 }
             </div>
-            <ProfileStatus/>
+            <ProfileStatus value={'ok'}/>
         </div>
     )
 }
