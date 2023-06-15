@@ -3,15 +3,15 @@ import React from 'react';
 
 type PropsType = {
     value: string
-    status:string
-    updateStatus:(userId:string)=> void
+    status: string
+    updateStatus: (userId: string) => void
 }
 
 export class ProfileStatus extends React.Component<PropsType> {
 
     state = {
         editMode: false,
-        status:this.props.status
+        status: this.props.status
     }
 
     editMode = () => {
@@ -25,9 +25,12 @@ export class ProfileStatus extends React.Component<PropsType> {
         });
         this.props.updateStatus(this.state.status)
     }
-    onStatusChanged = (e:any)=> {
-e.currentTarget.value
+    onStatusChanged = (e: any) => {
+        this.setState({
+            status: e.currentTarget.value
+        })
     }
+
     render() {
 
 
@@ -35,11 +38,12 @@ e.currentTarget.value
             <div>
                 {!this.state.editMode ?
                     <div>
-                        <span onDoubleClick={this.editMode}>{this.props.status}</span>
+                        <span onDoubleClick={this.editMode}>{!this.props.status ? 'No status' : this.props.status}</span>
                     </div>
                     :
                     <div>
-                        <input autoFocus={true} onBlur={this.deActivateEditMode} value={this.state.status} />
+                        <input autoFocus={true} onBlur={this.deActivateEditMode} value={this.state.status}
+                               onChange={this.onStatusChanged}/>
                     </div>
                 }
             </div>
