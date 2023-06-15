@@ -18,7 +18,7 @@ interface MatchParams {
 
 export type MapStateType = {
     profile: ProfileType | null
-    status:string
+    status: string
 }
 export type MapDispatchType = {
     setProfileThunk: (userId: string) => void
@@ -41,6 +41,7 @@ class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
         this.props.getStatusThunk(userId)
     }
 
+
     render() {
         return (
             <div>
@@ -60,8 +61,8 @@ const mapStateToProps = (state: AppReduxStateType): MapStateType => ({
 
 const mapDispatchToProps: MapDispatchType = {
     setProfileThunk: setProfileThunkCreator,
-    getStatusThunk : getStatusThunkCreator,
-    updateStatusThunk : updateStatusThunkCreator,
+    getStatusThunk: getStatusThunkCreator,
+    updateStatusThunk: updateStatusThunkCreator,
 }
 
 export default compose(
