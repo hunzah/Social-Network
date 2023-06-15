@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
 import {friendsReducer} from './friends-reducer';
 import {messageSendAC, messagesReducer, newMessageBodyAC} from './messages-reducer';
-import profileReducer, {addPostAC, setUserProfile, updateNewPostTextAC} from './profile-reducer';
+import profileReducer, {addPostAC, setStatusAC, setUserProfile, updateNewPostTextAC} from './profile-reducer';
 import {
     followAC,
     SetCurrentPageAC,
@@ -22,6 +22,7 @@ export type ActionTypes =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setStatusAC>
     | ReturnType<typeof newMessageBodyAC>
     | ReturnType<typeof messageSendAC>
     | ReturnType<typeof followAC>
@@ -33,6 +34,7 @@ export type ActionTypes =
     | ReturnType<typeof setUserDataAC>
     | ReturnType<typeof setLoadingAC>
     | ReturnType<typeof toggleFollowingInProgressAC>
+
 
 
 const reducers = combineReducers({

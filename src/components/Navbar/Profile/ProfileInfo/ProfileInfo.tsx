@@ -4,7 +4,11 @@ import {ContactType, ProfileType} from '../../../redux/profile-reducer';
 import defaultPhoto from './../../../../assets/img/default avatar.png'
 import {ProfileStatus} from './ProfileStatus';
 
-type PropsType = { profile: ProfileType }
+type PropsType = {
+    profile: ProfileType
+    status: string
+    updateStatus: (userId: string)=> void
+}
 export const ProfileInfo = (props: PropsType) => {
 
     const photo = props.profile.photos.large
@@ -30,7 +34,7 @@ export const ProfileInfo = (props: PropsType) => {
                     </div>
                 }
             </div>
-            <ProfileStatus value={'ok'}/>
+            <ProfileStatus value={'ok'} status={props.status}/>
         </div>
     )
 }

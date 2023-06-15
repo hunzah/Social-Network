@@ -3,6 +3,7 @@ import React from 'react';
 
 type PropsType = {
     value: string
+    status:string
 }
 
 export class ProfileStatus extends React.Component<PropsType> {
@@ -22,11 +23,13 @@ export class ProfileStatus extends React.Component<PropsType> {
         });
     }
     render() {
+
+
         return (
             <div>
                 {!this.state.editMode ?
                     <div>
-                        <span onDoubleClick={this.editMode}>Ле ватайди! бля</span>
+                        <span onDoubleClick={this.editMode}>{this.props.status}</span>
                     </div>
                     :
                     <div>

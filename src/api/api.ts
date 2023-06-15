@@ -21,16 +21,32 @@ export const usersApi = {
         return instance.delete(`follow/${id}`).then((response) => response.data)
     },
     UnfollowUsers(id: number) {
-        return instance.post(`follow/${id}`).then((response) => response.data )
+        return instance.post(`follow/${id}`).then((response) => response.data)
 
     },
 
-    getProfiles(userId:string){
-        return instance.get<ProfileType>(`profile/${userId}`).then((response)=> response.data)
-    }
-
 }
 export const authApi = {
-    me() { return instance.get<ResponseDataType<DataType>>(`auth/me`).then((response) => response.data)}
+    me() {
+        return instance.get<ResponseDataType<DataType>>(`auth/me`).then((response) => response.data)
+    }
 }
 
+type PutStatusResponseType = {
+    resultCode: number
+    messages: [string],
+    data: {}
+}
+
+export const profileApi = {
+
+    getProfiles(userId: string) {
+        return instance.get<ProfileType>(`profile/${userId}`).then((response) => response.data)
+    },
+    getStatus(userId: string) {
+        return instance.get<string>(`profile/status/${userId}`).then((response) => response.data)
+    },
+    updateStatus(status: string) {
+        return instance.put<PutStatusResponseType>(`profile/status`, {status: status}).then((response) => response.data)
+    }
+}
