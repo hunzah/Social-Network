@@ -34,7 +34,7 @@ export const ProfileInfo = (props: PropsType) => {
                     </div>
                 }
             </div>
-            <ProfileStatus value={'ok'} status={props.status}/>
+            <ProfileStatus value={'ok'} status={props.status} updateStatus={props.updateStatus}/>
         </div>
     )
 }

@@ -4,12 +4,14 @@ import React from 'react';
 type PropsType = {
     value: string
     status:string
+    updateStatus:(userId:string)=> void
 }
 
 export class ProfileStatus extends React.Component<PropsType> {
 
     state = {
-        editMode: false
+        editMode: false,
+        status:this.props.status
     }
 
     editMode = () => {
@@ -21,6 +23,10 @@ export class ProfileStatus extends React.Component<PropsType> {
         this.setState({
             editMode: false
         });
+        this.props.updateStatus(this.state.status)
+    }
+    onStatusChanged = (e:any)=> {
+e.currentTarget.value
     }
     render() {
 
@@ -33,7 +39,7 @@ export class ProfileStatus extends React.Component<PropsType> {
                     </div>
                     :
                     <div>
-                        <input autoFocus={true} onBlur={this.deActivateEditMode} value={this.props.value} />
+                        <input autoFocus={true} onBlur={this.deActivateEditMode} value={this.state.status} />
                     </div>
                 }
             </div>
