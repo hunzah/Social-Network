@@ -4,6 +4,8 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {logInUserThunk} from '../components/redux/auth-reducer';
 import {LogInFormType} from '../api/api';
+import {Input} from '../components/common/FormsControls/FormsControls';
+import {required} from '../utilits/validators';
 
 export const LogIn = (props: any) => {
     const onSubmit = (formData: LogInFormType) => {
@@ -22,13 +24,13 @@ const LoginForm = (props: PropsWithChildren<InjectedFormProps<{}, {}, string>>) 
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component="input" placeholder="Login" name="login"/>
+                <Field component={Input} placeholder="Login" name="login" validate={[required]}/>
             </div>
             <div>
-                <Field component="input" placeholder="Password" name="password"/>
+                <Field component={Input} placeholder="Password" name="password" validate={[required]}/>
             </div>
             <div>
-                <Field component="input" type="checkbox" name="remember me"/>
+                <Field component={Input} type="checkbox" name="remember me"/>
             </div>
             <div>
                 <button>Submit</button>
