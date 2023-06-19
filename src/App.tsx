@@ -6,7 +6,7 @@ import {Music} from './components/Navbar/Music/Music';
 import {Settings} from './components/Navbar/Setings/Settings';
 import {FriendsContainer} from './components/Navbar/Friends/FriendsContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import {LogIn} from './Login/LogIn';
+import LogIn from './Login/LogIn';
 import UsersApi from './components/Users/UsersContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Navbar/Profile/ProfileContainer';

@@ -27,7 +27,6 @@ export const authReducer = (state: DataType = initialState, action: ActionTypes)
     switch (action.type) {
 
         case 'SET-USERS-DATA':
-            console.log(state.isAuth)
             return {
                 ...state,
                 ...action.payload, isAuth: true
@@ -71,7 +70,8 @@ export const logInUserThunk = (email: string, password: string, rememberMe: bool
     (dispatch: DispatchType) => {
         authApi.logIn(email, password, rememberMe).then((data) => {
                 let {id, email, login} = data.data;
-                dispatch(SetUserDataAC(id, email, login));
+                // @ts-ignore
+            dispatch(authUserThunk());
             }
         )
     };

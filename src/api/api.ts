@@ -34,7 +34,7 @@ export const authApi = {
     me() {
         return instance.get<ResponseDataType<DataType>>(`auth/me`).then((response) => response.data)
     },
-    logIn(email: string,password:string, rememberMe:boolean){
+    logIn(email: string,password:string, rememberMe:boolean = false){
         return instance.post(`auth/login`,{email,password, rememberMe}).then(response=>response.data)
     },
     logOut(){
