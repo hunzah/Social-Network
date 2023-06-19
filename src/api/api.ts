@@ -26,9 +26,19 @@ export const usersApi = {
     },
 
 }
+
+export type LogInFormType = {
+    email: string
+    password:string
+    rememberMe:boolean
+    captcha: boolean
+}
 export const authApi = {
     me() {
         return instance.get<ResponseDataType<DataType>>(`auth/me`).then((response) => response.data)
+    },
+    loginMe(logInForm:LogInFormType){
+        return instance.post(`auth/login`,logInForm).then(response=>response.data)
     }
 }
 

@@ -16,8 +16,8 @@ export type StateType = {
 
 }
 
-// export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
-//     | ReturnType<typeof newMessageBodyAC> | ReturnType<typeof messageSendAC>
+// export type ActionTypes = ReturnType<typeof AddPostAC> | ReturnType<typeof UpdateNewPostTextAC>
+//     | ReturnType<typeof NewMessageBodyAC> | ReturnType<typeof MessageSendAC>
 
 // Dialogs
 export type MessagesPageType = {

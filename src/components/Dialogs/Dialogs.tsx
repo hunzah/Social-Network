@@ -3,7 +3,6 @@ import {Message} from './Message/Message';
 import {Dialog} from './DialogItem/Dialog';
 import {MessagesPageType,} from '../redux/store';
 import React, {ChangeEvent} from 'react';
-import {Redirect} from 'react-router-dom';
 
 
 type DialogsPropsType = {
@@ -37,6 +36,4 @@ export const Dialogs = (props: DialogsPropsType) => {
                 </div>
             </div>
     )
-
-
 }

@@ -69,16 +69,16 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
     }
 };
 
-export const addPostAC = (text: string) => ({type: 'ADD-POST', text: text} as const)
-export const updateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
-export const setUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile: profile} as const)
-export const setStatusAC = (status: string) => ({type: 'SET-STATUS', status: status} as const)
+export const AddPostAC = (text: string) => ({type: 'ADD-POST', text: text} as const)
+export const UpdateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
+export const SetUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile: profile} as const)
+export const SetStatusAC = (status: string) => ({type: 'SET-STATUS', status: status} as const)
 
 export const setProfileThunkCreator = (userId: string) => {
     return (dispatch: DispatchType) => {
         profileApi.getProfiles(userId)
             .then(data => {
-                dispatch(setUserProfile(data));
+                dispatch(SetUserProfile(data));
             });
     }
 }
@@ -86,7 +86,7 @@ export const getStatusThunkCreator = (userId: string)=> {
     return (dispatch: DispatchType) => {
         profileApi.getStatus(userId)
             .then(response => {
-                dispatch(setStatusAC(response));
+                dispatch(SetStatusAC(response));
 
             });
     }
@@ -97,7 +97,7 @@ export const updateStatusThunkCreator = (status: string)=> {
         profileApi.updateStatus(status)
             .then(data => {
                 if (data.resultCode === 0) {
-                    dispatch (setStatusAC(status))
+                    dispatch (SetStatusAC(status))
                 }
             });
     }

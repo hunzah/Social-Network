@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import {messageSendAC, MessagesPageType, newMessageBodyAC} from '../redux/messages-reducer';
+import {MessageSendAC, MessagesPageType, NewMessageBodyAC} from '../redux/messages-reducer';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import {AppReduxStateType, DispatchType} from '../redux/redux-store';
@@ -25,10 +25,10 @@ const mapStateToProps = (state: AppReduxStateType): MapStateToPropsType => {
 const mapDispatchToProps = (dispatch: DispatchType): MapDispatchToPropsType => {
     return ({
             AddMessageHandler: () => {
-                dispatch(messageSendAC());
+                dispatch(MessageSendAC());
             },
             onChangeMessageHandler: (e: ChangeEvent<HTMLTextAreaElement>) => {
-                dispatch(newMessageBodyAC(e.currentTarget.value))
+                dispatch(NewMessageBodyAC(e.currentTarget.value))
             }
         }
     )

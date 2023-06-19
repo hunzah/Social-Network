@@ -1,5 +1,5 @@
 import {ActionTypes, DispatchType} from './redux-store';
-import {authApi} from '../../api/api';
+import {authApi, LogInFormType} from '../../api/api';
 
 export type ResponseDataType<T> = {
     resultCode: number,
@@ -36,19 +36,28 @@ export const authReducer = (state: DataType = initialState, action: ActionTypes)
                 ...state,
                 isLoading: action.isLoading
             };
+        // case 'LOG-IN':
+        //     return {
+        //         ...state,
+        //
+        //     };
     }
     return state;
 };
 
 
-export const setUserDataAC = (id: string | null, email: string | null, login: string | null) => ({
+export const SetUserDataAC = (id: string | null, email: string | null, login: string | null) => ({
     type: 'SET-USERS-DATA',
     data: {id, email, login}
 } as const);
-export const setLoadingAC = (isLoading: boolean) => ({
+export const SetLoadingAC = (isLoading: boolean) => ({
     type: 'SET-LOADING',
     isLoading
 } as const);
+// export const LogInAC = (logInForm: any) => ({
+//     type: 'LOG-IN',
+//     logInForm:logInForm
+// } as const);
 
 
 export const authUserThunk = () => {
@@ -57,9 +66,20 @@ export const authUserThunk = () => {
         authApi.me().then((data) => {
             if (data.resultCode === 0) {
                 let {id, email, login} = data.data;
-                dispatch(setUserDataAC(id, email, login));
+                dispatch(SetUserDataAC(id, email, login));
             }
-            dispatch(setLoadingAC(false))
+            dispatch(SetLoadingAC(false))
+        });
+    };
+};
+
+export const logInUserThunk = (logInForm: LogInFormType) => {
+    return (dispatch: DispatchType) => {
+        authApi.loginMe(logInForm).then((data) => {
+            if (data.resultCode === 0) {
+
+            }
+
         });
     };
 };

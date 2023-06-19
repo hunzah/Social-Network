@@ -1,40 +1,41 @@
 import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
 import {friendsReducer} from './friends-reducer';
-import {messageSendAC, messagesReducer, newMessageBodyAC} from './messages-reducer';
-import profileReducer, {addPostAC, setStatusAC, setUserProfile, updateNewPostTextAC} from './profile-reducer';
+import {MessageSendAC, messagesReducer, NewMessageBodyAC} from './messages-reducer';
+import profileReducer, {AddPostAC, SetStatusAC, SetUserProfile, UpdateNewPostTextAC} from './profile-reducer';
 import {
-    followAC,
+    FollowAC,
     SetCurrentPageAC,
     SetFetchingAC,
     SetTotalUsersCountAC,
     SetUsersAC,
-    toggleFollowingInProgressAC,
+    ToggleFollowingInProgressAC,
     UnFollowAC,
     usersReducer
 } from './users-reducer';
-import {authReducer, setLoadingAC, setUserDataAC} from './auth-reducer';
-import thunkMiddleware from 'redux-thunk'
+import {authReducer, SetLoadingAC, SetUserDataAC} from './auth-reducer';
+import thunkMiddleware from 'redux-thunk';
+import {reducer as formReducer} from 'redux-form'
 
 
 export type DispatchType = (action: ActionTypes) => void;
 
 export type ActionTypes =
-    ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewPostTextAC>
-    | ReturnType<typeof setUserProfile>
-    | ReturnType<typeof setStatusAC>
-    | ReturnType<typeof newMessageBodyAC>
-    | ReturnType<typeof messageSendAC>
-    | ReturnType<typeof followAC>
+    ReturnType<typeof AddPostAC>
+    | ReturnType<typeof UpdateNewPostTextAC>
+    | ReturnType<typeof SetUserProfile>
+    | ReturnType<typeof SetStatusAC>
+    | ReturnType<typeof NewMessageBodyAC>
+    | ReturnType<typeof MessageSendAC>
+    | ReturnType<typeof FollowAC>
     | ReturnType<typeof UnFollowAC>
     | ReturnType<typeof SetUsersAC>
     | ReturnType<typeof SetCurrentPageAC>
     | ReturnType<typeof SetTotalUsersCountAC>
     | ReturnType<typeof SetFetchingAC>
-    | ReturnType<typeof setUserDataAC>
-    | ReturnType<typeof setLoadingAC>
-    | ReturnType<typeof toggleFollowingInProgressAC>
-
+    | ReturnType<typeof SetUserDataAC>
+    | ReturnType<typeof SetLoadingAC>
+    // | ReturnType<typeof LogInAC>
+    | ReturnType<typeof ToggleFollowingInProgressAC>
 
 
 const reducers = combineReducers({
@@ -42,7 +43,8 @@ const reducers = combineReducers({
     messagesPage: messagesReducer,
     profilePage: profileReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer
 })
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware))

@@ -60,13 +60,13 @@ export const usersReducer = (state: UsersType = initialState, action: ActionType
 };
 
 
-export const followAC = (userId: number) => ({type: 'FOLLOW', userId}) as const
+export const FollowAC = (userId: number) => ({type: 'FOLLOW', userId}) as const
 export const UnFollowAC = (userId: number) => ({type: 'UNFOLLOW', userId}) as const
 export const SetUsersAC = (users: UsersArrType[]) => ({type: 'SET-USERS', users}) as const
 export const SetCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage: currentPage}) as const
 export const SetTotalUsersCountAC = (totalCount: number) => ({type: 'SET-TOTAL-COUNT', totalCount: totalCount}) as const
 export const SetFetchingAC = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching: isFetching}) as const
-export const toggleFollowingInProgressAC = (isFetching: boolean, userId: number) => ({
+export const ToggleFollowingInProgressAC = (isFetching: boolean, userId: number) => ({
     type: 'TOGGLE-IS-FOLLOWING-PROGRESS',
     isFetching: isFetching,
     userId: userId
@@ -88,27 +88,27 @@ export const getUsersThunkCreator = (pageNumber: number, pageSize: number) => {
 
 export const followThunkCreator = (userId: number) => {
     return (dispatch: DispatchType) => {
-        dispatch(toggleFollowingInProgressAC(true, userId))
+        dispatch(ToggleFollowingInProgressAC(true, userId))
         initialState.followingInProgress.some(id => id === userId)
         usersApi.followUsers(userId)
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(UnFollowAC(userId))
                 }
-                dispatch(toggleFollowingInProgressAC(false, userId))
+                dispatch(ToggleFollowingInProgressAC(false, userId))
             })
     }
 }
 export const unFollowThunkCreator = (userId: number) => {
     return (dispatch: DispatchType) => {
-        dispatch(toggleFollowingInProgressAC(true, userId))
+        dispatch(ToggleFollowingInProgressAC(true, userId))
         initialState.followingInProgress.some(id => id === userId)
         usersApi.UnfollowUsers(userId)
             .then(data => {
                 if (data.resultCode === 0) {
-                    dispatch(followAC(userId))
+                    dispatch(FollowAC(userId))
                 }
-                dispatch(toggleFollowingInProgressAC(false, userId))
+                dispatch(ToggleFollowingInProgressAC(false, userId))
             })
     }
 }
