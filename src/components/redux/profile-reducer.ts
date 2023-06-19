@@ -69,7 +69,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
     }
 };
 
-export const AddPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText: newPostText} as const)
+export const AddPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText} as const);
 export const SetUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile: profile} as const)
 export const SetStatusAC = (status: string) => ({type: 'SET-STATUS', status: status} as const)
 

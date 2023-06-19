@@ -16,11 +16,13 @@ const mapStateToProps = (state: mapStateToPropsType) => {
     })
 
 }
-const mapDispatchToProps = ():mapDispatchToPropsType=> {
-    return ({
-        onAddPost: AddPostAC
-    })
-}
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        onAddPost: (newPostText: string) => {
+            dispatch(AddPostAC(newPostText));
+        }
+    };
+};
 
 
 export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)

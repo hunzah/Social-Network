@@ -5,7 +5,7 @@ import {ProfilePageType} from '../../../redux/store';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 
 type FormValueType = {
-    newPostText:string
+    newPostText: string
 }
 
 
@@ -20,7 +20,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
     const postElements = props.profilePage.postsArr.map(item => <Post key={item.id} message={item.message}
                                                                       count={item.count}/>)
 
-    const handleAddPost = (value:FormValueType) => {
+    const handleAddPost = (value: FormValueType) => {
         // alert(value.newPost)
         props.onAddPost(value.newPostText)
     }
@@ -40,9 +40,8 @@ export const MyPosts = (props: MyPostsPropsType) => {
 const MyPostForm = (props: InjectedFormProps<FormValueType>) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field component ='textarea'
-                   name='newPostText'
-                   placeholder='enter new post'/>
+            <Field component="textarea"
+                   name="newPostText"/>
             <div>
                 <button type="submit">Add post</button>
             </div>
@@ -51,5 +50,5 @@ const MyPostForm = (props: InjectedFormProps<FormValueType>) => {
 }
 
 const ReduxMyPostForm = reduxForm<FormValueType>({
-    form:'MyPostForm'
+    form: 'ProfileAddNewPostForm'
 })(MyPostForm)
