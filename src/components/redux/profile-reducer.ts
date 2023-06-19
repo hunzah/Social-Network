@@ -1,5 +1,5 @@
 import {ActionTypes, DispatchType} from './redux-store';
-import {profileApi, usersApi} from '../../api/api';
+import {profileApi} from '../../api/api';
 
 export type ProfilePageType = {
     postsArr: PostsArrType[]
@@ -52,14 +52,14 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostsArrType = {
-                id: 3,
-                message: state.newPostText,
-                count: 0
-            }
-            state.newPostText = ''
-            return {...state, postsArr: [newPost, ...state.postsArr]};
-        case 'UPDATE-NEW-POST-TEXT':
-            return {...state, newPostText: action.newText};
+                id: state.postsArr.length + 1,
+                message: action.newPostText,
+                count: 0,
+            };
+            return {
+                ...state,
+                postsArr: [newPost, ...state.postsArr],
+            };
         case 'SET-USER-PROFILE':
             return {...state, profile: action.profile}
         case 'SET-STATUS':
@@ -69,8 +69,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
     }
 };
 
-export const AddPostAC = (text: string) => ({type: 'ADD-POST', text: text} as const)
-export const UpdateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
+export const AddPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText: newPostText} as const)
 export const SetUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile: profile} as const)
 export const SetStatusAC = (status: string) => ({type: 'SET-STATUS', status: status} as const)
 
@@ -87,7 +86,6 @@ export const getStatusThunkCreator = (userId: string)=> {
         profileApi.getStatus(userId)
             .then(response => {
                 dispatch(SetStatusAC(response));
-
             });
     }
 }

@@ -1,5 +1,5 @@
-import React, {ChangeEvent} from 'react';
-import {MessageSendAC, MessagesPageType, NewMessageBodyAC} from '../redux/messages-reducer';
+import React from 'react';
+import {MessageSendAC, MessagesPageType} from '../redux/messages-reducer';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import {AppReduxStateType, DispatchType} from '../redux/redux-store';
@@ -7,12 +7,10 @@ import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
 import {compose} from 'redux';
 
 type MapStateToPropsType = {
-    messagesPage: MessagesPageType
+    messagesPage: any
 }
 type MapDispatchToPropsType = {
-    AddMessageHandler: () => void
-    onChangeMessageHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void
-
+    AddMessageHandler: (value: any) => void
 }
 type PropsType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -24,11 +22,8 @@ const mapStateToProps = (state: AppReduxStateType): MapStateToPropsType => {
 
 const mapDispatchToProps = (dispatch: DispatchType): MapDispatchToPropsType => {
     return ({
-            AddMessageHandler: () => {
-                dispatch(MessageSendAC());
-            },
-            onChangeMessageHandler: (e: ChangeEvent<HTMLTextAreaElement>) => {
-                dispatch(NewMessageBodyAC(e.currentTarget.value))
+            AddMessageHandler: (value: any) => {
+                dispatch(MessageSendAC(value));
             }
         }
     )
@@ -37,7 +32,7 @@ const mapDispatchToProps = (dispatch: DispatchType): MapDispatchToPropsType => {
 export class DialogsContainer extends React.Component<PropsType> {
     render() {
         return (
-            <Dialogs messagesPage={this.props.messagesPage} onChangeMessageHandler={this.props.onChangeMessageHandler}
+            <Dialogs messagesPage={this.props.messagesPage}
                      AddMessageHandler={this.props.AddMessageHandler}/>
         )
     }

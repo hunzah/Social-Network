@@ -1,13 +1,9 @@
 import {ActionTypes} from './redux-store';
 
-// export type MessageStateType = {
-//     messagesPage:MessagesPageType
-// }
-
 export type MessagesPageType = {
     dialogsArr: DialogsArrType[]
     messageArr: MessageArrType[]
-    newMessageBody: string
+
 }
 export type DialogsArrType = {
     path: string
@@ -28,19 +24,13 @@ const initialState = {
         {message: 'Hi!'},
         {message: 'my name is Curtis James!'},
 
-    ],
-    newMessageBody: '',
+    ]
 }
 
 export const messagesReducer = (state: MessagesPageType = initialState, action: ActionTypes): MessagesPageType => {
-    // console.log(state)
-
     switch (action.type) {
-        case 'NEW-MESSAGE-BODY':
-            return {...state, newMessageBody: action.body};
         case 'MESSAGE-SEND':
-            const body = state.newMessageBody
-            state.newMessageBody = ''
+            const body = action.newMessageBody
             return {...state, messageArr: [...state.messageArr, {message: body}]};
         default:
             return state
@@ -48,6 +38,5 @@ export const messagesReducer = (state: MessagesPageType = initialState, action: 
 
 }
 
-export const MessageSendAC = () => ({type: 'MESSAGE-SEND'} as const)
-export const NewMessageBodyAC = (body: string) => ({type: 'NEW-MESSAGE-BODY', body: body} as const)
+export const MessageSendAC = (newMessageBody:string) => ({type: 'MESSAGE-SEND',newMessageBody:newMessageBody } as const)
 

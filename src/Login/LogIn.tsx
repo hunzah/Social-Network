@@ -47,11 +47,11 @@ const mapDispatchToProps:mapDispatchToPropsType = {
     logInUser:logInUserThunk
 }
 
-type FormProps = {
+type FormPropsType = {
     onSubmit: (formData: any) => void;
 };
 
-type Props = FormProps & InjectedFormProps<{}, FormProps>;
+type Props = FormPropsType & InjectedFormProps<{}, FormPropsType>;
 
 const LoginReduxForm = compose<React.ComponentType<Props>>(
     connect(null, mapDispatchToProps),

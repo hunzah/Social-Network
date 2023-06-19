@@ -1,12 +1,14 @@
-import React, {RefObject} from 'react';
-import {AddPostAC, ProfilePageType, UpdateNewPostTextAC} from '../../../redux/profile-reducer';
+import React from 'react';
+import {AddPostAC, ProfilePageType} from '../../../redux/profile-reducer';
 import {MyPosts} from './MyPosts';
 import {connect} from 'react-redux';
-import {DispatchType} from '../../../redux/redux-store';
 
 
 type mapStateToPropsType = {
     profilePage: ProfilePageType
+}
+type mapDispatchToPropsType = {
+    onAddPost: (newPostText:string)=>void
 }
 const mapStateToProps = (state: mapStateToPropsType) => {
     return ({
@@ -14,17 +16,9 @@ const mapStateToProps = (state: mapStateToPropsType) => {
     })
 
 }
-const mapDispatchToProps = (dispatch: DispatchType) => {
+const mapDispatchToProps = ():mapDispatchToPropsType=> {
     return ({
-        onChangeHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-            dispatch(UpdateNewPostTextAC(e.currentTarget.value))
-        },
-        onAddPost: (newPostElement: RefObject<HTMLTextAreaElement>) => {
-            const text = newPostElement.current?.value
-            if (text) {
-                dispatch(AddPostAC(text))
-            }
-        }
+        onAddPost: AddPostAC
     })
 }
 
