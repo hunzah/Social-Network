@@ -5,9 +5,7 @@ import {connect} from 'react-redux';
 import {logInUserThunk} from '../components/redux/auth-reducer';
 import {LogInFormType} from '../api/api';
 
-
-
-export const LogIn = (props:any) => {
+export const LogIn = (props: any) => {
     const onSubmit = (formData: LogInFormType) => {
         props.logInUser(formData);
     };
@@ -15,13 +13,12 @@ export const LogIn = (props:any) => {
     return (
         <div>
             <h1>LOGIN</h1>
-            <LoginReduxForm onSubmit={onSubmit} />
+            <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     );
 };
 
-
-const LoginForm = (props:PropsWithChildren<InjectedFormProps<{}, {}, string>>) => {
+const LoginForm = (props: PropsWithChildren<InjectedFormProps<{}, {}, string>>) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -40,11 +37,11 @@ const LoginForm = (props:PropsWithChildren<InjectedFormProps<{}, {}, string>>) =
 }
 
 type mapDispatchToPropsType = {
-    logInUser:(logInForm: any)=>void
+    logInUser: (logInForm: any) => void
 }
 
-const mapDispatchToProps:mapDispatchToPropsType = {
-    logInUser:logInUserThunk
+const mapDispatchToProps: mapDispatchToPropsType = {
+    logInUser: logInUserThunk
 }
 
 type FormPropsType = {
@@ -53,7 +50,7 @@ type FormPropsType = {
 
 type Props = FormPropsType & InjectedFormProps<{}, FormPropsType>;
 
-const LoginReduxForm = compose<React.ComponentType<Props>>(
+const LoginReduxForm = compose<React.ComponentType<any>>(
     connect(null, mapDispatchToProps),
-    reduxForm({ form: "login" })
+    reduxForm({form: 'login'})
 )(LoginForm);
