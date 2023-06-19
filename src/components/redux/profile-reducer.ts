@@ -47,7 +47,6 @@ const initialState:ProfilePageType = {
     status: ''
 }
 
-
 const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes): ProfilePageType => {
     switch (action.type) {
         case 'ADD-POST':
@@ -100,6 +99,5 @@ export const updateStatusThunkCreator = (status: string)=> {
             });
     }
 }
-
 
 export default profileReducer;
