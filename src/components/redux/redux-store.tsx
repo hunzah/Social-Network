@@ -32,7 +32,6 @@ export type ActionTypes =
     | ReturnType<typeof SetFetchingAC>
     | ReturnType<typeof SetUserDataAC>
     | ReturnType<typeof SetLoadingAC>
-    // | ReturnType<typeof LogInAC>
     | ReturnType<typeof ToggleFollowingInProgressAC>
 
 

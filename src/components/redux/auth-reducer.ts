@@ -1,5 +1,5 @@
 import {ActionTypes, DispatchType} from './redux-store';
-import {authApi, LogInFormType} from '../../api/api';
+import {authApi} from '../../api/api';
 
 export type ResponseDataType<T> = {
     resultCode: number,
@@ -27,20 +27,18 @@ export const authReducer = (state: DataType = initialState, action: ActionTypes)
     switch (action.type) {
 
         case 'SET-USERS-DATA':
+            console.log(state.isAuth)
             return {
                 ...state,
-                ...action.data, isAuth: true
+                ...action.payload, isAuth: true
             };
+
         case 'SET-LOADING':
             return {
                 ...state,
                 isLoading: action.isLoading
             };
-        // case 'LOG-IN':
-        //     return {
-        //         ...state,
-        //
-        //     };
+
     }
     return state;
 };
@@ -48,21 +46,17 @@ export const authReducer = (state: DataType = initialState, action: ActionTypes)
 
 export const SetUserDataAC = (id: string | null, email: string | null, login: string | null) => ({
     type: 'SET-USERS-DATA',
-    data: {id, email, login}
+    payload: {id, email, login}
 } as const);
+
 export const SetLoadingAC = (isLoading: boolean) => ({
     type: 'SET-LOADING',
     isLoading
 } as const);
-// export const LogInAC = (logInForm: any) => ({
-//     type: 'LOG-IN',
-//     logInForm:logInForm
-// } as const);
 
 
 export const authUserThunk = () => {
     return (dispatch: DispatchType) => {
-
         authApi.me().then((data) => {
             if (data.resultCode === 0) {
                 let {id, email, login} = data.data;
@@ -73,13 +67,20 @@ export const authUserThunk = () => {
     };
 };
 
-export const logInUserThunk = (logInForm: LogInFormType) => {
-    return (dispatch: DispatchType) => {
-        authApi.loginMe(logInForm).then((data) => {
-            if (data.resultCode === 0) {
-
+export const logInUserThunk = (email: string, password: string, rememberMe: boolean) =>
+    (dispatch: DispatchType) => {
+        authApi.logIn(email, password, rememberMe).then((data) => {
+                let {id, email, login} = data.data;
+                dispatch(SetUserDataAC(id, email, login));
             }
-
-        });
+        )
     };
-};
+
+// export const logOutUserThunk = () =>
+//     (dispatch: DispatchType) => {
+//         authApi.logOut().then((data) => {
+//             if (data.resultCode === 0) {
+//                 dispatch(SetUserDataAC())
+//             }
+//         });
+//     };

@@ -13,7 +13,6 @@ const instance = axios.create({
 
 export const usersApi = {
     getUsers(currentPage: number, pageSize: number) {
-
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then((response) => response.data)
     },
@@ -24,9 +23,7 @@ export const usersApi = {
         return instance.post(`follow/${id}`).then((response) => response.data)
 
     },
-
 }
-
 export type LogInFormType = {
     email: string
     password:string
@@ -37,8 +34,11 @@ export const authApi = {
     me() {
         return instance.get<ResponseDataType<DataType>>(`auth/me`).then((response) => response.data)
     },
-    loginMe(logInForm:LogInFormType){
-        return instance.post(`auth/login`,logInForm).then(response=>response.data)
+    logIn(email: string,password:string, rememberMe:boolean){
+        return instance.post(`auth/login`,{email,password, rememberMe}).then(response=>response.data)
+    },
+    logOut(){
+        return instance.delete(`auth/login`)
     }
 }
 

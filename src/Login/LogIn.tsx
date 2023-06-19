@@ -8,8 +8,10 @@ import {Input} from '../components/common/FormsControls/FormsControls';
 import {required} from '../utilits/validators';
 
 export const LogIn = (props: any) => {
+
     const onSubmit = (formData: LogInFormType) => {
-        props.logInUser(formData);
+        const {email, password, rememberMe} = formData
+        props.logInUser(email, password, rememberMe);
     };
 
     return (
@@ -20,14 +22,15 @@ export const LogIn = (props: any) => {
     );
 };
 
-const LoginForm = (props: PropsWithChildren<InjectedFormProps<{}, {}, string>>) => {
+const LoginForm = (props: PropsWithChildren<InjectedFormProps<{}, {}, string>> & PropsType) => {
+    console.log('LoginForm props:', props);
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={Input} placeholder="Login" name="login" validate={[required]}/>
+                <Field component={Input} placeholder="email" name="email" validate={[required]}/>
             </div>
             <div>
-                <Field component={Input} placeholder="Password" name="password" validate={[required]}/>
+                <Field component={Input} placeholder="Password" name="password" type="password" validate={[required]}/>
             </div>
             <div>
                 <Field component={Input} type="checkbox" name="remember me"/>
@@ -39,18 +42,19 @@ const LoginForm = (props: PropsWithChildren<InjectedFormProps<{}, {}, string>>) 
 }
 
 type mapDispatchToPropsType = {
-    logInUser: (logInForm: any) => void
+    logInUser: (email: string, password: string, rememberMe: boolean) => void
 }
 
 const mapDispatchToProps: mapDispatchToPropsType = {
     logInUser: logInUserThunk
 }
 
+
 type FormPropsType = {
     onSubmit: (formData: any) => void;
 };
 
-type Props = FormPropsType & InjectedFormProps<{}, FormPropsType>;
+type PropsType = FormPropsType & InjectedFormProps<{}, FormPropsType>;
 
 const LoginReduxForm = compose<React.ComponentType<any>>(
     connect(null, mapDispatchToProps),
