@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import s from './Dialogs.module.css';
 import {Message} from './Message/Message';

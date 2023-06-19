@@ -1,5 +1,5 @@
 import React from 'react';
-import {MessageSendAC, MessagesPageType} from '../redux/messages-reducer';
+import {MessageSendAC} from '../redux/messages-reducer';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import {AppReduxStateType, DispatchType} from '../redux/redux-store';
