@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropsWithChildren} from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {logInUserThunk} from '../components/redux/auth-reducer';
@@ -6,8 +6,9 @@ import {LogInFormType} from '../api/api';
 import {Input} from '../components/common/FormsControls/FormsControls';
 import {required} from '../utilits/validators';
 
-const LogIn = (props: any) => {
-    console.log(props)
+
+
+const LogIn = (props: logInUserType) => {
     const onSubmit = (formData: LogInFormType) => {
         const {email, password, rememberMe} = formData
         props.logInUser(email, password, rememberMe);
@@ -21,8 +22,7 @@ const LogIn = (props: any) => {
     );
 };
 
-const LoginForm = (props: any) => {
-    console.log('LoginForm props:',props);
+const LoginForm = (props: PropsWithChildren<InjectedFormProps<any>>) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -40,27 +40,16 @@ const LoginForm = (props: any) => {
         </form>)
 }
 
-type mapDispatchToPropsType = {
+type logInUserType = {
     logInUser: (email: string, password: string, rememberMe: boolean) => void
 }
 
-const mapDispatchToProps: mapDispatchToPropsType = {
+const mapDispatchToProps: logInUserType = {
     logInUser: logInUserThunk
 }
 
 
-type FormPropsType = {
-    onSubmit: (formData: any) => void;
-};
-
-type PropsType = FormPropsType & InjectedFormProps<{}, FormPropsType>;
-
-// export  default  compose<React.ComponentType<any>>(
-//     connect(null, mapDispatchToProps)(LogIn),
-//     reduxForm({form: 'login'})
-// )(LoginForm);
-
-const LoginReduxForm = reduxForm<any,any,any>({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm<any>({form: 'login'})(LoginForm)
 
 
 export  default  connect(null,mapDispatchToProps)(LogIn)
