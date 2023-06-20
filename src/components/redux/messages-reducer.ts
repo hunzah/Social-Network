@@ -38,5 +38,8 @@ export const messagesReducer = (state: MessagesPageType = initialState, action: 
 
 }
 
-export const MessageSendAC = (newMessageBody:string) => ({type: 'MESSAGE-SEND',newMessageBody:newMessageBody } as const)
+export const MessageSendAC = (newMessageBody: string) => ({
+    type: 'MESSAGE-SEND',
+    newMessageBody: newMessageBody
+} as const)
 

@@ -8,6 +8,7 @@ import {required} from '../utilits/validators';
 import {Redirect} from 'react-router-dom';
 import {AppReduxStateType} from '../components/redux/redux-store';
 import s from '../components/common/FormsControls/FormControls.module.css'
+
 type logInUserPropsType = {
     logInUser: (email: string, password: string, rememberMe: boolean) => void
     isAuth: boolean

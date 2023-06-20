@@ -17,18 +17,20 @@ import {Preloader} from './components/common/Preloader/Preloader';
 import {InitializedSuccessAC} from './components/redux/app-reducer';
 
 type PropsType = mapStateToPropsType & mapDispatchToPropsType
+
 class App extends React.Component<PropsType> {
 
     componentDidMount() {
-       this.props.InitializedSuccessAC()
+        this.props.InitializedSuccessAC()
     }
+
     render() {
 
-            if (!this.props.initialized) {
-                return(
-                    <Preloader/>
-                )
-            }
+        if (!this.props.initialized) {
+            return (
+                <Preloader/>
+            )
+        }
         return (
             <div className="app-wrapper">
                 <HeaderContainer/>
@@ -41,27 +43,28 @@ class App extends React.Component<PropsType> {
                     <Route path="/Friends" render={() => <FriendsContainer/>}/>
                     <Route path="/Users" render={() => <UsersApi/>}/>
                     <Route path="/Login" render={() => <LogIn/>}/>
-                       </div>
+                </div>
             </div>
         );
     }
 }
+
 type mapStateToPropsType = {
-    initialized:boolean
+    initialized: boolean
 
 }
-const mapStateToProps = (state:AppReduxStateType)=> {
-    return({
-        initialized:state.app.initialized
+const mapStateToProps = (state: AppReduxStateType) => {
+    return ({
+        initialized: state.app.initialized
     })
 
 }
 type mapDispatchToPropsType = {
-    InitializedSuccessAC:()=>void
+    InitializedSuccessAC: () => void
 }
 
-const mapDispatchToProps:mapDispatchToPropsType  = {
-    InitializedSuccessAC:InitializedSuccessAC,
+const mapDispatchToProps: mapDispatchToPropsType = {
+    InitializedSuccessAC: InitializedSuccessAC,
 }
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps )(App));
+    connect(mapStateToProps, mapDispatchToProps)(App));

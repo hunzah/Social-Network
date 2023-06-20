@@ -37,7 +37,7 @@ export type ContactType = {
 }
 
 
-const initialState:ProfilePageType = {
+const initialState: ProfilePageType = {
     postsArr: [
         {id: 1, message: 'Hi, how are you?', count: 15},
         {id: 2, message: 'It\'s my first post', count: 16},
@@ -80,7 +80,7 @@ export const setProfileThunkCreator = (userId: string | null) => {
             });
     }
 }
-export const getStatusThunkCreator = (userId: string | null)=> {
+export const getStatusThunkCreator = (userId: string | null) => {
     return (dispatch: DispatchType) => {
         profileApi.getStatus(userId)
             .then(response => {
@@ -89,12 +89,12 @@ export const getStatusThunkCreator = (userId: string | null)=> {
     }
 }
 
-export const updateStatusThunkCreator = (status: string)=> {
+export const updateStatusThunkCreator = (status: string) => {
     return (dispatch: DispatchType) => {
         profileApi.updateStatus(status)
             .then(data => {
                 if (data.resultCode === 0) {
-                    dispatch (SetStatusAC(status))
+                    dispatch(SetStatusAC(status))
                 }
             });
     }

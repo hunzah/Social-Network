@@ -4,7 +4,7 @@ import {createSelector} from 'reselect';
 export const getUsers = (state: AppReduxStateType) => {
     return state.usersPage.usersArr
 }
-export const getUsersSelector = createSelector(getUsers,(users) => () => {
+export const getUsersSelector = createSelector(getUsers, (users) => () => {
     return users
 })
 

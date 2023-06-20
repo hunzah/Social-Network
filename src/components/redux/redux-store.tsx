@@ -44,7 +44,7 @@ const reducers = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
-    app:appReducer
+    app: appReducer
 })
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware))
