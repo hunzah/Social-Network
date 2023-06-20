@@ -70,16 +70,16 @@ export class UsersContainer extends React.Component<UsersPropsType> {
 }
 
 
-const mapStateToProps = (state: AppReduxStateType): MapStateType => {
-    return {
-        users: state.usersPage.usersArr,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
-    }
-}
+// const mapStateToProps = (state: AppReduxStateType): MapStateType => {
+//     return {
+//         users: state.usersPage.usersArr,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         followingInProgress: state.usersPage.followingInProgress
+//     }
+// }
 const mapDispatchToProps: MapDispatchType = {
     setUsers: SetUsersAC,
     setCurrentPage: SetCurrentPageAC,
