@@ -14,9 +14,10 @@ import {connect} from 'react-redux';
 import {authUserThunk} from './components/redux/auth-reducer';
 import {compose} from 'redux';
 import {InitializedSuccessAC} from './components/redux/app-reducer';
+import {AppReduxStateType} from './components/redux/redux-store';
 
-
-class App extends React.Component<mapDispatchToPropsType> {
+type PropsType = mapStateToPropsType & mapDispatchToPropsType
+class App extends React.Component<PropsType> {
     componentDidMount() {
        this.props.authUserThunk()
     }
@@ -38,14 +39,24 @@ class App extends React.Component<mapDispatchToPropsType> {
         );
     }
 }
+type mapStateToPropsType = {
+    initialized:boolean
 
+}
+const mapStateToProps = (state:AppReduxStateType)=> {
+    return({
+        initialized:state.app.initialized
+    })
+
+}
 type mapDispatchToPropsType = {
     authUserThunk:()=>void
     InitializedSuccess: ()=> void
 }
+
 const mapDispatchToProps:mapDispatchToPropsType  = {
     authUserThunk:authUserThunk,
     InitializedSuccess:InitializedSuccessAC
 }
 export default compose(
-    connect(null, mapDispatchToProps )(App));
+    connect(mapStateToProps, mapDispatchToProps )(App));

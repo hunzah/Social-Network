@@ -26,16 +26,16 @@ const initialState = {
 
 export const authReducer = (state: DataType = initialState, action: ActionTypes): DataType => {
     switch (action.type) {
-
         case 'SET-USERS-DATA':
             return {
                 ...state,
+                // @ts-ignore
                 ...action.payload, isAuth: action.payload.isAuth
             };
-
         case 'SET-LOADING':
             return {
                 ...state,
+                // @ts-ignore
                 isLoading: action.isLoading
             };
 

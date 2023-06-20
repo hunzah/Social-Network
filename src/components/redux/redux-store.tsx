@@ -15,7 +15,7 @@ import {
 import {authReducer, SetLoadingAC, SetUserDataAC} from './auth-reducer';
 import thunkMiddleware from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form'
-import {InitializedSuccessAC} from './app-reducer';
+import appReducer, {InitializedSuccessAC} from './app-reducer';
 
 
 export type DispatchType = (action: ActionTypes) => void;
@@ -43,7 +43,8 @@ const reducers = combineReducers({
     profilePage: profileReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    app:appReducer
 })
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware))
