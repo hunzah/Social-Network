@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Navbar} from './components/Navbar/Navbar';
-import {Route} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 import {Music} from './components/Navbar/Music/Music';
 import {Settings} from './components/Navbar/Setings/Settings';
 import {FriendsContainer} from './components/Navbar/Friends/FriendsContainer';
@@ -10,25 +10,39 @@ import LogIn from './Login/LogIn';
 import UsersApi from './components/Users/UsersContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Navbar/Profile/ProfileContainer';
+import {connect} from 'react-redux';
+import {authUserThunk} from './components/redux/auth-reducer';
+import {compose} from 'redux';
 
 
-const App: React.FC = () => {
-    return (
-        <div className="app-wrapper">
-            <HeaderContainer/>
-            <Navbar/>
-            <div className={'app-wrapper-content'}>
-                <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
-                <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
-                <Route path="/Music" render={() => <Music/>}/>
-                <Route path="/Settings" render={() => <Settings/>}/>
-                <Route path="/Friends" render={() => <FriendsContainer/>}/>
-                <Route path="/Users" render={() => <UsersApi/>}/>
-                <Route path="/Login" render={() => <LogIn/>}/>
+class App extends React.Component<mapDispatchToPropsType> {
+    componentDidMount() {
+       this.props.authUserThunk()
+    }
+    render() {
+        return (
+            <div className="app-wrapper">
+                <HeaderContainer/>
+                <Navbar/>
+                <div className={'app-wrapper-content'}>
+                    <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
+                    <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
+                    <Route path="/Music" render={() => <Music/>}/>
+                    <Route path="/Settings" render={() => <Settings/>}/>
+                    <Route path="/Friends" render={() => <FriendsContainer/>}/>
+                    <Route path="/Users" render={() => <UsersApi/>}/>
+                    <Route path="/Login" render={() => <LogIn/>}/>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
-
-export default App;
+type mapDispatchToPropsType = {
+    authUserThunk:()=>void
+}
+const mapDispatchToProps:mapDispatchToPropsType  = {
+    authUserThunk:authUserThunk
+}
+export default compose(
+    connect(null, mapDispatchToProps )(App));
