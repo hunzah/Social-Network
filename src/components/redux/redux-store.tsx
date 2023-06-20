@@ -15,6 +15,7 @@ import {
 import {authReducer, SetLoadingAC, SetUserDataAC} from './auth-reducer';
 import thunkMiddleware from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form'
+import {InitializedSuccessAC} from './app-reducer';
 
 
 export type DispatchType = (action: ActionTypes) => void;
@@ -33,6 +34,7 @@ export type ActionTypes =
     | ReturnType<typeof SetUserDataAC>
     | ReturnType<typeof SetLoadingAC>
     | ReturnType<typeof ToggleFollowingInProgressAC>
+    | ReturnType<typeof InitializedSuccessAC>
 
 
 const reducers = combineReducers({

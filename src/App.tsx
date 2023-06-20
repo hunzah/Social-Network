@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Navbar} from './components/Navbar/Navbar';
-import {Route, withRouter} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import {Music} from './components/Navbar/Music/Music';
 import {Settings} from './components/Navbar/Setings/Settings';
 import {FriendsContainer} from './components/Navbar/Friends/FriendsContainer';
@@ -13,6 +13,7 @@ import ProfileContainer from './components/Navbar/Profile/ProfileContainer';
 import {connect} from 'react-redux';
 import {authUserThunk} from './components/redux/auth-reducer';
 import {compose} from 'redux';
+import {InitializedSuccessAC} from './components/redux/app-reducer';
 
 
 class App extends React.Component<mapDispatchToPropsType> {
@@ -40,9 +41,11 @@ class App extends React.Component<mapDispatchToPropsType> {
 
 type mapDispatchToPropsType = {
     authUserThunk:()=>void
+    InitializedSuccess: ()=> void
 }
 const mapDispatchToProps:mapDispatchToPropsType  = {
-    authUserThunk:authUserThunk
+    authUserThunk:authUserThunk,
+    InitializedSuccess:InitializedSuccessAC
 }
 export default compose(
     connect(null, mapDispatchToProps )(App));
