@@ -9,25 +9,26 @@ const initialState: StateType = {
     initialized: false
 }
 
-const appReducer = (state: StateType = initialState, action: ActionTypes): StateType => {
-    switch (action.type){
+const profileReducer = (state: StateType = initialState, action: ActionTypes): StateType => {
+    switch (action.type) {
         case 'INITIALIZED-SUCCESS':
             return {...state, initialized: true}
     }
     return state
 };
 
-export const InitializedSuccessAC =()=> {
-    return ({
-        type:'SET-INITIALIZED'
-    })
-}
-export const InitializeThunk =()=>(dispatch:DispatchType)=> {
-// @ts-ignore
-    Promise.all([dispatch(authUserThunk())]).then(()=>{
+export const InitializedSuccessAC = () => ({
+    type: 'INITIALIZED-SUCCESS'
+}) as const
+
+
+export const InitializeThunk = () => (dispatch: DispatchType) => {
+
+    // @ts-ignore
+    Promise.all([dispatch(authUserThunk())]).then(() => {
         dispatch(InitializedSuccessAC())
     })
 
 }
 
-export default appReducer;
+export default profileReducer;

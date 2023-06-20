@@ -11,17 +11,24 @@ import UsersApi from './components/Users/UsersContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Navbar/Profile/ProfileContainer';
 import {connect} from 'react-redux';
-import {authUserThunk} from './components/redux/auth-reducer';
 import {compose} from 'redux';
-import {InitializedSuccessAC} from './components/redux/app-reducer';
 import {AppReduxStateType} from './components/redux/redux-store';
+import {Preloader} from './components/common/Preloader/Preloader';
+import {InitializedSuccessAC} from './components/redux/app-reducer';
 
 type PropsType = mapStateToPropsType & mapDispatchToPropsType
 class App extends React.Component<PropsType> {
+
     componentDidMount() {
-       this.props.authUserThunk()
+       this.props.InitializedSuccessAC()
     }
     render() {
+
+            if (!this.props.initialized) {
+                return(
+                    <Preloader/>
+                )
+            }
         return (
             <div className="app-wrapper">
                 <HeaderContainer/>
@@ -34,7 +41,7 @@ class App extends React.Component<PropsType> {
                     <Route path="/Friends" render={() => <FriendsContainer/>}/>
                     <Route path="/Users" render={() => <UsersApi/>}/>
                     <Route path="/Login" render={() => <LogIn/>}/>
-                </div>
+                       </div>
             </div>
         );
     }
@@ -50,13 +57,11 @@ const mapStateToProps = (state:AppReduxStateType)=> {
 
 }
 type mapDispatchToPropsType = {
-    authUserThunk:()=>void
-    InitializedSuccess: ()=> void
+    InitializedSuccessAC:()=>void
 }
 
 const mapDispatchToProps:mapDispatchToPropsType  = {
-    authUserThunk:authUserThunk,
-    InitializedSuccess:InitializedSuccessAC
+    InitializedSuccessAC:InitializedSuccessAC,
 }
 export default compose(
     connect(mapStateToProps, mapDispatchToProps )(App));
