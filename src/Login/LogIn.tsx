@@ -5,14 +5,24 @@ import {logInUserThunk} from '../components/redux/auth-reducer';
 import {LogInFormType} from '../api/api';
 import {Input} from '../components/common/FormsControls/FormsControls';
 import {required} from '../utilits/validators';
+import {Redirect} from 'react-router-dom';
+import {AppReduxStateType} from '../components/redux/redux-store';
+import s from '../components/common/FormsControls/FormControls.module.css'
+type logInUserPropsType = {
+    logInUser: (email: string, password: string, rememberMe: boolean) => void
+    isAuth: boolean
+}
 
 
-
-const LogIn = (props: logInUserType) => {
+const LogIn = (props: logInUserPropsType) => {
     const onSubmit = (formData: LogInFormType) => {
         const {email, password, rememberMe} = formData
         props.logInUser(email, password, rememberMe);
     };
+
+    if (props.isAuth) {
+        return <Redirect to={'/profile'}/>
+    }
 
     return (
         <div>
@@ -34,22 +44,29 @@ const LoginForm = (props: PropsWithChildren<InjectedFormProps<any>>) => {
             <div>
                 <Field component={Input} type="checkbox" name="remember me"/>
             </div>
+            {props.error && <div className={s.formSummaryError}>{props.error}</div>}
             <div>
                 <button>Submit</button>
             </div>
         </form>)
 }
 
-type logInUserType = {
+
+type mapDispatchToPropsType = {
     logInUser: (email: string, password: string, rememberMe: boolean) => void
 }
 
-const mapDispatchToProps: logInUserType = {
+const mapDispatchToProps: mapDispatchToPropsType = {
     logInUser: logInUserThunk
 }
-
+type mapStateToPropsType = {
+    isAuth: boolean
+}
+const mapStateToProps = (state: AppReduxStateType): mapStateToPropsType => {
+    return {isAuth: state.auth.isAuth}
+}
 
 const LoginReduxForm = reduxForm<any>({form: 'login'})(LoginForm)
 
 
-export  default  connect(null,mapDispatchToProps)(LogIn)
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn)

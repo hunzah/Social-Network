@@ -19,11 +19,12 @@ interface MatchParams {
 export type MapStateType = {
     profile: ProfileType | null
     status: string
+    userId:string |null
 }
 export type MapDispatchType = {
-    setProfileThunk: (userId: string) => void
-    getStatusThunk: (userId: string) => void
-    updateStatusThunk: (userId: string) => void
+    setProfileThunk: (userId: string | null) => void
+    getStatusThunk: (userId: string | null) => void
+    updateStatusThunk: (status: string) => void
 
 }
 
@@ -33,9 +34,9 @@ export type ProfilesContainerPropsType = MapStateType & MapDispatchType & RouteC
 class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId;
+        let userId:string | null = this.props.match.params.userId;
         if (!userId) {
-            userId = '29069'
+            userId = this.props.userId
         }
         this.props.setProfileThunk(userId)
         this.props.getStatusThunk(userId)
@@ -56,6 +57,7 @@ class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
 const mapStateToProps = (state: AppReduxStateType): MapStateType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
+    userId: state.auth.id
 
 })
 

@@ -1,5 +1,6 @@
 import {ActionTypes, DispatchType} from './redux-store';
 import {authApi} from '../../api/api';
+import {stopSubmit} from 'redux-form';
 
 export type ResponseDataType<T> = {
     resultCode: number,
@@ -68,9 +69,13 @@ export const authUserThunk = () => {
 
 export const logInUserThunk = (email: string, password: string, rememberMe: boolean) =>
     (dispatch: any) => {
-
-        authApi.logIn(email, password, rememberMe).then(() => {
-                dispatch(authUserThunk());
+        authApi.logIn(email, password, rememberMe).then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(authUserThunk())
+                } else {
+                    let message = data.messages.length > 0 ? data.messages[0] : 'something went wrong '
+                    dispatch(stopSubmit('login', {_error: message}))
+                }
             }
         )
     };

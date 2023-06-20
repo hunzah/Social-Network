@@ -72,7 +72,7 @@ export const AddPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostTex
 export const SetUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile: profile} as const)
 export const SetStatusAC = (status: string) => ({type: 'SET-STATUS', status: status} as const)
 
-export const setProfileThunkCreator = (userId: string) => {
+export const setProfileThunkCreator = (userId: string | null) => {
     return (dispatch: DispatchType) => {
         profileApi.getProfiles(userId)
             .then(data => {
@@ -80,7 +80,7 @@ export const setProfileThunkCreator = (userId: string) => {
             });
     }
 }
-export const getStatusThunkCreator = (userId: string)=> {
+export const getStatusThunkCreator = (userId: string | null)=> {
     return (dispatch: DispatchType) => {
         profileApi.getStatus(userId)
             .then(response => {

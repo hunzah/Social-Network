@@ -30,12 +30,19 @@ export type LogInFormType = {
     rememberMe:boolean
     captcha: boolean
 }
+type LogInResponseType = {
+    resultCode: number
+    messages: string[],
+        data: {
+        userId: number
+    }
+}
 export const authApi = {
     me() {
         return instance.get<ResponseDataType<DataType>>(`auth/me`).then((response) => response.data)
     },
     logIn(email: string,password:string, rememberMe:boolean = false){
-        return instance.post(`auth/login`,{email,password, rememberMe}).then(response=>response.data)
+        return instance.post<LogInResponseType>(`auth/login`,{email,password, rememberMe}).then(response=>response.data)
     },
     logOut(){
         return instance.delete(`auth/login`)
@@ -50,10 +57,10 @@ type PutStatusResponseType = {
 
 export const profileApi = {
 
-    getProfiles(userId: string) {
+    getProfiles(userId: string | null) {
         return instance.get<ProfileType>(`profile/${userId}`).then((response) => response.data)
     },
-    getStatus(userId: string) {
+    getStatus(userId: string | null) {
         return instance.get<string>(`profile/status/${userId}`).then((response) => response.data)
     },
     updateStatus(status: string) {
