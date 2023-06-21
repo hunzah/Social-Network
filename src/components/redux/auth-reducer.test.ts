@@ -1,7 +1,6 @@
-import {AddPostAC, ProfilePageType, profileReducer} from './profile-reducer';
-import {authReducer, DataType, SetUserDataAC} from './auth-reducer';
+import {authReducer, DataType, SetLoadingAC, SetUserDataAC} from './auth-reducer';
 
-test('new-post should be added', () => {
+test('new-user-data should be added', () => {
 
     const state: DataType = {
         id: null,
@@ -15,4 +14,19 @@ test('new-post should be added', () => {
     const result = authReducer(state, action)
     expect(result.id).toBe('1')
     expect(result.email).toBe('email')
+})
+test('LoadingAC should be set', () => {
+
+    const state: DataType = {
+        id: null,
+        email: null,
+        login: null,
+        isAuth: false,
+        isLoading: true
+    }
+
+    const action = SetLoadingAC(true)
+    const result = authReducer(state, action)
+    expect(result.isLoading).toBe(true)
+
 })
