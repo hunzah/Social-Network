@@ -47,7 +47,7 @@ const initialState: ProfilePageType = {
     status: ''
 }
 
-const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes): ProfilePageType => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes): ProfilePageType => {
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostsArrType = {
@@ -69,14 +69,14 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
 };
 
 export const AddPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText} as const);
-export const SetUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile: profile} as const)
+export const SetUserProfileAC = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile: profile} as const)
 export const SetStatusAC = (status: string) => ({type: 'SET-STATUS', status: status} as const)
 
 export const setProfileThunkCreator = (userId: string | null) => {
     return (dispatch: DispatchType) => {
         profileApi.getProfiles(userId)
             .then(data => {
-                dispatch(SetUserProfile(data));
+                dispatch(SetUserProfileAC(data));
             });
     }
 }
