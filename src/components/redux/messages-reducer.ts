@@ -29,7 +29,7 @@ const initialState = {
 
 export const messagesReducer = (state: MessagesPageType = initialState, action: ActionTypes): MessagesPageType => {
     switch (action.type) {
-        case 'MESSAGE-SEND':
+        case 'messages/MESSAGE-SEND':
             const body = action.newMessageBody
             return {...state, messageArr: [...state.messageArr, {message: body}]};
         default:
@@ -37,9 +37,8 @@ export const messagesReducer = (state: MessagesPageType = initialState, action: 
     }
 
 }
-
 export const MessageSendAC = (newMessageBody: string) => ({
-    type: 'MESSAGE-SEND',
+    type: 'messages/MESSAGE-SEND',
     newMessageBody: newMessageBody
 } as const)
 

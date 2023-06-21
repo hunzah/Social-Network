@@ -19,7 +19,7 @@ export const usersApi = {
     followUsers(id: number) {
         return instance.delete(`follow/${id}`).then((response) => response.data)
     },
-    UnfollowUsers(id: number) {
+    unfollowUsers(id: number) {
         return instance.post(`follow/${id}`).then((response) => response.data)
 
     },

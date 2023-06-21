@@ -49,7 +49,7 @@ const initialState: ProfilePageType = {
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes): ProfilePageType => {
     switch (action.type) {
-        case 'ADD-POST':
+        case 'profile/ADD-POST':
             const newPost: PostsArrType = {
                 id: state.postsArr.length + 1,
                 message: action.newPostText,
@@ -59,44 +59,44 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 ...state,
                 postsArr: [newPost, ...state.postsArr],
             };
-        case 'SET-USER-PROFILE':
+        case 'profile/SET-USER-PROFILE':
             return {...state, profile: action.profile}
-        case 'SET-STATUS':
+        case 'profile/SET-STATUS':
             return {...state, status: action.status}
         default:
             return state
     }
 };
 
-export const AddPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText} as const);
-export const SetUserProfileAC = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile: profile} as const)
-export const SetStatusAC = (status: string) => ({type: 'SET-STATUS', status: status} as const)
+export const AddPostAC = (newPostText: string) => ({type: 'profile/ADD-POST', newPostText} as const);
+export const SetUserProfileAC = (profile: ProfileType) => ({
+    type: 'profile/SET-USER-PROFILE',
+    profile: profile
+} as const)
+export const SetStatusAC = (status: string) => ({type: 'profile/SET-STATUS', status: status} as const)
 
 export const setProfileThunkCreator = (userId: string | null) => {
-    return (dispatch: DispatchType) => {
-        profileApi.getProfiles(userId)
-            .then(data => {
-                dispatch(SetUserProfileAC(data));
-            });
+    return async (dispatch: DispatchType) => {
+        let response = await profileApi.getProfiles(userId)
+        await dispatch(SetUserProfileAC(response));
+
     }
 }
 export const getStatusThunkCreator = (userId: string | null) => {
-    return (dispatch: DispatchType) => {
-        profileApi.getStatus(userId)
-            .then(response => {
-                dispatch(SetStatusAC(response));
-            });
+    return async (dispatch: DispatchType) => {
+        const response = await profileApi.getStatus(userId)
+        await dispatch(SetStatusAC(response));
+
     }
 }
 
 export const updateStatusThunkCreator = (status: string) => {
-    return (dispatch: DispatchType) => {
-        profileApi.updateStatus(status)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(SetStatusAC(status))
-                }
-            });
+    return async (dispatch: DispatchType) => {
+        let response = await profileApi.updateStatus(status)
+        if (response.resultCode === 0) {
+            dispatch(SetStatusAC(status))
+        }
+
     }
 }
 

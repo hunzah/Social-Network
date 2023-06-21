@@ -11,24 +11,21 @@ const initialState: StateType = {
 
 const profileReducer = (state: StateType = initialState, action: ActionTypes): StateType => {
     switch (action.type) {
-        case 'INITIALIZED-SUCCESS':
+        case 'app/INITIALIZED-SUCCESS':
             return {...state, initialized: true}
     }
     return state
 };
 
 export const InitializedSuccessAC = () => ({
-    type: 'INITIALIZED-SUCCESS'
+    type: 'app/INITIALIZED-SUCCESS'
 }) as const
 
 
-export const InitializeThunk = () => (dispatch: DispatchType) => {
-
+export const InitializeThunk = () => async (dispatch: DispatchType) => {
     // @ts-ignore
-    Promise.all([dispatch(authUserThunk())]).then(() => {
-        dispatch(InitializedSuccessAC())
-    })
-
+    await Promise.all([dispatch(authUserThunk())])
+    await dispatch(InitializedSuccessAC())
 }
 
 export default profileReducer;
