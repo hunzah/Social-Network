@@ -8,7 +8,7 @@ type mapStateToPropsType = {
     profilePage: ProfilePageType
 }
 type mapDispatchToPropsType = {
-    onAddPost: (newPostText:string)=>void
+    onAddPost: (newPostText: string) => void
 }
 const mapStateToProps = (state: mapStateToPropsType) => {
     return ({
