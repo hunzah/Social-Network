@@ -17,13 +17,26 @@ describe('ProfileStatus component', () => {
             // @ts-ignore
             expect(input.text).toBeUndefined()
         }),
-        test('after creation span should be displayed with correct status ', () => {
+        test('span shouldn\'t to be null', () => {
             const component = create(<ProfileStatus status={'myau'} updateStatus={() => {
             }} value={'ds'}/>)
             const root = component.root
             const span = root.findAllByType('span')
             // @ts-ignore
             expect(span.text).not.toBeNull()
+        }),
+        test('input should be displayed in editMode instead of span ', () => {
+            const component = create(<ProfileStatus status={'myau'} updateStatus={() => {
+            }} value={'ds'}/>)
+            const root = component.root
+            const span = root.findByType('span')
+            span.props.onDoubleClick()
+            const input = root.findByType('input')
+
+            // @ts-ignore
+            expect(span.text).not.toBeNull()
+            expect(input.props.value).toBe('myau')
+
         }),
         test('after creation span should be displayed with correct status ', () => {
             const component = create(<ProfileStatus status={'myau'} updateStatus={() => {
@@ -32,5 +45,13 @@ describe('ProfileStatus component', () => {
             const span = root.findAllByType('span')
             // @ts-ignore
             expect(span.innerText).toBe('myau')
-        })
+        }),
+        test('how many times callback will be called', () => {
+            const mockCallback = jest.fn();
+            const component = create(<ProfileStatus status={'myau'} updateStatus={mockCallback} value={'ds'}/>);
+            const instance = component.getInstance();
+            // @ts-ignore
+            instance.deActivateEditMode();
+            expect(mockCallback.mock.calls.length).toBe(1);
+        });
 })
