@@ -51,7 +51,8 @@ type UsersPropsType = MapStateType & MapDispatchType
 export class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props
+        this.props.getUsersThunk(currentPage, pageSize)
 
     }
 

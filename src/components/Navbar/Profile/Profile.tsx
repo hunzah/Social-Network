@@ -6,12 +6,13 @@ import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 type PropsType = {
     profile: ProfileType
     status: string
-    updateStatus: (userId: string)=> void
+    updateStatus: (userId: string) => void
 }
 export const Profile = (props: PropsType) => {
+    const {profile, status, updateStatus} = props
     return (
         <div>
-           <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileInfo profile={profile} status={status} updateStatus={updateStatus}/>
             <MyPostsContainer/>
         </div>
     )

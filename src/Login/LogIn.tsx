@@ -14,14 +14,14 @@ type logInUserPropsType = {
     isAuth: boolean
 }
 
-
 const LogIn = (props: logInUserPropsType) => {
+    const {logInUser, isAuth} = props
     const onSubmit = (formData: LogInFormType) => {
         const {email, password, rememberMe} = formData
-        props.logInUser(email, password, rememberMe);
+        logInUser(email, password, rememberMe);
     };
 
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to={'/profile'}/>
     }
 
@@ -34,25 +34,30 @@ const LogIn = (props: logInUserPropsType) => {
 };
 
 const LoginForm = (props: PropsWithChildren<InjectedFormProps<any>>) => {
+    const {handleSubmit, error} = props
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
+            {createField(Input, 'email', 'email', '', [required])}
+            {createField(Input, 'Password', 'password', 'password', [required])}
+
             <div>
-                <Field component={Input} placeholder="email" name="email" validate={[required]}/>
-            </div>
-            <div>
-                <Field component={Input} placeholder="Password" name="password" type="password" validate={[required]}/>
-            </div>
-            <div>
-                <Field component={Input} type="checkbox" name="remember me"/>
+                {createField(Input, '', 'remember me', 'checkbox')}
                 <span>Remember me</span>
             </div>
-            {props.error && <div className={s.formSummaryError}>{props.error}</div>}
+            {error && <div className={s.formSummaryError}>{error}</div>}
             <div>
                 <button>Submit</button>
             </div>
         </form>)
 }
 
+const createField = (component: (props: any) => JSX.Element,
+                     placeholder: string, name: string, type?: string,
+                     validate?: ((value: string) => 'Field is required' | undefined)[]) => {
+    return <div>
+        <Field component={component} placeholder={placeholder} name={name} type={type} validate={validate}/>
+    </div>
+}
 
 type mapDispatchToPropsType = {
     logInUser: (email: string, password: string, rememberMe: boolean) => void
