@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Navbar} from './components/Navbar/Navbar';
-import {Route} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import {Music} from './components/Navbar/Music/Music';
 import {Settings} from './components/Navbar/Setings/Settings';
 import {FriendsContainer} from './components/Navbar/Friends/FriendsContainer';
@@ -10,9 +10,9 @@ import LogIn from './Login/LogIn';
 import UsersApi from './components/Users/UsersContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Navbar/Profile/ProfileContainer';
-import {connect} from 'react-redux';
+import {connect, Provider} from 'react-redux';
 import {compose} from 'redux';
-import {AppReduxStateType} from './components/redux/redux-store';
+import store, {AppReduxStateType} from './components/redux/redux-store';
 import {Preloader} from './components/common/Preloader/Preloader';
 import {InitializedSuccessAC} from './components/redux/app-reducer';
 
@@ -66,5 +66,15 @@ type mapDispatchToPropsType = {
 const mapDispatchToProps: mapDispatchToPropsType = {
     InitializedSuccessAC: InitializedSuccessAC,
 }
-export default compose(
+
+const AppContainer = compose(
     connect(mapStateToProps, mapDispatchToProps)(App));
+
+export const AppWrapper = () => {
+    return <BrowserRouter>
+        <Provider store={store}>
+            <AppContainer/>
+        </Provider>
+    </BrowserRouter>
+}
+
