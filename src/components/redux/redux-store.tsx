@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore, Store} from 'redux';
 import {friendsReducer} from './friends-reducer';
 import {MessageSendAC, messagesReducer} from './messages-reducer';
 import profileReducer, {AddPostAC, SetStatusAC, SetUserProfileAC} from './profile-reducer';
@@ -47,13 +47,16 @@ const reducers = combineReducers({
     app: appReducer
 })
 
-const store = createStore(reducers, applyMiddleware(thunkMiddleware))
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)))
+
 
 export type AppReduxStateType = ReturnType<typeof reducers>
 
 export type RootStore = Store<AppReduxStateType, ActionTypes>
 
 // @ts-ignore
-window.store = store
+window._store_ = store
 
 export default store
