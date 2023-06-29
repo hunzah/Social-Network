@@ -35,7 +35,6 @@ export type MapStateType = {
 }
 
 export type MapDispatchType = {
-
     setUsers: (users: UsersArrType[]) => void
     setCurrentPage: (p: number) => void
     setTotalUsersCount: (totalCount: number) => void
