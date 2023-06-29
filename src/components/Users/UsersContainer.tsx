@@ -45,7 +45,6 @@ export type MapDispatchType = {
     unFollowThunk: (userId: number) => void
 }
 
-
 type UsersPropsType = MapStateType & MapDispatchType
 
 export class UsersContainer extends React.Component<UsersPropsType> {
@@ -74,7 +73,6 @@ export class UsersContainer extends React.Component<UsersPropsType> {
                 />
             </>
         )
-
     }
 }
 

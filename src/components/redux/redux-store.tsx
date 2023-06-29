@@ -58,5 +58,4 @@ export type RootStore = Store<AppReduxStateType, ActionTypes>
 
 // @ts-ignore
 window._store_ = store
-
 export default store
