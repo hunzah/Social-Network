@@ -18,29 +18,24 @@ export const Paginator = (props: PropsType) => {
         portionSize = 10,
     } = props;
 
-    // Вычисляем количество страниц
+
     const pagesCount = Math.ceil(totalItemsCount / pageSize);
 
-    // Создаем массив со всеми страницами
     const pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
 
-    // Вычисляем количество порций страниц
+
     const portionCount = Math.ceil(pagesCount / portionSize);
 
-    // Определяем состояние текущей порции
     const [portionNumber, setPortionNumber] = useState<number>(1);
 
-    // Вычисляем номера первой и последней страницы в текущей порции
     const leftPageNumber = (portionNumber - 1) * portionSize + 1;
     const rightPageNumber = Math.min(portionNumber * portionSize, pagesCount);
 
-    // Определяем, должна ли быть доступна кнопка "prev"
     const prevDisabled = portionNumber === 1;
 
-    // Определяем, должна ли быть доступна кнопка "next"
     const nextDisabled = portionNumber === portionCount;
 
     return (
@@ -49,7 +44,7 @@ export const Paginator = (props: PropsType) => {
                 prev
             </button>
 
-            {/* Вычисляем номера первой и последней страницы в порции исходя из выбранной страницы */}
+
             {pages
                 .filter((p) => p >= leftPageNumber && p <= rightPageNumber)
                 .map((p) => (
@@ -57,7 +52,6 @@ export const Paginator = (props: PropsType) => {
                         key={p}
                         className={currentPage === p ? s.selectedPage : ''}
                         onClick={() => {
-                            // Вычисляем номер порции исходя из выбранной страницы
                             const portionNumber = Math.ceil(p / portionSize);
                             setPortionNumber(portionNumber);
                             onPageChanged(p);
