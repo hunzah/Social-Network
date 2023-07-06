@@ -1,4 +1,4 @@
-import {ActionTypes, DispatchType} from './redux-store';
+import {ActionTypes, AppThunk, DispatchType} from './redux-store';
 import {authUserThunk} from './auth-reducer';
 
 export type StateType = {
@@ -22,8 +22,7 @@ export const InitializedSuccessAC = () => ({
 }) as const
 
 
-export const InitializeThunk = () => async (dispatch: DispatchType) => {
-    // @ts-ignore
+export const InitializeThunk = ():AppThunk => async (dispatch: any) => {
     await Promise.all([dispatch(authUserThunk())])
     await dispatch(InitializedSuccessAC())
 }

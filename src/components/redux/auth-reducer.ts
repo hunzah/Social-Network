@@ -1,4 +1,4 @@
-import {ActionTypes, DispatchType} from './redux-store';
+import {ActionTypes, AppThunk, DispatchType} from './redux-store';
 import {authApi} from '../../api/api';
 import {stopSubmit} from 'redux-form';
 
@@ -49,7 +49,7 @@ export const SetLoadingAC = (isLoading: boolean) => ({
 } as const);
 
 
-export const authUserThunk = () => async (dispatch: DispatchType) => {
+export const authUserThunk = (): AppThunk => async (dispatch: DispatchType) => {
     let response = await authApi.me()
     if (response.resultCode === 0) {
         let {id, email, login} = response.data;
@@ -58,7 +58,7 @@ export const authUserThunk = () => async (dispatch: DispatchType) => {
     }
 };
 
-export const logInUserThunk = (email: string, password: string, rememberMe: boolean) =>
+export const logInUserThunk = (email: string, password: string, rememberMe: boolean): AppThunk =>
     async (dispatch: any) => {
         let response = await authApi.logIn(email, password, rememberMe)
         if (response.resultCode === 0) {
@@ -67,11 +67,9 @@ export const logInUserThunk = (email: string, password: string, rememberMe: bool
             let message = response.messages.length > 0 ? response.messages[0] : 'something went wrong '
             dispatch(stopSubmit('login', {_error: message}))
         }
-
-
     };
 
-export const logOutUserThunk = () =>
+export const logOutUserThunk = (): AppThunk =>
     async (dispatch: DispatchType) => {
         let response = await authApi.logOut()
         if (response.data.resultCode === 0) {

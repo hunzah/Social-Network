@@ -1,4 +1,4 @@
-import {ActionTypes, DispatchType} from './redux-store';
+import {ActionTypes, AppThunk, DispatchType} from './redux-store';
 import {profileApi} from '../../api/api';
 
 export type ProfilePageType = {
@@ -34,7 +34,7 @@ export type ContactType = {
     youtube?: string | null;
     github?: string | null;
     mainLink?: string | null
-} | null
+} | undefined
 
 
 const initialState: ProfilePageType = {
@@ -45,7 +45,7 @@ const initialState: ProfilePageType = {
     newPostText: '',
     profile: {
         aboutMe: null,
-        contacts: null,
+        contacts: undefined,
         lookingForAJob: null,
         lookingForAJobDescription: undefined,
         fullName: undefined,
@@ -99,14 +99,14 @@ export const SetUserProfileAC = (profile: ProfileType) => ({
 export const SetStatusAC = (status: string) => ({type: 'profile/SET-STATUS', status: status} as const)
 export const SavePhotoAC = (file: string) => ({type: 'profile/SAVE-PHOTO', newPhoto: file} as const)
 
-export const setProfileThunkCreator = (userId: string | null) => {
+export const setProfileThunkCreator = (userId: string | null):AppThunk => {
     return async (dispatch: DispatchType) => {
         let response = await profileApi.getProfiles(userId)
         await dispatch(SetUserProfileAC(response));
 
     }
 }
-export const getStatusThunkCreator = (userId: string | null) => {
+export const getStatusThunkCreator = (userId: string | null):AppThunk => {
     return async (dispatch: DispatchType) => {
         const response = await profileApi.getStatus(userId)
         await dispatch(SetStatusAC(response));
@@ -114,7 +114,7 @@ export const getStatusThunkCreator = (userId: string | null) => {
     }
 }
 
-export const updateStatusThunkCreator = (status: string) => {
+export const updateStatusThunkCreator = (status: string):AppThunk => {
     return async (dispatch: DispatchType) => {
         let response = await profileApi.updateStatus(status)
         if (response.resultCode === 0) {
@@ -123,7 +123,7 @@ export const updateStatusThunkCreator = (status: string) => {
 
     }
 }
-export const savePhotoThunkCreator = (file: string) => {
+export const savePhotoThunkCreator = (file: string):AppThunk => {
     return async (dispatch: DispatchType) => {
         let response = await profileApi.savePhoto(file)
         if (response.resultCode === 0) {

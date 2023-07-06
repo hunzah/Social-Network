@@ -8,14 +8,14 @@ type PropsType = {
     status: string
     updateStatus: (userId: string) => void
     owner: boolean
-    savePhotoThunk: (file:string) => void
+    savePhotoThunk: (file: string) => void
 }
 export const Profile = (props: PropsType) => {
-    const {profile, status, updateStatus, owner, savePhoto} = props
+    const {profile, status, updateStatus, owner, savePhotoThunk} = props
     return (
         <div>
             <ProfileInfo isOwner={owner} profile={profile} status={status} updateStatus={updateStatus}
-                         savePhoto={savePhoto}/>
+                         savePhotoThunk={savePhotoThunk}/>
             <MyPostsContainer/>
         </div>
     )

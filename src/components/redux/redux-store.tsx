@@ -13,7 +13,7 @@ import {
     usersReducer
 } from './users-reducer';
 import {authReducer, SetLoadingAC, SetUserDataAC} from './auth-reducer';
-import thunkMiddleware from 'redux-thunk';
+import thunkMiddleware, {ThunkAction, ThunkDispatch } from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form'
 import appReducer, {InitializedSuccessAC} from './app-reducer';
 
@@ -55,7 +55,15 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddle
 
 export type AppReduxStateType = ReturnType<typeof reducers>
 
-export type RootStore = Store<AppReduxStateType, ActionTypes>
+export type RootState = Store<AppReduxStateType, ActionTypes>
+
+
+
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, ActionTypes>
+
+
+
+
 
 // @ts-ignore
 window._store_ = store

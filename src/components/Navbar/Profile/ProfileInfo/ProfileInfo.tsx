@@ -9,12 +9,12 @@ type PropsType = {
     status: string
     updateStatus: (userId: string) => void
     isOwner: boolean
-    savePhoto:()=>void
-
+    savePhotoThunk: (file: string) => void
 }
 export const ProfileInfo = (props: PropsType) => {
-    const {status, updateStatus, isOwner, savePhoto} = props
-    const photo = props.profile.photos.large
+    const {status, updateStatus, isOwner, savePhotoThunk} = props
+
+    const photo = props.profile.photos?.large
     const fullName = props.profile.fullName
     const aboutMe = props.profile.aboutMe
     const contacts: ContactType = props.profile.contacts
@@ -23,7 +23,7 @@ export const ProfileInfo = (props: PropsType) => {
     function onMainPhotoSelect(e: ChangeEvent<HTMLInputElement>) {
 
         if (e.target.files.length) {
-            savePhoto(e.target.files[0])
+            savePhotoThunk(e.target.files[0])
         }
     }
 

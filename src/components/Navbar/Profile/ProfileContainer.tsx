@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-    ProfileType,
-    setProfileThunkCreator,
     getStatusThunkCreator,
-    updateStatusThunkCreator, savePhotoThunkCreator
+    ProfileType,
+    savePhotoThunkCreator,
+    setProfileThunkCreator,
+    updateStatusThunkCreator
 } from '../../redux/profile-reducer';
 import {AppReduxStateType} from '../../redux/redux-store';
 import {connect} from 'react-redux';

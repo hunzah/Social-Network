@@ -1,6 +1,6 @@
 import React from 'react';
-import {RootStore} from './components/redux/redux-store';
+import {RootState} from './components/redux/redux-store';
 
-const storeContext = React.createContext<RootStore | null>(null)
+const storeContext = React.createContext<RootState | null>(null)
 
 export default storeContext

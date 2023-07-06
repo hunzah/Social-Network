@@ -1,9 +1,9 @@
-import {ActionTypes, DispatchType} from './redux-store';
+import {ActionTypes, AppThunk, DispatchType} from './redux-store';
 import {usersApi} from '../../api/api';
 
 
 export type UsersResponseType = {
-    items:UsersArrType[]
+    items: UsersArrType[]
     totalCount: number,
     error: string | null
 }
@@ -91,7 +91,7 @@ export const ToggleFollowingInProgressAC = (isFetching: boolean, userId: number)
     userId: userId
 }) as const
 
-export const getUsersThunkCreator = (pageNumber: number, pageSize: number) => {
+export const getUsersThunkCreator = (pageNumber: number, pageSize: number): AppThunk => {
     return async (dispatch: DispatchType) => {
         dispatch(SetCurrentPageAC(pageNumber))
         dispatch(SetFetchingAC(true))
@@ -103,24 +103,29 @@ export const getUsersThunkCreator = (pageNumber: number, pageSize: number) => {
     }
 }
 
-export const followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMethod: any, actionCreator: ActionTypes) => {
+export const followUnfollowFlow = async (dispatch: DispatchType,
+                                         userId: number, apiMethod: any,
+                                         actionCreator: ActionTypes) => {
     dispatch(ToggleFollowingInProgressAC(true, userId))
+
     initialState.followingInProgress.some(id => id === userId)
     const response = await apiMethod(userId)
     if (response.resultCode === 0) {
         dispatch(actionCreator)
     }
-    dispatch(ToggleFollowingInProgressAC(false, userId))
 
+    dispatch(ToggleFollowingInProgressAC(false, userId))
 }
 
 
-export const followThunkCreator = (userId: number) => {
+export const followThunkCreator = (userId: number):AppThunk => {
     return async (dispatch: DispatchType) => {
         await followUnfollowFlow(dispatch, userId, usersApi.followUsers.bind(usersApi), UnFollowAC(userId))
     }
 }
-export const unFollowThunkCreator = (userId: number) => {
+
+
+export const unFollowThunkCreator = (userId: number):AppThunk => {
     return async (dispatch: DispatchType) => {
         await followUnfollowFlow(dispatch, userId, usersApi.unfollowUsers.bind(usersApi), UnFollowAC(userId))
 
