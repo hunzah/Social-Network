@@ -8,7 +8,7 @@ type PropsType = {
     status: string
     updateStatus: (userId: string) => void
     owner: boolean
-    savePhotoThunk: (file: string) => void
+    savePhotoThunk: (file: File) => void
 }
 export const Profile = (props: PropsType) => {
     const {profile, status, updateStatus, owner, savePhotoThunk} = props

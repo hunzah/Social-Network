@@ -21,8 +21,8 @@ export type ProfileType = {
     'fullName'?: string | undefined,
     'userId'?: number | null,
     'photos'?: {
-        'small'?: string | undefined,
-        'large'?: string | undefined
+        'small'?: File | undefined,
+        'large'?: File | undefined
     }
 }
 export type ContactType = {
@@ -97,7 +97,7 @@ export const SetUserProfileAC = (profile: ProfileType) => ({
     profile: profile
 } as const)
 export const SetStatusAC = (status: string) => ({type: 'profile/SET-STATUS', status: status} as const)
-export const SavePhotoAC = (file: string) => ({type: 'profile/SAVE-PHOTO', newPhoto: file} as const)
+export const SavePhotoAC = (file: File) => ({type: 'profile/SAVE-PHOTO', newPhoto: file} as const)
 
 export const setProfileThunkCreator = (userId: string | null):AppThunk => {
     return async (dispatch: DispatchType) => {
@@ -123,11 +123,11 @@ export const updateStatusThunkCreator = (status: string):AppThunk => {
 
     }
 }
-export const savePhotoThunkCreator = (file: string):AppThunk => {
+export const savePhotoThunkCreator = (file: File):AppThunk => {
     return async (dispatch: DispatchType) => {
         let response = await profileApi.savePhoto(file)
         if (response.resultCode === 0) {
-            dispatch(SavePhotoAC(response.data.large))
+            dispatch(SavePhotoAC(file))
         }
 
     }

@@ -26,7 +26,7 @@ export type MapDispatchType = {
     setProfileThunk: (userId: string | null) => void
     getStatusThunk: (userId: string | null) => void
     updateStatusThunk: (status: string) => void
-    savePhotoThunk: (file: string) => void
+    savePhotoThunk: (file: File) => void
 
 }
 
