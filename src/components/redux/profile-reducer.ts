@@ -14,15 +14,15 @@ export type PostsArrType = {
 }
 
 export type ProfileType = {
-    'aboutMe': string | null,
-    'contacts': ContactType,
-    'lookingForAJob': boolean,
-    'lookingForAJobDescription': string | undefined,
-    'fullName': string | undefined,
-    'userId': number,
-    'photos': {
-        'small': string | undefined,
-        'large': string | undefined
+    'aboutMe'?: string | null,
+    'contacts'?: ContactType,
+    'lookingForAJob'?: boolean | null,
+    'lookingForAJobDescription'?: string | undefined,
+    'fullName'?: string | undefined,
+    'userId'?: number | null,
+    'photos'?: {
+        'small'?: string | undefined,
+        'large'?: string | undefined
     }
 }
 export type ContactType = {
@@ -34,7 +34,7 @@ export type ContactType = {
     youtube?: string | null;
     github?: string | null;
     mainLink?: string | null
-}
+} | null
 
 
 const initialState: ProfilePageType = {
@@ -43,8 +43,20 @@ const initialState: ProfilePageType = {
         {id: 2, message: 'It\'s my first post', count: 16},
     ],
     newPostText: '',
-    profile: null,
-    status: ''
+    profile: {
+        aboutMe: null,
+        contacts: null,
+        lookingForAJob: null,
+        lookingForAJobDescription: undefined,
+        fullName: undefined,
+        userId: null,
+        photos: {
+            small: undefined,
+            large: undefined
+        }
+    },
+    status: '',
+
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes): ProfilePageType => {
@@ -63,6 +75,17 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return {...state, profile: action.profile}
         case 'profile/SET-STATUS':
             return {...state, status: action.status}
+        case 'profile/SAVE-PHOTO':
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    photos: {
+                        ...state.profile?.photos,
+                        large: action.newPhoto
+                    }
+                }
+            }
         default:
             return state
     }
@@ -74,6 +97,7 @@ export const SetUserProfileAC = (profile: ProfileType) => ({
     profile: profile
 } as const)
 export const SetStatusAC = (status: string) => ({type: 'profile/SET-STATUS', status: status} as const)
+export const SavePhotoAC = (file: string) => ({type: 'profile/SAVE-PHOTO', newPhoto: file} as const)
 
 export const setProfileThunkCreator = (userId: string | null) => {
     return async (dispatch: DispatchType) => {
@@ -95,6 +119,15 @@ export const updateStatusThunkCreator = (status: string) => {
         let response = await profileApi.updateStatus(status)
         if (response.resultCode === 0) {
             dispatch(SetStatusAC(status))
+        }
+
+    }
+}
+export const savePhotoThunkCreator = (file: string) => {
+    return async (dispatch: DispatchType) => {
+        let response = await profileApi.savePhoto(file)
+        if (response.resultCode === 0) {
+            dispatch(SavePhotoAC(response.data.photos))
         }
 
     }

@@ -26,14 +26,14 @@ export const usersApi = {
 }
 export type LogInFormType = {
     email: string
-    password:string
-    rememberMe:boolean
+    password: string
+    rememberMe: boolean
     captcha: boolean
 }
 type LogInResponseType = {
     resultCode: number
     messages: string[],
-        data: {
+    data: {
         userId: number
     }
 }
@@ -41,10 +41,14 @@ export const authApi = {
     me() {
         return instance.get<ResponseDataType<DataType>>(`auth/me`).then((response) => response.data)
     },
-    logIn(email: string,password:string, rememberMe:boolean = false){
-        return instance.post<LogInResponseType>(`auth/login`,{email,password, rememberMe}).then(response=>response.data)
+    logIn(email: string, password: string, rememberMe: boolean = false) {
+        return instance.post<LogInResponseType>(`auth/login`, {
+            email,
+            password,
+            rememberMe
+        }).then(response => response.data)
     },
-    logOut(){
+    logOut() {
         return instance.delete(`auth/login`)
     }
 }
@@ -65,5 +69,14 @@ export const profileApi = {
     },
     updateStatus(status: string) {
         return instance.put<PutStatusResponseType>(`profile/status`, {status: status}).then((response) => response.data)
+    },
+    savePhoto(photoFile: string) {
+        const formData = new FormData()
+        formData.append('image', photoFile)
+        return instance.put<PutStatusResponseType>(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': ' multipart/form-data'
+            }
+        }).then((response) => response.data)
     }
 }

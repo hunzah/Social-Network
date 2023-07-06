@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './ProfileInfo.module.css';
 import {ContactType, ProfileType} from '../../../redux/profile-reducer';
 import defaultPhoto from './../../../../assets/img/default avatar.png'
@@ -7,25 +7,36 @@ import {ProfileStatus} from './ProfileStatus';
 type PropsType = {
     profile: ProfileType
     status: string
-    updateStatus: (userId: string)=> void
+    updateStatus: (userId: string) => void
+    isOwner: boolean
+    savePhoto:()=>void
+
 }
 export const ProfileInfo = (props: PropsType) => {
-
+    const {status, updateStatus, isOwner, savePhoto} = props
     const photo = props.profile.photos.large
     const fullName = props.profile.fullName
     const aboutMe = props.profile.aboutMe
     const contacts: ContactType = props.profile.contacts
     const contactsArray = contacts ? Object.entries(contacts) : [];
+
+    function onMainPhotoSelect(e: ChangeEvent<HTMLInputElement>) {
+
+        if (e.target.files.length) {
+            savePhoto(e.target.files[0])
+        }
+    }
+
     return (
         <div>
             <div className={s.descriptionBlock}>
-                {
-                    photo ? <img className={s.profileAvatar} src={photo} alt="profile"/> :
-                        <img className={s.profileAvatar} src={defaultPhoto} alt="profile"/>
-                }
-                {fullName &&
-                    <div>{fullName}</div>}
+                <img className={s.profileAvatar} src={photo || defaultPhoto} alt="profile"/>
+                {isOwner &&
+                    <div><input type="file" onChange={onMainPhotoSelect}/>dfgsxdfghdfghdfghdghdfghdfghdfgh</div>}
+                {fullName && <div>{fullName}</div>}
+
                 {aboutMe && <div>about me: {aboutMe}</div>}
+
                 {contacts &&
                     <div> My Contacts:
                         {contactsArray.map((i, id) => {
@@ -34,7 +45,7 @@ export const ProfileInfo = (props: PropsType) => {
                     </div>
                 }
             </div>
-            <ProfileStatus value={'ok'} status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileStatus value={'ok'} status={status} updateStatus={updateStatus}/>
         </div>
     )
 }

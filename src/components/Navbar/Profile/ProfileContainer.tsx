@@ -19,12 +19,13 @@ interface MatchParams {
 export type MapStateType = {
     profile: ProfileType | null
     status: string
-    userId:string |null
+    userId: string | null
 }
 export type MapDispatchType = {
     setProfileThunk: (userId: string | null) => void
     getStatusThunk: (userId: string | null) => void
     updateStatusThunk: (status: string) => void
+    savePhoto: () => void
 
 }
 
@@ -32,9 +33,8 @@ export type ProfilesContainerPropsType = MapStateType & MapDispatchType & RouteC
 
 
 class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
-
-    componentDidMount() {
-        let userId:string | null = this.props.match.params.userId;
+    refreshProfile() {
+        let userId: string | null = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.userId
         }
@@ -42,13 +42,23 @@ class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
         this.props.getStatusThunk(userId)
     }
 
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: ProfilesContainerPropsType, prevState: any, snapshot: any) {
+        if (prevProps.match.params.userId !== this.props.match.params.userId)
+            this.refreshProfile()
+    }
 
     render() {
         return (
             <div>
                 {this.props.profile && <Profile profile={this.props.profile}
                                                 status={this.props.status}
-                                                updateStatus={this.props.updateStatusThunk}/>}
+                                                updateStatus={this.props.updateStatusThunk}
+                                                owner={!this.props.match.params.userId}
+                                                savePhoto={this.props.savePhoto}/>}
             </div>
         )
     }
@@ -65,6 +75,7 @@ const mapDispatchToProps: MapDispatchType = {
     setProfileThunk: setProfileThunkCreator,
     getStatusThunk: getStatusThunkCreator,
     updateStatusThunk: updateStatusThunkCreator,
+    savePhoto: savePhoto
 }
 
 export default compose(
