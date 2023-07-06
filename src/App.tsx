@@ -38,19 +38,23 @@ class App extends React.Component<PropsType> {
         return (
 
             <div className="app-wrapper">
-                <Suspense fallback={<div><Preloader/></div>}>
-                    <HeaderContainer/>
-                    <Navbar/>
-                    <div className={'app-wrapper-content'}>
+
+                <HeaderContainer/>
+                <Navbar/>
+                <div className={'app-wrapper-content'}>
+                    <Suspense fallback={<div><Preloader/></div>}>
                         <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
                         <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
-                        <Route path="/Music" render={() => <Music/>}/>
-                        <Route path="/Settings" render={() => <Settings/>}/>
-                        <Route path="/Friends" render={() => <FriendsContainer/>}/>
+                    </Suspense>
+                    <Route path="/Music" render={() => <Music/>}/>
+                    <Route path="/Settings" render={() => <Settings/>}/>
+                    <Route path="/Friends" render={() => <FriendsContainer/>}/>
+                    <Suspense fallback={<div><Preloader/></div>}>
                         <Route path="/Users" render={() => <UsersApi/>}/>
-                        <Route path="/Login" render={() => <LogIn/>}/>
-                    </div>
-                </Suspense>
+                    </Suspense>
+                    <Route path="/Login" render={() => <LogIn/>}/>
+                </div>
+
             </div>
         );
     }
