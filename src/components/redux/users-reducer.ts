@@ -1,6 +1,14 @@
 import {ActionTypes, DispatchType} from './redux-store';
 import {usersApi} from '../../api/api';
 
+
+export type UsersResponseType = {
+    items:UsersArrType[]
+    totalCount: number,
+    error: string | null
+}
+
+
 export type UsersType = {
     usersArr: UsersArrType[]
     pageSize: number

@@ -3,11 +3,6 @@ import {authApi} from '../../api/api';
 import {stopSubmit} from 'redux-form';
 
 
-export type ResponseDataType<T> = {
-    resultCode: number,
-    messages: string[],
-    data: T
-}
 export type DataType = {
     id: string | null,
     email: string | null,
@@ -80,7 +75,7 @@ export const logOutUserThunk = () =>
     async (dispatch: DispatchType) => {
         let response = await authApi.logOut()
         if (response.data.resultCode === 0) {
-            let {id, email, login} = response.data;
+            let {id, email, login} = {id: null, email: null, login: null};
             dispatch(SetUserDataAC(id, email, login, false))
         }
     };
