@@ -8,13 +8,20 @@ import {FriendsContainer} from './components/Navbar/Friends/FriendsContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LogIn from './Login/LogIn';
 import UsersApi from './components/Users/UsersContainer';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
+// import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Navbar/Profile/ProfileContainer';
 import {connect, Provider} from 'react-redux';
 import {compose} from 'redux';
 import store, {AppReduxStateType} from './components/redux/redux-store';
 import {Preloader} from './components/common/Preloader/Preloader';
 import {InitializedSuccessAC} from './components/redux/app-reducer';
+
+// lazy imports
+const DialogsContainer = React.lazy(() => import('./DialogsContainer'));
+
+
+
+
 
 type PropsType = mapStateToPropsType & mapDispatchToPropsType
 
