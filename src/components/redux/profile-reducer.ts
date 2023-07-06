@@ -123,14 +123,14 @@ export const updateStatusThunkCreator = (status: string) => {
 
     }
 }
-// export const savePhotoThunkCreator = (file: string) => {
-//     return async (dispatch: DispatchType) => {
-//         let response = await profileApi.savePhoto(file)
-//         if (response.resultCode === 0) {
-//             dispatch(SavePhotoAC(response.data.large))
-//         }
-//
-//     }
-// }
+export const savePhotoThunkCreator = (file: string) => {
+    return async (dispatch: DispatchType) => {
+        let response = await profileApi.savePhoto(file)
+        if (response.resultCode === 0) {
+            dispatch(SavePhotoAC(response.data.large))
+        }
+
+    }
+}
 
 export default profileReducer;

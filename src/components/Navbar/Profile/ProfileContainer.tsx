@@ -3,7 +3,7 @@ import {
     ProfileType,
     setProfileThunkCreator,
     getStatusThunkCreator,
-    updateStatusThunkCreator
+    updateStatusThunkCreator, savePhotoThunkCreator
 } from '../../redux/profile-reducer';
 import {AppReduxStateType} from '../../redux/redux-store';
 import {connect} from 'react-redux';
@@ -25,7 +25,7 @@ export type MapDispatchType = {
     setProfileThunk: (userId: string | null) => void
     getStatusThunk: (userId: string | null) => void
     updateStatusThunk: (status: string) => void
-    savePhoto: () => void
+    savePhotoThunk: (file: string) => void
 
 }
 
@@ -58,7 +58,7 @@ class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
                                                 status={this.props.status}
                                                 updateStatus={this.props.updateStatusThunk}
                                                 owner={!this.props.match.params.userId}
-                                                savePhoto={this.props.savePhoto}/>}
+                                                savePhotoThunk={this.props.savePhotoThunk}/>}
             </div>
         )
     }
@@ -75,7 +75,7 @@ const mapDispatchToProps: MapDispatchType = {
     setProfileThunk: setProfileThunkCreator,
     getStatusThunk: getStatusThunkCreator,
     updateStatusThunk: updateStatusThunkCreator,
-    savePhoto: savePhoto
+    savePhotoThunk: savePhotoThunkCreator
 }
 
 export default compose(
