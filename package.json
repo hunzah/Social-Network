@@ -2,7 +2,7 @@
   "name": "samurai-way",
   "version": "0.1.0",
   "private": true,
-  "homepage": "",
+  "homepage": "https://hunzah.github.io/React-TS-Project-Social-Network",
   "dependencies": {
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "12.0.0",
@@ -13,7 +13,6 @@
     "browserslist": "^4.21.9",
     "classnames": "2.3.1",
     "formik": "2.2.9",
-    "gh-pages": "3.2.3",
     "jest": "27.5.1",
     "postcss-normalize": "^10.0.1",
     "react": "17.0.2",
@@ -36,7 +35,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "yarn run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
@@ -66,7 +65,8 @@
     "@types/react-test-renderer": "^18.0.0",
     "@types/redux-form": "^8.3.5",
     "@types/reselect": "^2.2.0",
-    "@types/uuid": "8.3.4"
+    "@types/uuid": "8.3.4",
+    "gh-pages": "^5.0.0"
   },
   "jest": {
     "transformIgnorePatterns": [
