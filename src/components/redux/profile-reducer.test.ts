@@ -38,20 +38,20 @@ test('new profile should be added', () => {
         profile: null,
         status: ''
     }
-    const newProfile:ProfileType = {
-    aboutMe: 'aboutMe',
+    const newProfile: ProfileType = {
+        aboutMe: 'aboutMe',
         contacts: {
-        facebook : 'http/facebook.com'
+            facebook: 'http/facebook.com'
         },
-        lookingForAJob:false,
-        lookingForAJobDescription:'lookingForAJobDescription',
-        fullName :'fullName',
-        userId:5,
-        photos : {
-            small:'small',
-            large:'large'
+        lookingForAJob: false,
+        lookingForAJobDescription: 'lookingForAJobDescription',
+        fullName: 'fullName',
+        userId: 5,
+        photos: {
+            small: undefined,
+            large: undefined
+        }
     }
-}
     const action = SetUserProfileAC(newProfile)
     const result = profileReducer(state, action)
     expect(result.profile).toEqual(newProfile)

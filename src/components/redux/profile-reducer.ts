@@ -99,14 +99,14 @@ export const SetUserProfileAC = (profile: ProfileType) => ({
 export const SetStatusAC = (status: string) => ({type: 'profile/SET-STATUS', status: status} as const)
 export const SavePhotoAC = (file: File) => ({type: 'profile/SAVE-PHOTO', newPhoto: file} as const)
 
-export const setProfileThunkCreator = (userId: string | null):AppThunk => {
+export const setProfileThunkCreator = (userId: string | null): AppThunk => {
     return async (dispatch: DispatchType) => {
         let response = await profileApi.getProfiles(userId)
         await dispatch(SetUserProfileAC(response));
 
     }
 }
-export const getStatusThunkCreator = (userId: string | null):AppThunk => {
+export const getStatusThunkCreator = (userId: string | null): AppThunk => {
     return async (dispatch: DispatchType) => {
         const response = await profileApi.getStatus(userId)
         await dispatch(SetStatusAC(response));
@@ -114,7 +114,7 @@ export const getStatusThunkCreator = (userId: string | null):AppThunk => {
     }
 }
 
-export const updateStatusThunkCreator = (status: string):AppThunk => {
+export const updateStatusThunkCreator = (status: string): AppThunk => {
     return async (dispatch: DispatchType) => {
         let response = await profileApi.updateStatus(status)
         if (response.resultCode === 0) {
@@ -123,11 +123,12 @@ export const updateStatusThunkCreator = (status: string):AppThunk => {
 
     }
 }
-export const savePhotoThunkCreator = (file: File):AppThunk => {
+export const savePhotoThunkCreator = (file: File): AppThunk => {
     return async (dispatch: DispatchType) => {
         let response = await profileApi.savePhoto(file)
+        debugger
         if (response.resultCode === 0) {
-            dispatch(SavePhotoAC(file))
+            dispatch(SavePhotoAC(response.data.large))
         }
 
     }
