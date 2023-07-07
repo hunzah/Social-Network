@@ -126,9 +126,8 @@ export const updateStatusThunkCreator = (status: string): AppThunk => {
 export const savePhotoThunkCreator = (file: File): AppThunk => {
     return async (dispatch: DispatchType) => {
         let response = await profileApi.savePhoto(file)
-        debugger
         if (response.resultCode === 0) {
-            dispatch(SavePhotoAC(response.data.large))
+            dispatch(SavePhotoAC(response.data.photos.large))
         }
 
     }

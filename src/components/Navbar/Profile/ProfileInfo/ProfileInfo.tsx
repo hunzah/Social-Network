@@ -21,7 +21,6 @@ export const ProfileInfo = (props: PropsType) => {
     const contactsArray = contacts ? Object.entries(contacts) : [];
 
     function onMainPhotoSelect(e: ChangeEvent<HTMLInputElement>) {
-
         if (e.target.files?.length) {
             savePhotoThunk(e.target.files[0])
         }

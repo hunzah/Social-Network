@@ -77,7 +77,7 @@ export const profileApi = {
     savePhoto(photoFile: File) {
         const formData = new FormData()
         formData.append('image', photoFile)
-        return instance.put<AllResponsesType<{ small: File, large: File }>>
+        return instance.put<AllResponsesType<{ photos: { small: File, large: File } }>>
         (`profile/photo`, formData, {
             headers: {
                 'Content-Type': ' multipart/form-data'
