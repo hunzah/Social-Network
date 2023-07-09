@@ -17,6 +17,7 @@ export const ProfileInfo = (props: PropsType) => {
     const photo = props.profile.photos?.large
     const fullName = props.profile.fullName
     const aboutMe = props.profile.aboutMe
+    const lookingForAJob = props.profile.lookingForAJob
     const contacts: ContactType = props.profile.contacts
     const contactsArray = contacts ? Object.entries(contacts) : [];
 
@@ -31,7 +32,9 @@ export const ProfileInfo = (props: PropsType) => {
             <div className={s.descriptionBlock}>
                 <img className={s.profileAvatar} src={photo || defaultPhoto} alt="profile"/>
                 {isOwner &&
-                    <div><input type="file" onChange={onMainPhotoSelect}/>dfgsxdfghdfghdfghdghdfghdfghdfgh</div>}
+                    <div>
+                            <input type="file" onChange={onMainPhotoSelect}/>
+                    </div>}
                 {fullName && <div>{fullName}</div>}
 
                 {aboutMe && <div>about me: {aboutMe}</div>}
