@@ -3,7 +3,6 @@ import './App.css';
 import {Navbar} from './components/Navbar/Navbar';
 import {HashRouter, Route} from 'react-router-dom';
 import {Music} from './components/Navbar/Music/Music';
-import {Settings} from './components/Navbar/Setings/Settings';
 import {FriendsContainer} from './components/Navbar/Friends/FriendsContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LogIn from './Login/LogIn';
@@ -12,10 +11,12 @@ import {compose} from 'redux';
 import store, {AppReduxStateType} from './components/redux/redux-store';
 import {Preloader} from './components/common/Preloader/Preloader';
 import {InitializedSuccessAC} from './components/redux/app-reducer';
+import SettingsContainer from './components/Navbar/Settings/SettingsContainer';
 
 // lazy imports
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Navbar/Profile/ProfileContainer'));
+// const SettingsContainer = React.lazy(() => import('./components/Navbar/Settings/SettingsContainer'));
 const UsersApi = React.lazy(() => import('./components/Users/UsersContainer'));
 
 
@@ -47,7 +48,7 @@ class App extends React.Component<PropsType> {
                         <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
                     </Suspense>
                     <Route path="/Music" render={() => <Music/>}/>
-                    <Route path="/Settings" render={() => <Settings/>}/>
+                    <Route path="/Settings" render={() => <SettingsContainer />}/>
                     <Route path="/Friends" render={() => <FriendsContainer/>}/>
                     <Suspense fallback={<div><Preloader/></div>}>
                         <Route path="/Users" render={() => <UsersApi/>}/>

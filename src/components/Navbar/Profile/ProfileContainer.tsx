@@ -13,11 +13,11 @@ import {Profile} from './Profile';
 import {compose} from 'redux';
 import {withAuthRedirect} from '../../../hoc/WithAuthRedirect';
 
-interface MatchParams {
+export interface MatchParams {
     userId: string;
 }
 
-export type MapStateType = {
+type MapStateType = {
     profile: ProfileType | null
     status: string
     userId: string | null
@@ -27,7 +27,6 @@ export type MapDispatchType = {
     getStatusThunk: (userId: string | null) => void
     updateStatusThunk: (status: string) => void
     savePhotoThunk: (file: File) => void
-
 }
 
 export type ProfilesContainerPropsType = MapStateType & MapDispatchType & RouteComponentProps<MatchParams>;
@@ -69,7 +68,6 @@ const mapStateToProps = (state: AppReduxStateType): MapStateType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     userId: state.auth.id
-
 })
 
 const mapDispatchToProps: MapDispatchType = {
@@ -84,7 +82,7 @@ export default compose(
     withAuthRedirect,
     connect(mapStateToProps, mapDispatchToProps),
 )(ProfileContainer) as React.ComponentType
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfileContainer))
+
 
 
 

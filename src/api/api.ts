@@ -83,5 +83,9 @@ export const profileApi = {
                 'Content-Type': ' multipart/form-data'
             }
         }).then((response) => response.data)
+    },
+    updateProfile(profile:any){
+        return instance.put<AllResponsesType<ProfileType>>(`profile`, profile).then((response)=> response.data
+        )
     }
 }

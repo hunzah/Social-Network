@@ -11,13 +11,16 @@ type PropsType = {
     isOwner: boolean
     savePhotoThunk: (file: File) => void
 }
-export const ProfileInfo = (props: PropsType) => {
-    const {status, updateStatus, isOwner, savePhotoThunk} = props
 
-    const photo = props.profile.photos?.large
-    const fullName = props.profile.fullName
-    const aboutMe = props.profile.aboutMe
-    const contacts: ContactType = props.profile.contacts
+
+export const ProfileInfo = (props: PropsType) => {
+
+    const {status, updateStatus, isOwner, savePhotoThunk,profile} = props
+
+    const photo = profile.photos?.large
+    const fullName = profile.fullName
+    const aboutMe = profile.aboutMe
+    const contacts: ContactType = profile.contacts
     const contactsArray = contacts ? Object.entries(contacts) : [];
 
     function onMainPhotoSelect(e: ChangeEvent<HTMLInputElement>) {
@@ -35,12 +38,11 @@ export const ProfileInfo = (props: PropsType) => {
                             <input type="file" onChange={onMainPhotoSelect}/>
                     </div>}
                 {fullName && <div>{fullName}</div>}
-
                 {aboutMe && <div>about me: {aboutMe}</div>}
                 {contacts &&
                     <div> My Contacts:
                         {contactsArray.map((i, id) => {
-                            return <div key={id}>{`${i[0]}: ${i[0]}`}</div>
+                            return <div key={id}>{`${i[0]}: https://www.${i[0]}.com/`}</div>
                         })}
                     </div>
                 }
