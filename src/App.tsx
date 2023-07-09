@@ -48,7 +48,7 @@ class App extends React.Component<PropsType> {
                         <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
                     </Suspense>
                     <Route path="/Music" render={() => <Music/>}/>
-                    <Route path="/Settings" render={() => <SettingsContainer />}/>
+                    <Route path="/Settings/:userId?" render={() => <SettingsContainer />}/>
                     <Route path="/Friends" render={() => <FriendsContainer/>}/>
                     <Suspense fallback={<div><Preloader/></div>}>
                         <Route path="/Users" render={() => <UsersApi/>}/>

@@ -4,22 +4,16 @@ import {AppReduxStateType} from '../../redux/redux-store';
 import {ProfileType, setProfileThunkCreator, updateProfileThunkCreator} from '../../redux/profile-reducer';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
-import {RouteComponentProps, withRouter} from 'react-router-dom';
+
 import {withAuthRedirect} from '../../../hoc/WithAuthRedirect';
-import {MatchParams} from '../Profile/ProfileContainer';
 
 
-export type SettingsContainerPropsType = MapStateType & MapDispatchType & RouteComponentProps<MatchParams>
+export type SettingsContainerPropsType = MapStateType & MapDispatchType
 
 class SettingsContainer extends React.Component<SettingsContainerPropsType> {
 
 
     componentDidMount() {
-        let userId: string | null = this.props.match.params.userId;
-        if (!userId) {
-            userId = this.props.userId
-        }
-
         this.props.userId &&
         this.props.setProfileThunk(this.props.userId)
     }
@@ -52,7 +46,6 @@ const mapDispatchToProps = (): MapDispatchType => ({
 })
 
 export default compose(
-    withRouter,
     withAuthRedirect,
     connect(mapStateToProps, mapDispatchToProps),
 )(SettingsContainer) as React.ComponentType
