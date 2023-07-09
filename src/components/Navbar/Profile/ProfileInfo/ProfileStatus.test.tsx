@@ -3,14 +3,14 @@ import {ProfileStatus} from './ProfileStatus';
 
 describe('ProfileStatus component', () => {
     test('status from props should be in the state', () => {
-        const component = create(<ProfileStatus status={'myau'} updateStatus={() => {
+        const component = create(<ProfileStatus isOwner={true} status={'myau'} updateStatus={() => {
         }} value={'ds'}/>)
         const instance = component.getInstance()
         // @ts-ignore
         expect(instance?.state.status).toBe('myau')
     }),
         test('after creation span should be displayed with correct status ', () => {
-            const component = create(<ProfileStatus status={'myau'} updateStatus={() => {
+            const component = create(<ProfileStatus isOwner={true} status={'myau'} updateStatus={() => {
             }} value={'ds'}/>)
             const root = component.root
             const input = root.findAllByType('input')
@@ -18,7 +18,7 @@ describe('ProfileStatus component', () => {
             expect(input.text).toBeUndefined()
         }),
         test('span shouldn\'t to be null', () => {
-            const component = create(<ProfileStatus status={'myau'} updateStatus={() => {
+            const component = create(<ProfileStatus isOwner={true} status={'myau'} updateStatus={() => {
             }} value={'ds'}/>)
             const root = component.root
             const span = root.findAllByType('span')
@@ -26,7 +26,7 @@ describe('ProfileStatus component', () => {
             expect(span.text).not.toBeNull()
         }),
         test('input should be displayed in editMode instead of span ', () => {
-            const component = create(<ProfileStatus status={'myau'} updateStatus={() => {
+            const component = create(<ProfileStatus isOwner={true} status={'myau'} updateStatus={() => {
             }} value={'ds'}/>)
             const root = component.root
             const span = root.findByType('span')
@@ -39,7 +39,7 @@ describe('ProfileStatus component', () => {
 
         }),
         test('after creation span should be displayed with correct status ', () => {
-            const component = create(<ProfileStatus status={'myau'} updateStatus={() => {
+            const component = create(<ProfileStatus isOwner={true} status={'myau'} updateStatus={() => {
             }} value={'ds'}/>)
             const root = component.root
             const span = root.findAllByType('span')
@@ -48,7 +48,8 @@ describe('ProfileStatus component', () => {
         }),
         test('how many times callback will be called', () => {
             const mockCallback = jest.fn();
-            const component = create(<ProfileStatus status={'myau'} updateStatus={mockCallback} value={'ds'}/>);
+            const component = create(<ProfileStatus isOwner={true} status={'myau'} updateStatus={mockCallback}
+                                                    value={'ds'}/>);
             const instance = component.getInstance();
             // @ts-ignore
             instance.deActivateEditMode();

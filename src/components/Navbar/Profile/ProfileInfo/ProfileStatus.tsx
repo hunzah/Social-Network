@@ -5,6 +5,7 @@ type PropsType = {
     value: string
     status: string
     updateStatus: (userId: string) => void
+    isOwner: boolean
 }
 
 export class ProfileStatus extends React.Component<PropsType> {
@@ -44,15 +45,18 @@ export class ProfileStatus extends React.Component<PropsType> {
     render() {
         return (
             <div>
-                {!this.state.editMode ?
+                {this.props.isOwner ?
                     <div>
-                        <span
-                            onDoubleClick={this.editMode}>{!this.props.status ? 'No status' : this.props.status}</span>
+                        {!this.state.editMode ?
+                            <span onDoubleClick={this.editMode}>{this.props.status || 'No status'}</span>
+                            :
+                            <input autoFocus={true} onBlur={this.deActivateEditMode} value={this.state.status}
+                                   onChange={this.onStatusChanged}/>
+                        }
                     </div>
                     :
                     <div>
-                        <input autoFocus={true} onBlur={this.deActivateEditMode} value={this.state.status}
-                               onChange={this.onStatusChanged}/>
+                        <span>{this.props.status || 'No status'}</span>
                     </div>
                 }
             </div>

@@ -17,7 +17,6 @@ export const ProfileInfo = (props: PropsType) => {
     const photo = props.profile.photos?.large
     const fullName = props.profile.fullName
     const aboutMe = props.profile.aboutMe
-    const lookingForAJob = props.profile.lookingForAJob
     const contacts: ContactType = props.profile.contacts
     const contactsArray = contacts ? Object.entries(contacts) : [];
 
@@ -38,7 +37,6 @@ export const ProfileInfo = (props: PropsType) => {
                 {fullName && <div>{fullName}</div>}
 
                 {aboutMe && <div>about me: {aboutMe}</div>}
-
                 {contacts &&
                     <div> My Contacts:
                         {contactsArray.map((i, id) => {
@@ -47,7 +45,7 @@ export const ProfileInfo = (props: PropsType) => {
                     </div>
                 }
             </div>
-            <ProfileStatus value={'ok'} status={status} updateStatus={updateStatus}/>
+            <ProfileStatus isOwner={isOwner} value={'ok'} status={status} updateStatus={updateStatus}/>
         </div>
     )
 }
