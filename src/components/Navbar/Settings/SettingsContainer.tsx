@@ -19,6 +19,7 @@ class SettingsContainer extends React.Component<SettingsContainerPropsType> {
     }
 
     render() {
+        console.log(this.props.profile)
         return (
             <div>
                 {this.props.profile &&

@@ -40,6 +40,7 @@ class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
         }
         this.props.setProfileThunk(userId)
         this.props.getStatusThunk(userId)
+
     }
 
     componentDidMount() {
@@ -49,6 +50,7 @@ class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
     componentDidUpdate(prevProps: ProfilesContainerPropsType, prevState: any, snapshot: any) {
         if (prevProps.match.params.userId !== this.props.match.params.userId)
             this.refreshProfile()
+        console.log(this.props.profile)
     }
 
     render() {
