@@ -9,11 +9,12 @@ type PropsType = {
     updateProfile: (profile: ProfileType) => void
 }
 export const Settings = (props: PropsType) => {
-    const {profile,updateProfile} = props
+    const {profile, updateProfile} = props
 
-const onClickHandler = ()=>{
-    updateProfile(profile)
-}
+
+    const onClickHandler = () => {
+        updateProfile(profile)
+    }
     const photo = props.profile?.photos?.large
     const fullName = props.profile.fullName
     const aboutMe = props.profile.aboutMe
@@ -31,8 +32,8 @@ const onClickHandler = ()=>{
                 about Me: {aboutMe}
             </div>
             <div>
-                Contacts:{contactsArray.map((contact,id) => {
-                    return <div key={id}>{contact} <input placeholder={`enter url`}/></div>
+                Contacts:{contactsArray.map((contact, id) => {
+                return <div key={id}>{contact} <input placeholder={`enter url`}/></div>
             })}
             </div>
             <button onClick={onClickHandler}>save settings</button>

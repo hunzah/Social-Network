@@ -10,7 +10,7 @@ test('new-user-data should be added', () => {
         isLoading: true
     }
 
-    const action = SetUserDataAC('1', 'email', 'login', true)
+    const action = SetUserDataAC(1, 'email', 'login', true)
     const result = authReducer(state, action)
     expect(result.id).toBe('1')
     expect(result.email).toBe('email')

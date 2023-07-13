@@ -100,7 +100,7 @@ export const SetStatusAC = (status: string) => ({type: 'profile/SET-STATUS', sta
 export const SavePhotoAC = (file: File) => ({type: 'profile/SAVE-PHOTO', newPhoto: file} as const)
 
 
-export const setProfileThunkCreator = (userId: string | null): AppThunk => {
+export const setProfileThunkCreator = (userId: number | null): AppThunk => {
     return async (dispatch: DispatchType) => {
         let response = await profileApi.getProfiles(userId)
         await dispatch(SetUserProfileAC(response));
@@ -108,7 +108,7 @@ export const setProfileThunkCreator = (userId: string | null): AppThunk => {
     }
 }
 
-export const getStatusThunkCreator = (userId: string | null): AppThunk => {
+export const getStatusThunkCreator = (userId: number | null): AppThunk => {
     return async (dispatch: DispatchType) => {
         const response = await profileApi.getStatus(userId)
         await dispatch(SetStatusAC(response));

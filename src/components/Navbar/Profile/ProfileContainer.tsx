@@ -20,11 +20,11 @@ export interface MatchParams {
 type MapStateType = {
     profile: ProfileType | null
     status: string
-    userId: string | null
+    userId: number | null
 }
 export type MapDispatchType = {
-    setProfileThunk: (userId: string | null) => void
-    getStatusThunk: (userId: string | null) => void
+    setProfileThunk: (userId: number | null) => void
+    getStatusThunk: (userId: number | null) => void
     updateStatusThunk: (status: string) => void
     savePhotoThunk: (file: File) => void
 }
@@ -34,12 +34,13 @@ export type ProfilesContainerPropsType = MapStateType & MapDispatchType & RouteC
 
 class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
     refreshProfile() {
-        let userId: string | null = this.props.match.params.userId;
+        let userId: number | null = Number(this.props.match.params.userId);
         if (!userId) {
             userId = this.props.userId
         }
         this.props.setProfileThunk(userId)
         this.props.getStatusThunk(userId)
+        console.log(this.props.profile)
 
     }
 

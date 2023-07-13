@@ -13,7 +13,7 @@ import {
     usersReducer
 } from './users-reducer';
 import {authReducer, SetLoadingAC, SetUserDataAC} from './auth-reducer';
-import thunkMiddleware, {ThunkAction, ThunkDispatch } from 'redux-thunk';
+import thunkMiddleware, {ThunkAction} from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form'
 import appReducer, {InitializedSuccessAC} from './app-reducer';
 

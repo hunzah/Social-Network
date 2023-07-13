@@ -1,7 +1,12 @@
 import React from 'react';
 import {Settings} from './Settings';
 import {AppReduxStateType} from '../../redux/redux-store';
-import {ProfileType, setProfileThunkCreator, updateProfileThunkCreator} from '../../redux/profile-reducer';
+import {
+    getStatusThunkCreator,
+    ProfileType,
+    setProfileThunkCreator,
+    updateProfileThunkCreator
+} from '../../redux/profile-reducer';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 
@@ -12,14 +17,14 @@ export type SettingsContainerPropsType = MapStateType & MapDispatchType
 
 class SettingsContainer extends React.Component<SettingsContainerPropsType> {
 
-
     componentDidMount() {
-        this.props.userId &&
-        this.props.setProfileThunk(this.props.userId)
+        this.props.setProfileThunk(29069)
+        this.props.getStatusThunk(29069)
+        console.log(this.props.setProfileThunk(29069))
     }
 
     render() {
-        console.log(this.props.profile)
+
         return (
             <div>
                 {this.props.profile &&
@@ -31,7 +36,7 @@ class SettingsContainer extends React.Component<SettingsContainerPropsType> {
 
 export type MapStateType = {
     profile: ProfileType | null
-    userId: string | null
+    userId: number | null
 }
 const mapStateToProps = (state: AppReduxStateType): MapStateType => ({
     profile: state.profilePage.profile,
@@ -39,11 +44,13 @@ const mapStateToProps = (state: AppReduxStateType): MapStateType => ({
 })
 type MapDispatchType = {
     updateProfile: (profile: ProfileType) => void
-    setProfileThunk: (userId: string) => void
+    setProfileThunk: (userId: number) => void
+    getStatusThunk: (userId: number) => void
 }
 const mapDispatchToProps = (): MapDispatchType => ({
     updateProfile: updateProfileThunkCreator,
-    setProfileThunk: setProfileThunkCreator
+    setProfileThunk: setProfileThunkCreator,
+    getStatusThunk: getStatusThunkCreator
 })
 
 export default compose(

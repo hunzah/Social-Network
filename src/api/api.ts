@@ -59,15 +59,14 @@ export const authApi = {
     }
 }
 
-
 export const profileApi = {
 
-    getProfiles(userId: string | null) {
+    getProfiles(userId: number | null) {
         return instance.get<ProfileType>(`profile/${userId}`)
             .then((response) => response.data)
     },
 
-    getStatus(userId: string | null) {
+    getStatus(userId: number | null) {
         return instance.get<string>(`profile/status/${userId}`).then((response) => response.data)
     },
 
@@ -80,12 +79,12 @@ export const profileApi = {
         return instance.put<AllResponsesType<{ photos: { small: File, large: File } }>>
         (`profile/photo`, formData, {
             headers: {
-                'Content-Type': ' multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
         }).then((response) => response.data)
     },
-    updateProfile(profile:any){
-        return instance.put<AllResponsesType<ProfileType>>(`profile`, profile).then((response)=> response.data
+    updateProfile(profile: any) {
+        return instance.put<AllResponsesType<ProfileType>>(`profile`, profile).then((response) => response.data
         )
     }
 }

@@ -26,7 +26,7 @@ class HeaderContainer extends React.Component<PropsType> {
 
 type MapStateType = {
     isAuth: boolean | undefined
-    userId: string | null
+    userId: number | null
     email: string | null
     login: string | null
 }

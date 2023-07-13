@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 
 type PropsType = {
     isAuth: boolean | undefined
-    userId: string | null
+    userId: number | null
     email: string | null
     login: string | null
     handleLogOut: ()=>void
