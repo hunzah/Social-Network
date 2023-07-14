@@ -62,6 +62,7 @@ export const authApi = {
 export const profileApi = {
 
     getProfiles(userId: number | null) {
+        debugger
         return instance.get<ProfileType>(`profile/${userId}`)
             .then((response) => response.data)
     },

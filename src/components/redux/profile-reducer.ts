@@ -101,7 +101,9 @@ export const SavePhotoAC = (file: File) => ({type: 'profile/SAVE-PHOTO', newPhot
 
 
 export const setProfileThunkCreator = (userId: number | null): AppThunk => {
+    debugger
     return async (dispatch: DispatchType) => {
+        debugger
         let response = await profileApi.getProfiles(userId)
         await dispatch(SetUserProfileAC(response));
 

@@ -19,12 +19,11 @@ class SettingsContainer extends React.Component<SettingsContainerPropsType> {
 
     componentDidMount() {
         this.props.setProfileThunk(29069)
-        this.props.getStatusThunk(29069)
-        console.log(this.props.setProfileThunk(29069))
     }
 
-    render() {
 
+    render() {
+        console.log(this.props.profile)
         return (
             <div>
                 {this.props.profile &&
@@ -47,11 +46,11 @@ type MapDispatchType = {
     setProfileThunk: (userId: number) => void
     getStatusThunk: (userId: number) => void
 }
-const mapDispatchToProps = (): MapDispatchType => ({
+const mapDispatchToProps: MapDispatchType = {
     updateProfile: updateProfileThunkCreator,
     setProfileThunk: setProfileThunkCreator,
     getStatusThunk: getStatusThunkCreator
-})
+}
 
 export default compose(
     withAuthRedirect,
