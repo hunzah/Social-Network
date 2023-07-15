@@ -33,6 +33,7 @@ export type UpdatedProfileType = {
     lookingForAJob: boolean | undefined | null
     lookingForAJobDescription: string | undefined
     fullName: string | undefined
+    aboutMe?:any
     contacts: ContactType
 
 }
@@ -70,7 +71,7 @@ export const authApi = {
 export const profileApi = {
 
     getProfiles(userId: number | null) {
-        debugger
+
         return instance.get<ProfileType>(`profile/${userId}`)
             .then((response) => response.data)
     },

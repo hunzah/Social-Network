@@ -44,10 +44,10 @@ const initialState: ProfilePageType = {
     ],
     newPostText: '',
     profile: {
-        aboutMe: null,
+        aboutMe: 'szdfgbdzsfvg',
         contacts: undefined,
         lookingForAJob: null,
-        lookingForAJobDescription: undefined,
+        lookingForAJobDescription: 'no',
         fullName: undefined,
         userId: null,
         photos: {
@@ -101,9 +101,9 @@ export const SavePhotoAC = (file: File) => ({type: 'profile/SAVE-PHOTO', newPhot
 
 
 export const setProfileThunkCreator = (userId: number | null): AppThunk => {
-    debugger
+
     return async (dispatch: DispatchType) => {
-        debugger
+
         let response = await profileApi.getProfiles(userId)
         await dispatch(SetUserProfileAC(response));
 
@@ -141,11 +141,12 @@ export const savePhotoThunkCreator = (file: File): AppThunk => {
 export const updateProfileThunkCreator = (profile: UpdatedProfileType): AppThunk => {
     return async (dispatch: DispatchType, getState: () => RootState) => {
         const state = getState().profilePage.profile
-        debugger
+
         const updatedProfile: UpdatedProfileType = {
             userId: state?.userId,
+            aboutMe: state?.aboutMe,
             lookingForAJob: state?.lookingForAJob,
-            lookingForAJobDescription: state?.lookingForAJobDescription,
+            lookingForAJobDescription: 'state?.lookingForAJobDescription',
             fullName: state?.fullName,
             contacts: Object.assign({}, state?.contacts, profile.contacts),
 
