@@ -1,4 +1,4 @@
-import {ActionTypes, AppThunk, DispatchType} from './redux-store';
+import {ActionTypes, AppThunk, DispatchType, RootState} from './redux-store';
 import {profileApi} from '../../api/api';
 
 export type ProfilePageType = {
@@ -139,8 +139,23 @@ export const savePhotoThunkCreator = (file: File): AppThunk => {
 }
 
 export const updateProfileThunkCreator = (profile: ProfileType): AppThunk => {
-    return async (dispatch: DispatchType) => {
-        let response = await profileApi.updateProfile(profile)
+    return async (dispatch: DispatchType, getState: () => RootState) => {
+        const state = getState().profilePage.profile
+
+        const updatedProfile: ProfileType = {
+            aboutMe: state?.aboutMe,
+            contacts: Object.assign({}, state?.contacts, profile.contacts),
+            lookingForAJob: state?.lookingForAJob,
+            lookingForAJobDescription: state?.lookingForAJobDescription,
+            fullName: state?.fullName,
+            userId: state?.userId,
+            photos: {
+                small: undefined,
+                large: undefined,
+            },
+            ...profile,
+        };
+        let response = await profileApi.updateProfile(updatedProfile)
         if (response.resultCode === 0) {
             dispatch(SetUserProfileAC(response.data))
         }

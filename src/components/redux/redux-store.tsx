@@ -55,9 +55,7 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddle
 
 export type AppReduxStateType = ReturnType<typeof reducers>
 
-export type RootState = Store<AppReduxStateType, ActionTypes>
-
-
+export type RootState = ReturnType<typeof store.getState>
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, ActionTypes>
 
