@@ -15,7 +15,9 @@ type logInUserPropsType = {
 }
 
 const LogIn = (props: logInUserPropsType) => {
+
     const {logInUser, isAuth} = props
+
     const onSubmit = (formData: LogInFormType) => {
         const {email, password, rememberMe} = formData
         logInUser(email, password, rememberMe);

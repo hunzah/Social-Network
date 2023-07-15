@@ -18,12 +18,12 @@ export type SettingsContainerPropsType = MapStateType & MapDispatchType
 class SettingsContainer extends React.Component<SettingsContainerPropsType> {
 
     componentDidMount() {
-        this.props.setProfileThunk(29069)
+        if(this.props.userId)
+        this.props.setProfileThunk(this.props.userId)
     }
 
 
     render() {
-        console.log(this.props.profile)
         return (
             <div>
                 {this.props.profile &&
