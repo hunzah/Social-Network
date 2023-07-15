@@ -1,15 +1,30 @@
-export const required = (value:string)=> {
-    if(value) {
-        return undefined
+export const isValidUrl = (value: string): 'Invalid URL' | undefined => {
+    if (value && value.trim().length > 0) {
+        const isValidUrlPattern = /^(https?:\/\/)?([\w.-]+)\.([a-z]{2,6}\.?)(\/[\w.-]*)*\/?$/;
+        if (!isValidUrlPattern.test(value)) {
+            return 'Invalid URL';
+        }
     }
-    else
-return 'Field is required'
+    return undefined;
+};
+
+
+export const validateStatus = (value: string) => {
+    if (value && value.length > 50) {
+        return 'Maximum length exceeded' as const;
+    }
+    return undefined;
+};
+export const required = (value: string) => {
+    if (value) {
+        return undefined
+    } else
+        return 'Field is required'
 }
 
-export const maxLength = (maxLength:number) => (value:string)=> {
-    if(value && value.length<maxLength) {
+export const maxLength = (maxLength: number) => (value: string) => {
+    if (value && value.length < maxLength) {
         return undefined
-    }
-    else
+    } else
         return `max length: ${maxLength} symbols`
 }

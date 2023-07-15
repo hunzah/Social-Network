@@ -2,37 +2,53 @@ import {ProfileType} from '../../redux/profile-reducer';
 import s from '../Profile/ProfileInfo/ProfileInfo.module.css';
 import defaultPhoto from '../../../assets/img/default avatar.png';
 import React from 'react';
-
-
-import {Field, reduxForm} from 'redux-form';
+import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {UpdatedProfileType} from '../../../api/api';
+import {Input, TextArea} from '../../common/FormsControls/FormsControls';
+import {isValidUrl, validateStatus} from '../../../utilits/validators';
 
 type SettingsFormPropsType = {
-    onSubmit: (formData: UpdatedProfileType) => void
-    initialValues: ProfileType
-    handleSubmit?: any
-}
+    onSubmit: (formData: UpdatedProfileType & { status: string }) => void;
+    initialValues: ProfileType;
+    status: string;
+} & InjectedFormProps<UpdatedProfileType, SettingsFormPropsType>;
+
 
 const SettingsForm = (props: SettingsFormPropsType) => {
+    const { handleSubmit, status, initialValues } = props;
 
-    const {handleSubmit} = props;
+    const createField = (
+        component: (props: any) => JSX.Element,
+        placeholder: string,
+        name: string,
+        type?: string,
+        validate?: (value: string) => any
+    ) => {
+        return (
+            <div>
+                <Field
+                    component={component}
+                    placeholder={placeholder}
+                    name={name}
+                    type={type}
+                    validate={validate}
+                />
+            </div>
+        );
+    };
 
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="fullName">Name:</label>
-                <Field name="fullName" component="input" type="text"/>
-            </div>
-            <div>
-                <label htmlFor="aboutMe">About Me:</label>
-                <Field name="aboutMe" component="input" type="text"/>
+                <label htmlFor="status">My Status: {status}</label>
+                {createField(TextArea, 'status', 'status', '', validateStatus)}
             </div>
             <div>
                 <label>Contacts:</label>
-                {Object.entries(props.initialValues.contacts || {}).map(([key, value]) => (
+                {Object.entries(initialValues.contacts || {}).map(([key, value]) => (
                     <div key={key}>
                         <label htmlFor={`contacts.${key}`}>{key}: </label>
-                        <Field name={`contacts.${key}`} component="input" type="text" placeholder="enter url"/>
+                        {createField(Input, 'enter url', `contacts.${key}`, 'text', isValidUrl)}
                     </div>
                 ))}
             </div>
@@ -47,25 +63,28 @@ const SettingsReduxForm = reduxForm<ProfileType, SettingsFormPropsType>({
 })(SettingsForm);
 
 type SettingsPropsType = {
-    profile: ProfileType
-    updateProfile: (profile: UpdatedProfileType) => void
-}
+    profile: ProfileType;
+    updateProfile: (profile: UpdatedProfileType) => void;
+    status: string;
+    updateStatus: (newStatus: string) => void;
+};
 
 export const Settings = (props: SettingsPropsType) => {
-    const {profile, updateProfile} = props;
-    const onSubmit = (formData: UpdatedProfileType) => {
-        alert(JSON.stringify(formData, null, 2))
-        updateProfile(formData)
-    };
+    const { profile, updateProfile, updateStatus, status } = props;
 
+    const onSubmit = (formData: UpdatedProfileType & { status: string }) => {
+        alert(JSON.stringify(formData, null, 2));
+        updateProfile(formData);
+        updateStatus(formData.status);
+    };
 
     return (
         <>
             <div>
-                <img className={s.profileAvatar} src={profile?.photos?.large || defaultPhoto} alt="profile"/>
+                <img className={s.profileAvatar} src={profile?.photos?.large || defaultPhoto} alt="profile" />
             </div>
             {/*@ts-ignore*/}
-            <SettingsReduxForm initialValues={profile} onSubmit={onSubmit}/>
+            <SettingsReduxForm initialValues={profile} onSubmit={onSubmit} status={status} />
         </>
     );
-}
+};

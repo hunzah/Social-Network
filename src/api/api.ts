@@ -33,7 +33,6 @@ export type UpdatedProfileType = {
     lookingForAJob: boolean | undefined | null
     lookingForAJobDescription: string | undefined
     fullName: string | undefined
-    aboutMe?:any
     contacts: ContactType
 
 }

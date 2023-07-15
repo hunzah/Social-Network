@@ -44,7 +44,7 @@ const initialState: ProfilePageType = {
     ],
     newPostText: '',
     profile: {
-        aboutMe: 'szdfgbdzsfvg',
+        aboutMe: null,
         contacts: undefined,
         lookingForAJob: null,
         lookingForAJobDescription: 'no',
@@ -104,8 +104,12 @@ export const setProfileThunkCreator = (userId: number | null): AppThunk => {
 
     return async (dispatch: DispatchType) => {
 
-        let response = await profileApi.getProfiles(userId)
-        await dispatch(SetUserProfileAC(response));
+        try {
+            let response = await profileApi.getProfiles(userId)
+            await dispatch(SetUserProfileAC(response));
+        } finally {
+
+        }
 
     }
 }
@@ -144,12 +148,10 @@ export const updateProfileThunkCreator = (profile: UpdatedProfileType): AppThunk
 
         const updatedProfile: UpdatedProfileType = {
             userId: state?.userId,
-            aboutMe: state?.aboutMe,
             lookingForAJob: state?.lookingForAJob,
             lookingForAJobDescription: 'state?.lookingForAJobDescription',
             fullName: state?.fullName,
             contacts: Object.assign({}, state?.contacts, profile.contacts),
-
         };
         console.log(updatedProfile)
         let response = await profileApi.updateProfile(updatedProfile)

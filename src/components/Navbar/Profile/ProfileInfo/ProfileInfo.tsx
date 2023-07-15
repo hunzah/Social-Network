@@ -15,7 +15,7 @@ type PropsType = {
 
 export const ProfileInfo = (props: PropsType) => {
 
-    const {status, updateStatus, isOwner, savePhotoThunk,profile} = props
+    const {status, updateStatus, isOwner, savePhotoThunk, profile} = props
 
     const photo = profile.photos?.large
     const fullName = profile.fullName
@@ -35,14 +35,18 @@ export const ProfileInfo = (props: PropsType) => {
                 <img className={s.profileAvatar} src={photo || defaultPhoto} alt="profile"/>
                 {isOwner &&
                     <div>
-                            <input type="file" onChange={onMainPhotoSelect}/>
+                        <input type="file" onChange={onMainPhotoSelect}/>
                     </div>}
                 {fullName && <div>{fullName}</div>}
                 {aboutMe && <div>about me: {aboutMe}</div>}
                 {contacts &&
                     <div> My Contacts:
                         {contactsArray.map((i, id) => {
-                            return <div key={id}>{`${i[0]}: https://www.${i[0]}.com/`}</div>
+                            return (
+                                <div key={id}>
+                                    {`${i[0]}: ${i[1] ? i[1] : `add your ${i[0]} link in Settings`} `}
+                                </div>
+                            );
                         })}
                     </div>
                 }
