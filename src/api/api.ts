@@ -30,6 +30,7 @@ const instance = axios.create({
 
 export type UpdatedProfileType = {
     userId: number | null | undefined
+    aboutMe?: string | null
     lookingForAJob: boolean | undefined | null
     lookingForAJobDescription: string | undefined
     fullName: string | undefined

@@ -148,6 +148,7 @@ export const updateProfileThunkCreator = (profile: UpdatedProfileType): AppThunk
 
         const updatedProfile: UpdatedProfileType = {
             userId: state?.userId,
+            aboutMe:state?.aboutMe,
             lookingForAJob: state?.lookingForAJob,
             lookingForAJobDescription: 'state?.lookingForAJobDescription',
             fullName: state?.fullName,

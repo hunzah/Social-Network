@@ -38,7 +38,7 @@ export const ProfileInfo = (props: PropsType) => {
                         <input type="file" onChange={onMainPhotoSelect}/>
                     </div>}
                 {fullName && <div>{fullName}</div>}
-                {aboutMe && <div>about me: {aboutMe}</div>}
+                {/*{aboutMe && <div>about me: {aboutMe}</div>}*/}
                 {contacts &&
                     <div> My Contacts:
                         {contactsArray.map((i, id) => {

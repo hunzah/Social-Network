@@ -73,8 +73,9 @@ export const Settings = (props: SettingsPropsType) => {
     const { profile, updateProfile, updateStatus, status } = props;
 
     const onSubmit = (formData: UpdatedProfileType & { status: string }) => {
-        alert(JSON.stringify(formData, null, 2));
+        alert(JSON.stringify(formData.status, null, 2));
         updateProfile(formData);
+        if (status !== formData.status)
         updateStatus(formData.status);
     };
 
