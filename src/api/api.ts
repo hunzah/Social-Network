@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {DataType} from '../components/redux/auth-reducer';
-import {ProfileType} from '../components/redux/profile-reducer';
+import {ContactType, ProfileType} from '../components/redux/profile-reducer';
 import {UsersResponseType} from '../components/redux/users-reducer';
 
 
@@ -28,6 +28,14 @@ const instance = axios.create({
     }
 })
 
+export type UpdatedProfileType = {
+    userId: number | null | undefined
+    lookingForAJob: boolean | undefined | null
+    lookingForAJobDescription: string | undefined
+    fullName: string | undefined
+    contacts: ContactType
+
+}
 
 export const usersApi = {
     getUsers(currentPage: number, pageSize: number) {
@@ -84,7 +92,7 @@ export const profileApi = {
             }
         }).then((response) => response.data)
     },
-    updateProfile(profile: any) {
+    updateProfile(profile: UpdatedProfileType) {
         return instance.put<AllResponsesType<ProfileType>>(`profile`, profile).then((response) => response.data
         )
     }

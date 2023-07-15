@@ -11,6 +11,7 @@ import {connect} from 'react-redux';
 import {compose} from 'redux';
 
 import {withAuthRedirect} from '../../../hoc/WithAuthRedirect';
+import {UpdatedProfileType} from '../../../api/api';
 
 
 export type SettingsContainerPropsType = MapStateType & MapDispatchType
@@ -42,7 +43,7 @@ const mapStateToProps = (state: AppReduxStateType): MapStateType => ({
     userId: state.auth.id
 })
 type MapDispatchType = {
-    updateProfile: (profile: ProfileType) => void
+    updateProfile: (profile: UpdatedProfileType) => void
     setProfileThunk: (userId: number) => void
     getStatusThunk: (userId: number) => void
 }

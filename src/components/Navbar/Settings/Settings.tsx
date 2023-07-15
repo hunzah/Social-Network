@@ -5,9 +5,10 @@ import React from 'react';
 
 
 import {Field, reduxForm} from 'redux-form';
+import {UpdatedProfileType} from '../../../api/api';
 
 type SettingsFormPropsType = {
-    onSubmit: (formData: ProfileType) => void
+    onSubmit: (formData: UpdatedProfileType) => void
     initialValues: ProfileType
     handleSubmit?: any
 }
@@ -47,22 +48,23 @@ const SettingsReduxForm = reduxForm<ProfileType, SettingsFormPropsType>({
 
 type SettingsPropsType = {
     profile: ProfileType
-    updateProfile: (profile: ProfileType) => void
+    updateProfile: (profile: UpdatedProfileType) => void
 }
 
 export const Settings = (props: SettingsPropsType) => {
     const {profile, updateProfile} = props;
-
-    const onSubmit = (formData: ProfileType) => {
+    const onSubmit = (formData: UpdatedProfileType) => {
         alert(JSON.stringify(formData, null, 2))
         updateProfile(formData)
     };
+
 
     return (
         <>
             <div>
                 <img className={s.profileAvatar} src={profile?.photos?.large || defaultPhoto} alt="profile"/>
             </div>
+            {/*@ts-ignore*/}
             <SettingsReduxForm initialValues={profile} onSubmit={onSubmit}/>
         </>
     );
