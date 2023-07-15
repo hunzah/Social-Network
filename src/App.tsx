@@ -1,5 +1,6 @@
 import React, {Suspense} from 'react';
-import './App.css';
+// @ts-ignore
+import s from './App.module.scss';
 import {Navbar} from './components/Navbar/Navbar';
 import {HashRouter, Route} from 'react-router-dom';
 import {Music} from './components/Navbar/Music/Music';
@@ -38,21 +39,22 @@ class App extends React.Component<PropsType> {
 
         return (
 
-            <div className="app-wrapper">
-
+            <div className={s.App}>
                 <HeaderContainer/>
-                <Navbar/>
-                <div className={'app-wrapper-content'}>
-                    <Suspense fallback={<div><Preloader/></div>}>
-                        <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
-                        <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
-                    </Suspense>
-                    <Route path="/Music" render={() => <Music/>}/>
-                    <Route path="/Settings/:userId?" render={() => <SettingsContainer/>}/>
-                    <Route path="/Friends" render={() => <FriendsContainer/>}/>
-                    <Suspense fallback={<div><Preloader/></div>}>
-                        <Route path="/Users" render={() => <UsersApi/>}/>
-                    </Suspense>
+                <div className={s.navAndMainContainer}>
+                    <Navbar/>
+                    <div>
+                        <Suspense fallback={<div><Preloader/></div>}>
+                            <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
+                            <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
+                        </Suspense>
+                        <Route path="/Music" render={() => <Music/>}/>
+                        <Route path="/Settings/:userId?" render={() => <SettingsContainer/>}/>
+                        <Route path="/Friends" render={() => <FriendsContainer/>}/>
+                        <Suspense fallback={<div><Preloader/></div>}>
+                            <Route path="/Users" render={() => <UsersApi/>}/>
+                        </Suspense>
+                    </div>
                     <Route path="/Login" render={() => <LogIn/>}/>
                 </div>
 

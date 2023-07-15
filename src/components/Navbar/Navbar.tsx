@@ -1,5 +1,6 @@
 import React from 'react';
-import s from './Navbar.module.css'
+// @ts-ignore
+import s from './Navbar.module.scss'
 import {NavLink} from 'react-router-dom';
 
 

@@ -1,14 +1,12 @@
 .nav {
-    grid-area: nav;
-    background-color: bisque;
-    padding: 20px;
+    border: 1px white solid;
 
 }
 
 .item a {
-    display: flex;
-    margin-bottom: 5px;
-    color: white;
+    /*display: flex;*/
+    /*margin-bottom: 5px;*/
+    /*color: white;*/
     text-decoration: none;
 
 }
@@ -18,7 +16,7 @@
 }
 
 .item a.active {
-    color: gold;
+    /*color: gold;*/
 
 }
 
