@@ -3,7 +3,7 @@ import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
 import {ProfilePageType} from '../../../redux/store';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {maxLength, required} from '../../../../utilits/validators';
+import {required} from '../../../../utilits/validators';
 import {TextArea} from '../../../common/FormsControls/FormsControls';
 
 type FormValueType = {
@@ -14,17 +14,18 @@ type FormValueType = {
 type MyPostsPropsType = {
     onAddPost: (newPostText: string) => void
     profilePage: ProfilePageType
+    avatar: File | undefined
 }
 
 
 export const MyPosts = (props: MyPostsPropsType) => {
+    const {avatar, onAddPost, profilePage} = props
 
-    const postElements = props.profilePage.postsArr.map(item => <Post key={item.id} message={item.message}
-                                                                      count={item.count}/>)
+    const postElements = profilePage.postsArr.map(item => <Post key={item.id} message={item.message}
+                                                                count={item.count} avatar={avatar}/>)
 
     const handleAddPost = (value: FormValueType) => {
-        // alert(value.newPost)
-        props.onAddPost(value.newPostText)
+        onAddPost(value.newPostText)
     }
 
     return (
@@ -40,7 +41,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
     )
 }
 const MyPostForm = (props: InjectedFormProps<FormValueType>) => {
-// let maxLength15 =maxLength(15)
+
     return (
         <form onSubmit={props.handleSubmit}>
             <Field component={TextArea}

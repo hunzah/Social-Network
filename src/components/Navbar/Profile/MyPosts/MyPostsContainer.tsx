@@ -6,13 +6,16 @@ import {connect} from 'react-redux';
 
 type mapStateToPropsType = {
     profilePage: ProfilePageType
+    avatar: File
+
 }
 type mapDispatchToPropsType = {
     onAddPost: (newPostText: string) => void
 }
 const mapStateToProps = (state: mapStateToPropsType) => {
     return ({
-        profilePage: state.profilePage
+        profilePage: state.profilePage,
+        avatar: state.profilePage.profile?.photos?.large
     })
 
 }
