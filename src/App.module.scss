@@ -2,12 +2,13 @@
 @import './common/styles/sass/mixins.module';
 
 .App {
-
   @include text(16px);
   background-color: $globalBgColor;
   border: white 1px solid;
-  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
   margin: auto;
+  padding: 16px 48px 16px 32px;
 }
 
 

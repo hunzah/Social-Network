@@ -1,5 +1,6 @@
 import React from 'react';
-import s from './MyPosts.module.css'
+// @ts-ignore
+import s from './MyPosts.module.scss'
 import {Post} from './Post/Post';
 import {ProfilePageType} from '../../../redux/store';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
@@ -29,7 +30,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
     }
 
     return (
-        <div className={s.postsBlock}>
+        <div className={s.myPostsContainer}>
             <h3>My Post</h3>
             <div>
                 <ReduxMyPostForm onSubmit={handleAddPost}/>

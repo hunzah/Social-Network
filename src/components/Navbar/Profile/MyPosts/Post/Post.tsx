@@ -1,5 +1,6 @@
 import React from 'react';
-import s from './Post.module.css'
+// @ts-ignore
+import s from './Post.module.scss'
 import defaultPhoto from '../../../../../assets/img/default avatar.png'
 
 type PostType = {
@@ -11,7 +12,7 @@ type PostType = {
 export const Post = (props: PostType) => {
 
     return (
-        <div className={s.item}>
+        <div className={s.postItem}>
             <img src={props.avatar? props.avatar.toString() : defaultPhoto}/>
             <div>{props.message}</div>
             <span>likes: </span>

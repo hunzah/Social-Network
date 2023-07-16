@@ -1,5 +1,6 @@
 import {ProfileType} from '../../redux/profile-reducer';
-import s from '../Profile/ProfileInfo/ProfileInfo.module.css';
+// @ts-ignore
+import s from '../Profile/ProfileInfo/ProfileInfo.module.scss';
 import defaultPhoto from '../../../assets/img/default avatar.png';
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';

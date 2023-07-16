@@ -13,6 +13,8 @@ import store, {AppReduxStateType} from './components/redux/redux-store';
 import {Preloader} from './components/common/Preloader/Preloader';
 import {InitializedSuccessAC} from './components/redux/app-reducer';
 import SettingsContainer from './components/Navbar/Settings/SettingsContainer';
+// @ts-ignore
+import c from './common/components/container.module.scss';
 
 // lazy imports
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -43,7 +45,7 @@ class App extends React.Component<PropsType> {
                 <HeaderContainer/>
                 <div className={s.navAndMainContainer}>
                     <Navbar/>
-                    <div>
+                    <div className={c.container}>
                         <Suspense fallback={<div><Preloader/></div>}>
                             <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
                             <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>

@@ -1,0 +1,11 @@
+@import './src/common/styles/sass/variables.module';
+
+.myPostsContainer {
+  //top: 1100px;
+  //position: absolute;
+  //z-index: 1;
+  //width: 60%;
+  margin: 0 16px;
+  background-color: $secondaryBgColor;
+  border: red 1px solid;
+}

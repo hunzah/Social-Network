@@ -1,11 +1,11 @@
 .header {
-
+border: white 1px solid;
     grid-area: header;
-    background-color: darkgreen;
+    /*background-color: darkgreen;*/
 }
 
 .header img {
-    width: 20px;
+    width: 50px;
 }
 .loginBlock  {
    float:right;
