@@ -1,0 +1,36 @@
+.form {
+
+    text-align: center;
+}
+
+.profileAvatar {
+    width: 150px;
+}
+
+.settings {
+    display: flex;
+    padding-left: 48px;
+    text-align: center;
+    justify-content: center;
+}
+
+.status {
+    text-align: center;
+    padding: 36px;
+}
+
+.contactsBlock {
+    color: #fff;
+    padding-bottom: 48px;
+}
+
+.contactsBlock h3 {
+    padding-bottom: 48px;
+}
+
+.contact {
+    width: 550px;
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+}

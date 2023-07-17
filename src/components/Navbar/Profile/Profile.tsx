@@ -14,9 +14,11 @@ type PropsType = {
     updateStatus: (userId: string) => void
     owner: boolean
     savePhotoThunk: (file: File) => void
+    isAuth: boolean
 }
 export const Profile = (props: PropsType) => {
     const {profile, status, updateStatus, owner, savePhotoThunk} = props
+
     return (
         <div className={s.profile}>
             <div className={s.defaultCoverContainer}>

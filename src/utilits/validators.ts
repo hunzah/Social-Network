@@ -11,7 +11,7 @@ export const isValidUrl = (value: string): 'Invalid URL' | undefined => {
 
 export const validateStatus = (value: string) => {
     if (value && value.length > 50) {
-        return 'Maximum length exceeded' as const;
+        return 'Maximum length 50' as const;
     }
     return undefined;
 };

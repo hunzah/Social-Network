@@ -38,43 +38,44 @@ class App extends React.Component<PropsType> {
                 <Preloader/>
             )
         }
-
         return (
-
-            <div className={s.App}>
-                <HeaderContainer/>
-                <div className={s.navAndMainContainer}>
-                    <Navbar/>
-                    <div className={c.container}>
-                        <Suspense fallback={<div><Preloader/></div>}>
-                            <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
-                            <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
-                        </Suspense>
-                        <Route path="/Music" render={() => <Music/>}/>
-                        <Route path="/Settings/:userId?" render={() => <SettingsContainer/>}/>
-                        <Route path="/Friends" render={() => <FriendsContainer/>}/>
-                        <Suspense fallback={<div><Preloader/></div>}>
-                            <Route path="/Users" render={() => <UsersApi/>}/>
-                        </Suspense>
+            <>
+                <div className={s.App}>
+                    <HeaderContainer />
+                    <div className={s.navAndMainContainer}>
+                        <Navbar />
+                        <div className={c.container}>
+                            <Suspense fallback={<div><Preloader/></div>}>
+                                <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
+                                <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
+                            </Suspense>
+                            <Route path="/Music" render={() => <Music/>}/>
+                            <Route path="/Settings/:userId?" render={() => <SettingsContainer/>}/>
+                            <Route path="/Friends" render={() => <FriendsContainer/>}/>
+                            <Suspense fallback={<div><Preloader/></div>}>
+                                <Route path="/Users" render={() => <UsersApi/>}/>
+                            </Suspense>
+                            <Route path="/Login" render={() => <LogIn/>}/>
+                        </div>
                     </div>
-                    <Route path="/Login" render={() => <LogIn/>}/>
                 </div>
-
-            </div>
+            </>
         );
     }
 }
 
 type mapStateToPropsType = {
     initialized: boolean
-
+    isAuth: boolean
 }
+
 const mapStateToProps = (state: AppReduxStateType) => {
     return ({
-        initialized: state.app.initialized
+        initialized: state.app.initialized,
+        isAuth: state.auth.isAuth
     })
-
 }
+
 type mapDispatchToPropsType = {
     InitializedSuccessAC: () => void
 }

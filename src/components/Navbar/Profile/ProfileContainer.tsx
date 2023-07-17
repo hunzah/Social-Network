@@ -21,6 +21,7 @@ type MapStateType = {
     profile: ProfileType | null
     status: string
     userId: number | null
+    isAuth: boolean
 }
 export type MapDispatchType = {
     setProfileThunk: (userId: number | null) => void
@@ -55,11 +56,13 @@ class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
     render() {
         return (
             <div>
-                {this.props.profile && <Profile profile={this.props.profile}
-                                                status={this.props.status}
-                                                updateStatus={this.props.updateStatusThunk}
-                                                owner={!this.props.match.params.userId}
-                                                savePhotoThunk={this.props.savePhotoThunk}/>}
+                {this.props.profile && <Profile
+                    profile={this.props.profile}
+                    status={this.props.status}
+                    updateStatus={this.props.updateStatusThunk}
+                    owner={!this.props.match.params.userId}
+                    savePhotoThunk={this.props.savePhotoThunk}
+                    isAuth={this.props.isAuth}/>}
             </div>
         )
     }
@@ -68,7 +71,8 @@ class ProfileContainer extends React.Component<ProfilesContainerPropsType> {
 const mapStateToProps = (state: AppReduxStateType): MapStateType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
-    userId: state.auth.id
+    userId: state.auth.id,
+    isAuth: state.auth.isAuth
 })
 
 const mapDispatchToProps: MapDispatchType = {

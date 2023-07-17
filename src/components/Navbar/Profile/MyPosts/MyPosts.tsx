@@ -1,6 +1,8 @@
 import React from 'react';
 // @ts-ignore
 import s from './MyPosts.module.scss'
+// @ts-ignore
+import b from './../../../../common/components/button.module.scss'
 import {Post} from './Post/Post';
 import {ProfilePageType} from '../../../redux/store';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
@@ -52,7 +54,7 @@ const MyPostForm = (props: InjectedFormProps<FormValueType>) => {
                    validate={[required]}
             />
             <div>
-                <button type="submit">publish</button>
+                <button className={b.button} type="submit">publish</button>
             </div>
         </form>
     )

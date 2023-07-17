@@ -1,0 +1,22 @@
+@import './../styles/sass/variables.module.scss';
+@import './../styles/sass/mixins.module';
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(165, 168, 171, 0.5);
+}
+
+/* Добавление стилей для placeholder текста */
+input::placeholder {
+  color: $textColor;
+
+}

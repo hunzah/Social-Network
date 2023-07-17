@@ -7,7 +7,11 @@ import {Input} from '../components/common/FormsControls/FormsControls';
 import {required} from '../utilits/validators';
 import {Redirect} from 'react-router-dom';
 import {AppReduxStateType} from '../components/redux/redux-store';
-import s from '../components/common/FormsControls/FormControls.module.css'
+import f from '../components/common/FormsControls/FormControls.module.css'
+// @ts-ignore
+import s from './login.module.scss'
+// @ts-ignore
+import b from './../common/components/button.module.scss'
 
 type logInUserPropsType = {
     logInUser: (email: string, password: string, rememberMe: boolean) => void
@@ -28,8 +32,10 @@ const LogIn = (props: logInUserPropsType) => {
     }
 
     return (
-        <div>
-            <h1>LOGIN</h1>
+        <div className={s.login}>
+            <p>To log use common test account credentials:</p>
+            <p>Email: free@samuraijs.com</p>
+            <p>Password: free</p>
             <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     );
@@ -38,17 +44,17 @@ const LogIn = (props: logInUserPropsType) => {
 const LoginForm = (props: PropsWithChildren<InjectedFormProps<any>>) => {
     const {handleSubmit, error} = props
     return (
-        <form onSubmit={handleSubmit}>
+        <form className={s.form} onSubmit={handleSubmit}>
             {createField(Input, 'email', 'email', '', [required])}
             {createField(Input, 'Password', 'password', 'password', [required])}
-
-            <div>
+            <div className={s.rememberMe}>
                 {createField(Input, '', 'remember me', 'checkbox')}
-                <span>Remember me</span>
+                <div>Remember me</div>
             </div>
-            {error && <div className={s.formSummaryError}>{error}</div>}
+            {error &&
+                <div className={f.formSummaryError}>{error}</div>}
             <div>
-                <button>Submit</button>
+                <button className={b.button}>Submit</button>
             </div>
         </form>)
 }

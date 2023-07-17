@@ -1,12 +1,14 @@
 import {ProfileType} from '../../redux/profile-reducer';
 // @ts-ignore
-import s from '../Profile/ProfileInfo/ProfileInfo.module.scss';
+import s from './Settings.module.css';
 import defaultPhoto from '../../../assets/img/default avatar.png';
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {UpdatedProfileType} from '../../../api/api';
 import {Input, TextArea} from '../../common/FormsControls/FormsControls';
 import {isValidUrl, validateStatus} from '../../../utilits/validators';
+// @ts-ignore
+import b from '../../../common/components/button.module.scss';
 
 type SettingsFormPropsType = {
     onSubmit: (formData: UpdatedProfileType & { status: string }) => void;
@@ -39,21 +41,21 @@ const SettingsForm = (props: SettingsFormPropsType) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="status">My Status: {status}</label>
-                {createField(TextArea, 'status', 'status', '', validateStatus)}
+        <form className={s.form} onSubmit={handleSubmit}>
+            <div className={s.status}>
+                <label className={s.statusText} htmlFor="status">{status}</label>
+                {createField(TextArea, 'change status', 'status', '', validateStatus)}
             </div>
-            <div>
-                <label>Contacts:</label>
+            <div className={s.contactsBlock}>
+                <h3   >Contacts:</h3>
                 {Object.entries(initialValues.contacts || {}).map(([key, value]) => (
-                    <div key={key}>
+                    <div className={s.contact} key={key}>
                         <label htmlFor={`contacts.${key}`}>{key}: </label>
                         {createField(Input, 'enter url', `contacts.${key}`, 'text', isValidUrl)}
                     </div>
                 ))}
             </div>
-            <button type="submit">Save settings</button>
+            <button className={`${b.button} ${s.button}`}  type="submit">Save settings</button>
         </form>
     );
 };
@@ -82,7 +84,7 @@ export const Settings = (props: SettingsPropsType) => {
 
     return (
         <>
-            <div>
+            <div className={s.settings}>
                 <img className={s.profileAvatar} src={profile?.photos?.large || defaultPhoto} alt="profile" />
             </div>
             {/*@ts-ignore*/}

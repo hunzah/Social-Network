@@ -1,6 +1,8 @@
 import React, {ChangeEvent} from 'react';
 // @ts-ignore
 import s from './ProfileInfo.module.scss';
+// @ts-ignore
+import b from './../../../../common/components/button.module.scss';
 import {ContactType, ProfileType} from '../../../redux/profile-reducer';
 import defaultPhoto from './../../../../assets/img/default avatar.png';
 // @ts-ignore
@@ -34,7 +36,7 @@ export const ProfileInfo = (props: PropsType) => {
     const photo = profile.photos?.large
     const fullName = profile.fullName
     const contacts: ContactType = profile.contacts
-    // const contactsArray = contacts ? Object.entries(contacts) : [];
+
     const Facebook = contacts?.facebook
     const Instagram = contacts?.instagram
     const Twitter = contacts?.twitter
@@ -58,7 +60,7 @@ export const ProfileInfo = (props: PropsType) => {
                                 <div onChange={onMainPhotoSelect}>
                                     {/*<img className={s.AddPhotoIcon} src={AddPhotoIcon} alt="profile"/>*/}
                                 </div>
-                                <input id="main-photo-upload" type="file" onChange={onMainPhotoSelect}/>
+                                <input className={s.button} id="main-photo-upload" type="file" onChange={onMainPhotoSelect}/>
                             </label>
 
                         </div>}

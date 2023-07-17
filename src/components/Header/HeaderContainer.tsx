@@ -17,7 +17,7 @@ class HeaderContainer extends React.Component<PropsType> {
     render() {
         return (
             <>
-                <Header email={this.props.email} login={this.props.login} isAuth={this.props.isAuth}
+                <Header email={this.props.email} name={this.props.name} isAuth={this.props.isAuth}
                         userId={this.props.userId} handleLogOut={this.props.logOutUser}/>
             </>
         )
@@ -28,7 +28,7 @@ type MapStateType = {
     isAuth: boolean | undefined
     userId: number | null
     email: string | null
-    login: string | null
+    name: string | undefined
 }
 
 type MapDispatchType = {
@@ -41,7 +41,7 @@ const mapStateToProps = (state: AppReduxStateType) => {
         isAuth: state.auth.isAuth,
         userId: state.auth.id,
         email: state.auth.email,
-        login: state.auth.login
+        name: state.profilePage.profile?.fullName
     }
 }
 

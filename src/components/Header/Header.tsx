@@ -1,5 +1,8 @@
 import React from 'react';
-import s from './Header.module.css';
+// @ts-ignore
+import s from './Header.module.scss';
+// @ts-ignore
+import b from './../../common/components/button.module.scss';
 import {NavLink} from 'react-router-dom';
 // @ts-ignore
 import logo from './../../assets/img/logo-mini.svg';
@@ -8,7 +11,7 @@ type PropsType = {
     isAuth: boolean | undefined
     userId: number | null
     email: string | null
-    login: string | null
+    name: string | undefined
     handleLogOut: ()=>void
 }
 export const Header = (props: PropsType) => {
@@ -22,9 +25,9 @@ export const Header = (props: PropsType) => {
                  src={logo}/>
             <div className={s.loginBlock}>
                 {props.isAuth ?
-                    <div>
-                        <span>{props.login}</span>
-                        <button onClick={onclickHandler}>Log Out</button>
+                    <div className={s.nameAndButton}>
+                        <span>{props.name}</span>
+                        <button className={`${b.button} ${s.button}`} onClick={onclickHandler}>Log Out</button>
                     </div>
                     :
                     (<NavLink to={'/Login'}>log in</NavLink>)

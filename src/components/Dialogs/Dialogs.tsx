@@ -1,6 +1,8 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import s from './Dialogs.module.css';
+// @ts-ignore
+import b from './../../common/components/button.module.scss';
 import {Message} from './Message/Message';
 import {Dialog} from './DialogItem/Dialog';
 import {MessagesPageType} from '../redux/store';
@@ -47,7 +49,7 @@ const AddMessageForm = (props: InjectedFormProps<FormValues>) => {
                 name="newMessageBody"
                 placeholder="enter your message"
             />
-            <button type="submit">Send</button>
+            <button className={b.button} type="submit">Send</button>
         </form>
     );
 };
