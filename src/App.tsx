@@ -46,7 +46,7 @@ class App extends React.Component<PropsType> {
                         <Navbar />
                         <div className={c.container}>
                             <Suspense fallback={<div><Preloader/></div>}>
-                                <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
+                                {/*<Route path="/Dialogs" render={() => <DialogsContainer/>}/>*/}
                                 <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
                             </Suspense>
                             <Route path="/Music" render={() => <Music/>}/>

@@ -34,7 +34,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
 
     return (
         <div className={s.myPostsContainer}>
-            <div className={s.addPostForm}><h3>Add new post</h3>
+            <div className={s.addPostForm}><h3 style={{color:'white'}}>Add new post</h3>
                 <div>
                     <ReduxMyPostForm onSubmit={handleAddPost}/>
                 </div>

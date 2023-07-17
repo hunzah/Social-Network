@@ -2,8 +2,6 @@
 
 .nav {
   width: 300px;
-
-  border: 1px white solid;
   background-color: $secondaryBgColor;
   padding-left: 32px;
 
@@ -12,7 +10,7 @@
 .item {
   display: flex;
   height: 25px;
-  //border: 1px white solid;
+
   padding: 24px 0;
   text-align: center;
 }

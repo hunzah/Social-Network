@@ -4,7 +4,6 @@
 .App {
   @include text(16px);
   background-color: $globalBgColor;
-  border: white 1px solid;
   max-height: 100%;
   max-width: 100%;
   margin: auto;

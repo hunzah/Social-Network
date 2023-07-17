@@ -44,7 +44,7 @@ export class ProfileStatus extends React.Component<PropsType> {
     render() {
         return (
             <div className={s.status }>
-                <p>Status</p>
+                <h3 style={{color:'white'}}>Status</h3>
                 {this.props.isOwner ?
                     <div>
                         {!this.state.editMode ?
