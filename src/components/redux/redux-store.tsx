@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, compose, createStore, Store} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import {friendsReducer} from './friends-reducer';
 import {MessageSendAC, messagesReducer} from './messages-reducer';
 import profileReducer, {AddPostAC, SavePhotoAC, SetStatusAC, SetUserProfileAC} from './profile-reducer';
@@ -58,9 +58,6 @@ export type AppReduxStateType = ReturnType<typeof reducers>
 export type RootState = ReturnType<typeof store.getState>
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, ActionTypes>
-
-
-
 
 
 // @ts-ignore
