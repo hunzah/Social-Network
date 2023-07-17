@@ -22,11 +22,32 @@
   width: 150px;
   height: 150px;
 }
+
 .AddPhotoIcon {
   position: relative;
   width: 25px;
 }
 
+.statusAndContactsContainer {
+  width: 18vw;
+  position: relative;
+  top: -200px;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 32px;
+}
+
+.contacts {
+  padding: 16px;
+}
+
 .contacts img {
-  width: 25px;
+  padding: 16px;
+  width: 26px;
+}
+
+.status {
+  //border: white 1px solid;
+
+
 }

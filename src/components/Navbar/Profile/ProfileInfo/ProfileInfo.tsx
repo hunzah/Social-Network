@@ -64,16 +64,19 @@ export const ProfileInfo = (props: PropsType) => {
                         </div>}
                     {fullName && <div className={s.name}>{fullName}</div>}
                 </div>
-                <ProfileStatus isOwner={isOwner} value={'ok'} status={status} updateStatus={updateStatus}/>
-                {contacts &&
-                    <div className={s.contacts}>Contacts:
-                        <a href={Facebook?? undefined}><img src={facebook}/></a>
-                        <a href={Instagram?? undefined}><img src={instagram}/></a>
-                        <a href={Twitter?? undefined}><img src={twitter}/></a>
-                        <a href={Youtube?? undefined}><img src={youtube}/></a>
+                <div className={s.statusAndContactsContainer}>
+                    <ProfileStatus isOwner={isOwner} value={'ok'}
+                                   status={status}
+                                   updateStatus={updateStatus}/>
+                    {contacts &&
+                        <div className={s.contacts}>
+                            <a href={Facebook ?? undefined}><img src={facebook}/></a>
+                            <a href={Instagram ?? undefined}><img src={instagram}/></a>
+                            <a href={Twitter ?? undefined}><img src={twitter}/></a>
+                            <a href={Youtube ?? undefined}><img src={youtube}/></a>
 
-                    </div>
-                }
+                        </div>
+                    }</div>
             </div>
         </div>
     )

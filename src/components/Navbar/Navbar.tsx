@@ -14,22 +14,11 @@ export const Navbar: React.FC = () => {
                 <NavLink to="/Dialogs" activeClassName={s.active}>Messages</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to="/Music" activeClassName={s.active}>Music</NavLink>
+                <NavLink to="/Users" activeClassName={s.active}>Users</NavLink>
             </div>
             <div className={s.item}>
                 <NavLink to="/Settings" activeClassName={s.active}>Settings</NavLink>
             </div>
-            <div className={s.item}>
-                <NavLink to="/Friends" activeClassName={s.active}>Friends</NavLink>
-            </div>
-            <div className={s.item}>
-                <NavLink to="/Users" activeClassName={s.active}>Users</NavLink>
-            </div>
-
-            <div className={s.friends}>
-                {/*<Friends store={props.store}/>*/}
-            </div>
-
         </nav>
     )
 }

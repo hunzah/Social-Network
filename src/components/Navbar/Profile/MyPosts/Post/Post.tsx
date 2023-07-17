@@ -3,20 +3,20 @@ import React from 'react';
 import s from './Post.module.scss'
 import defaultPhoto from '../../../../../assets/img/default avatar.png'
 
-type PostType = {
+type PropsType = {
     message: string,
     count: number
-    avatar:File | undefined
+    avatar: File | undefined
+    name: string | undefined
 }
 
-export const Post = (props: PostType) => {
-
+export const Post = (props: PropsType) => {
+    const {avatar, message, name, count} = props
     return (
         <div className={s.postItem}>
-            <img src={props.avatar? props.avatar.toString() : defaultPhoto}/>
-            <div>{props.message}</div>
-            <span>likes: </span>
-            {props.count}
+            <div className={s.imgAndName}><img src={avatar ? avatar.toString() : defaultPhoto}/>
+                <span>{name}</span></div>
+            <div>{message}</div>
         </div>
     )
 }

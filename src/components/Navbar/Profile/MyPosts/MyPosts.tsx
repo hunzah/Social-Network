@@ -16,13 +16,14 @@ type MyPostsPropsType = {
     onAddPost: (newPostText: string) => void
     profilePage: ProfilePageType
     avatar: File | undefined
+    name: string | undefined
 }
 
 
 export const MyPosts = (props: MyPostsPropsType) => {
-    const {avatar, onAddPost, profilePage} = props
+    const {avatar, onAddPost, profilePage, name} = props
 
-    const postElements = profilePage.postsArr.map(item => <Post key={item.id} message={item.message}
+    const postElements = profilePage.postsArr.map(item => <Post name={name} key={item.id} message={item.message}
                                                                 count={item.count} avatar={avatar}/>)
 
     const handleAddPost = (value: FormValueType) => {
@@ -31,11 +32,12 @@ export const MyPosts = (props: MyPostsPropsType) => {
 
     return (
         <div className={s.myPostsContainer}>
-            <h3>My Post</h3>
-            <div>
-                <ReduxMyPostForm onSubmit={handleAddPost}/>
+            <div className={s.addPostForm}><h3>Add new post</h3>
+                <div>
+                    <ReduxMyPostForm onSubmit={handleAddPost}/>
+                </div>
             </div>
-            <div>
+            <div className={s.posts}>
                 {postElements}
             </div>
         </div>
@@ -50,7 +52,7 @@ const MyPostForm = (props: InjectedFormProps<FormValueType>) => {
                    validate={[required]}
             />
             <div>
-                <button type="submit">Add post</button>
+                <button type="submit">publish</button>
             </div>
         </form>
     )

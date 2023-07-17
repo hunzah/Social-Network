@@ -1,5 +1,6 @@
 import React from 'react';
-
+// @ts-ignore
+import s from './ProfileInfo.module.scss'
 
 type PropsType = {
     value: string
@@ -42,7 +43,8 @@ export class ProfileStatus extends React.Component<PropsType> {
     }
     render() {
         return (
-            <div>
+            <div className={s.status }>
+                <p>Status</p>
                 {this.props.isOwner ?
                     <div>
                         {!this.state.editMode ?
