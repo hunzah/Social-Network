@@ -15,6 +15,7 @@ import {InitializedSuccessAC} from './components/redux/app-reducer';
 import SettingsContainer from './components/Navbar/Settings/SettingsContainer';
 // @ts-ignore
 import c from './common/components/container.module.scss';
+import {Error404} from './components/404/Error404';
 
 // lazy imports
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -41,13 +42,13 @@ class App extends React.Component<PropsType> {
         return (
             <>
                 <div className={s.App}>
-                    <HeaderContainer />
+                    <HeaderContainer/>
                     <div className={s.navAndMainContainer}>
-                        <Navbar />
+                        <Navbar/>
                         <div className={c.container}>
                             <Suspense fallback={<div><Preloader/></div>}>
-                                {/*<Route path="/Dialogs" render={() => <DialogsContainer/>}/>*/}
                                 <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
+                                <Route exact path="/" render={() => <ProfileContainer/>}/>
                             </Suspense>
                             <Route path="/Music" render={() => <Music/>}/>
                             <Route path="/Settings/:userId?" render={() => <SettingsContainer/>}/>
@@ -56,6 +57,7 @@ class App extends React.Component<PropsType> {
                                 <Route path="/Users" render={() => <UsersApi/>}/>
                             </Suspense>
                             <Route path="/Login" render={() => <LogIn/>}/>
+                            <Route path="/*" render={() => <Error404/>}/>
                         </div>
                     </div>
                 </div>
