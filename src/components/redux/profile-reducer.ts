@@ -39,8 +39,9 @@ export type ContactType = {
 
 const initialState: ProfilePageType = {
     postsArr: [
-        {id: 1, message: 'Hi, how are you?', count: 15},
-        {id: 2, message: 'It\'s my first post', count: 16},
+        {id: 2, message: 'It\'s my first post🥳🎉', count: 16},
+        {id: 1, message: 'Hi, how are you? 😊', count: 15},
+
     ],
     newPostText: '',
     profile: {
@@ -148,7 +149,7 @@ export const updateProfileThunkCreator = (profile: UpdatedProfileType): AppThunk
 
         const updatedProfile: UpdatedProfileType = {
             userId: state?.userId,
-            aboutMe:state?.aboutMe,
+            aboutMe: state?.aboutMe,
             lookingForAJob: state?.lookingForAJob,
             lookingForAJobDescription: 'state?.lookingForAJobDescription',
             fullName: state?.fullName,
