@@ -54,7 +54,7 @@ const LoginForm = (props: PropsWithChildren<InjectedFormProps<any>>) => {
             {error &&
                 <div className={f.formSummaryError}>{error}</div>}
             <div>
-                <button className={b.button}>Submit</button>
+                <button className={b.button}>Log in</button>
             </div>
         </form>)
 }
