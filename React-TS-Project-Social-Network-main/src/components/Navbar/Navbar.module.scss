@@ -1,0 +1,57 @@
+@import "./../../common/styles/sass/variables.module";
+
+.nav {
+  width: 300px;
+  background-color: $secondaryBgColor;
+  padding-left: 32px;
+  height: 50vw;
+}
+
+.item {
+  display: flex;
+  height: 25px;
+
+  padding: 24px 0;
+  text-align: center;
+}
+
+.item a {
+  display: block;
+  color: $textColor;
+  text-decoration: none;
+  //border: 1px white solid;
+}
+
+.item:hover {
+  background-color: #1c3c6f;
+  text-decoration: none;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+.item a.active {
+  color: gold;
+
+}
+
+.item img {
+  width: 25px;
+  padding-right: 8px;
+}
+
+.friends {
+}
+
+.friendItem {
+  margin-right: 15px;
+}
+
+.friends img {
+  margin-top: 20px;
+  width: 35px;
+  height: 30px;
+  border-radius: 30px;
+}
+
+.name {
+  font-size: 10px;
+}

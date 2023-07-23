@@ -1,0 +1,18 @@
+@import './common/styles/sass/variables.module';
+@import './common/styles/sass/mixins.module';
+
+.App {
+  @include text(16px);
+  background-color: $globalBgColor;
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto;
+  padding: 0 48px 16px 0;
+}
+
+
+.navAndMainContainer {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}

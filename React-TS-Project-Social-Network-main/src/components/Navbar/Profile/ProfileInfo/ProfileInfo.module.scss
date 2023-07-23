@@ -1,0 +1,48 @@
+@import './src/common/styles/sass/variables.module';
+
+.profileInfoContainer {
+  position: relative;
+  top: -80px;
+  z-index: 1;
+  margin: 0 16px;
+  background-color: #080d1e;
+
+}
+
+.photoAndName {
+  position: relative;
+  left: 45%;
+  top: -100px;
+  z-index: 1;
+}
+
+.profileAvatar {
+  border: white 5px solid;
+  border-radius: 10%;
+  width: 150px;
+  height: 150px;
+}
+
+.AddPhotoIcon {
+  position: relative;
+  width: 25px;
+}
+
+.statusAndContactsContainer {
+  width: 18vw;
+  position: relative;
+  top: -200px;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 32px;
+}
+
+.contacts {
+  padding: 16px;
+}
+
+.contacts img {
+  padding: 16px;
+  width: 26px;
+}
+

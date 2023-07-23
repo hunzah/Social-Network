@@ -1,0 +1,30 @@
+@import './src/common/styles/sass/mixins.module';
+
+.header {
+
+  grid-area: header;
+  /*background-color: darkgreen;*/
+  padding: 16px 0 0 32px;
+}
+
+.header img {
+  width: 50px;
+}
+
+.loginBlock {
+  float: right;
+}
+
+.loginBlock a {
+  color: white;
+  text-decoration: none;
+}
+
+.nameAndButton {
+
+}
+
+.button {
+  margin-left: 16px;
+
+}

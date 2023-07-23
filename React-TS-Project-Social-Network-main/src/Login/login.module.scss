@@ -1,0 +1,16 @@
+@import './../common/styles/sass/variables.module';
+
+.login {
+  width: 400px;
+  padding: 150px 150px;
+  margin: auto;
+  background-color: $secondaryBgColor;
+}
+
+.form input {
+  margin: 0 0 18px;
+}
+.rememberMe{
+  width: 10px;
+  display: flex;
+}

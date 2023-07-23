@@ -1,0 +1,13 @@
+@import './src/common/styles/sass/variables.module';
+
+.myPostsContainer {
+  margin: 0 16px;
+  background-color: $secondaryBgColor;
+
+}
+.addPostForm{
+  padding:0 0 48px 32px;
+}
+.posts{
+  padding:0 0 48px 32px;
+}
