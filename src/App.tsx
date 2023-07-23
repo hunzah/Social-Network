@@ -16,6 +16,8 @@ import SettingsContainer from './components/Navbar/Settings/SettingsContainer';
 // @ts-ignore
 import c from './common/components/container.module.scss';
 import {Error404} from './components/404/Error404';
+// @ts-ignore
+import r from './common/styles/Loader.module.scss'
 
 // lazy imports
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -36,7 +38,7 @@ class App extends React.Component<PropsType> {
 
         if (!this.props.initialized) {
             return (
-                <Preloader/>
+                <div className={r.loader}><Preloader/></div>
             )
         }
         return (
