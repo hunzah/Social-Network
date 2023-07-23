@@ -1,16 +1,13 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 // @ts-ignore
 import s from './App.module.scss';
 import {Navbar} from './components/Navbar/Navbar';
 import {HashRouter, Route} from 'react-router-dom';
-import {Music} from './components/Navbar/Music/Music';
-import {FriendsContainer} from './components/Navbar/Friends/FriendsContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LogIn from './Login/LogIn';
 import {connect, Provider} from 'react-redux';
 import {compose} from 'redux';
 import store, {AppReduxStateType} from './components/redux/redux-store';
-import {Preloader} from './components/common/Preloader/Preloader';
 import {InitializedSuccessAC} from './components/redux/app-reducer';
 import SettingsContainer from './components/Navbar/Settings/SettingsContainer';
 // @ts-ignore
@@ -18,12 +15,12 @@ import c from './common/components/container.module.scss';
 import {Error404} from './components/404/Error404';
 // @ts-ignore
 import r from './common/styles/Loader.module.scss'
-
-// lazy imports
-const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
-const ProfileContainer = React.lazy(() => import('./components/Navbar/Profile/ProfileContainer'));
-// const SettingsContainer = React.lazy(() => import('./components/Navbar/Settings/SettingsContainer'));
-const UsersApi = React.lazy(() => import('./components/Users/UsersContainer'));
+// @ts-ignore
+import ReactLoading from 'react-loading';
+import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Navbar/Profile/ProfileContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {Switch} from "react-router-dom";
 
 
 type PropsType = mapStateToPropsType & mapDispatchToPropsType
@@ -38,7 +35,7 @@ class App extends React.Component<PropsType> {
 
         if (!this.props.initialized) {
             return (
-                <div className={r.loader}><Preloader/></div>
+                <div className={r.loader}><ReactLoading color={'#fff'} height={'20%'} width={'20%'}/></div>
             )
         }
         return (
@@ -48,18 +45,15 @@ class App extends React.Component<PropsType> {
                     <div className={s.navAndMainContainer}>
                         <Navbar/>
                         <div className={c.container}>
-                            <Suspense fallback={<div><Preloader/></div>}>
+                            <Switch>
                                 <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
                                 <Route exact path="/" render={() => <ProfileContainer/>}/>
-                            </Suspense>
-                            <Route path="/Music" render={() => <Music/>}/>
-                            <Route path="/Settings/:userId?" render={() => <SettingsContainer/>}/>
-                            <Route path="/Friends" render={() => <FriendsContainer/>}/>
-                            <Suspense fallback={<div><Preloader/></div>}>
-                                <Route path="/Users" render={() => <UsersApi/>}/>
-                            </Suspense>
-                            <Route path="/Login" render={() => <LogIn/>}/>
-                            <Route path="/*" render={() => <Error404/>}/>
+                                <Route path="/Dialogs" render={() => <DialogsContainer/>}/>
+                                <Route path="/Settings/:userId?" render={() => <SettingsContainer/>}/>
+                                <Route path="/Users" render={() => <UsersContainer/>}/>
+                                <Route path="/Login" render={() => <LogIn/>}/>
+                                <Route path="*" render={() => <Error404/>}/>
+                            </Switch>
                         </div>
                     </div>
                 </div>

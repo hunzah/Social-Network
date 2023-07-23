@@ -12,7 +12,6 @@ import {
 } from '../redux/users-reducer';
 import {connect} from 'react-redux';
 import {Users} from './Users';
-import {Preloader} from '../common/Preloader/Preloader';
 import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
 import {compose} from 'redux';
 import {
@@ -23,6 +22,9 @@ import {
     getTotalUsersCount,
     getUsers
 } from '../redux/users-selectors';
+// @ts-ignore
+import r from "../../common/styles/Loader.module.scss";
+import ReactLoading from "react-loading";
 
 export type MapStateType = {
     users: UsersArrType[]
@@ -63,7 +65,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
         return (
             <>
                 {this.props.isFetching &&
-                    <Preloader/>}
+                    <div className={r.loader}><ReactLoading color={'#fff'} height={'20%'} width={'20%'} /></div>}
                 <Users onPageChanged={this.onPageChanged} totalUsersCount={this.props.totalUsersCount}
                        pageSize={this.props.pageSize} currentPage={this.props.currentPage}
                        users={this.props.users}

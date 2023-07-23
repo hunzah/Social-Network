@@ -2,7 +2,9 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {AppReduxStateType} from '../components/redux/redux-store';
 import {connect} from 'react-redux';
-import {Preloader} from '../components/common/Preloader/Preloader';
+// @ts-ignore
+import r from "../common/styles/Loader.module.scss";
+import ReactLoading from "react-loading";
 
 
 type PropsType = {
@@ -19,7 +21,7 @@ export const withAuthRedirect = <P extends object>(Component: React.ComponentTyp
 
         render() {
             if (this.props.isLoading) {
-                return <Preloader/>
+                return <div className={r.loader}><ReactLoading color={'#fff'} height={'20%'} width={'20%'}/></div>
             } else {
                 return (!this.props.isAuth ?
                     <Redirect to={'./login'}/>
