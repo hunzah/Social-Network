@@ -1,5 +1,5 @@
 import s from './paginator.module.css';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 type PropsType = {
     onPageChanged: (p: number) => void;
