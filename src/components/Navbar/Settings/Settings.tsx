@@ -47,7 +47,7 @@ const SettingsForm = (props: SettingsFormPropsType) => {
                 {createField(TextArea, 'change status', 'status', '', validateStatus)}
             </div>
             <div className={s.contactsBlock}>
-                <h3   >Contacts:</h3>
+                <h3 >Contacts:</h3>
                 {Object.entries(initialValues.contacts || {}).map(([key, value]) => (
                     <div className={s.contact} key={key}>
                         <label htmlFor={`contacts.${key}`}>{key}: </label>

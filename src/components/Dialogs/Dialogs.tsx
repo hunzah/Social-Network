@@ -9,6 +9,7 @@ import {Dialog} from './DialogItem/Dialog';
 import {MessagesPageType} from '../redux/store';
 import {TextArea} from '../common/FormsControls/FormsControls';
 import {maxLength, required} from '../../utilits/validators';
+import logIn from "../../Login/LogIn";
 
 type FormValues = {
     newMessageBody: string;
@@ -23,7 +24,7 @@ export const Dialogs = (props: DialogsPropsType) => {
     const addNewMessage = (values: FormValues) => {
         props.AddMessageHandler(values.newMessageBody);
     };
-
+    console.log(props.messagesPage.messageArr)
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
@@ -33,7 +34,8 @@ export const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={s.messages}>
                 {props.messagesPage.messageArr.map((item, id) => {
-                    return <Message key={id} text={item.message}name={'Curtis James'}/>;
+                    console.log(item)
+                    return <Message key={id} text={item.message} name={'Curtis James'}/>;
                 })}
                 <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
@@ -48,7 +50,7 @@ const AddMessageForm = (props: InjectedFormProps<FormValues>) => {
                 name="newMessageBody"
                 placeholder="enter your message"
             />
-            <button disabled={props.form.length>1} className={b.button} type="submit">Send</button>
+            <button onClick={props.handleSubmit} disabled={props.form.length>1} className={b.button} type="submit">Send</button>
         </form>
     );
 };

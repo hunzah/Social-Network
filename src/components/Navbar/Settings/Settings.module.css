@@ -17,14 +17,21 @@
 .status {
     text-align: center;
     padding: 36px;
+    display: flex;
+    flex-direction: column;
+}
+.statusText{
+    padding-bottom: 32px;
 }
 
 .contactsBlock {
+
     color: #fff;
     padding-bottom: 48px;
 }
 
 .contactsBlock h3 {
+    text-align: start;
     padding-bottom: 48px;
 }
 
