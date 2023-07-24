@@ -1,6 +1,11 @@
+@import './../../../../../common/styles/sass/variables.module';
 .postItem {
 
   padding-bottom: 32px;
+  border: 4px $textColor solid;
+  border-radius: 10px;
+  margin-bottom: 36px;
+  box-shadow: 0 4px 8px $titlesFont;
 }
 
 
