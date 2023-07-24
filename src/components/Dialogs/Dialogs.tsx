@@ -27,18 +27,19 @@ export const Dialogs = (props: DialogsPropsType) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
-                {props.messagesPage.dialogsArr.map((item, id) => {
-                    return <Dialog key={id} path={item.path} name={item.name}/>;
-                })}
+                {props.messagesPage.dialogsArr.map((item, id) => (
+                    <Dialog key={id} path={item.path} name={item.name} />
+                ))}
             </div>
             <div className={s.messages}>
-                {props.messagesPage.messageArr.map((item, id) => {
-                    return <Message key={id} text={item.message}/>;
-                })}
-                <AddMessageFormRedux onSubmit={addNewMessage}/>
+                {props.messagesPage.messageArr.map((item, id) => (
+                    <Message key={id} text={item.message} name={props.messagesPage.dialogsArr[id].name} />
+                ))}
+                <AddMessageFormRedux onSubmit={addNewMessage} />
             </div>
         </div>
     );
+
 };
 const AddMessageForm = (props: InjectedFormProps<FormValues>) => {
     return (

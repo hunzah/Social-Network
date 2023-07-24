@@ -5,7 +5,8 @@ import s from './Error.module.css'
 export const Error404 = () => {
     return (
         <div className={s.errorImg} style={{display: 'flex'}}>
-            <img src={error404}/>
+            <img alt={'404'} src={error404}/>
+            <h1>Page not found 😧</h1>
         </div>
     );
 };

@@ -21,8 +21,8 @@ const initialState = {
         {path: '4', name: 'Christopher George'},
     ],
     messageArr: [
-        {message: 'Hi!'},
-        {message: 'my name is Curtis James!'},
+
+        {message: 'Hi my name is'},
 
     ]
 }
