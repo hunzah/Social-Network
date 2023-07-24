@@ -1,4 +1,5 @@
-import s from '../Dialogs.module.css'
+// @ts-ignore
+import s from '../Dialogs.module.scss'
 
 type MessagesPropsType = {
     text: string

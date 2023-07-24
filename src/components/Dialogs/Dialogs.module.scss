@@ -1,0 +1,49 @@
+@import './../../common/styles/sass/variables.module';
+
+.dialogs {
+  display: flex;
+}
+
+.dialogsItem {
+  flex: 1;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+  height: 100vw;
+}
+
+.messages {
+  flex: 3;
+  padding: 10px;
+}
+
+/* Стили для компоненты Message */
+.message {
+  background-color: $secondaryBgColor;
+  border: $textColor 1px solid;
+  padding: 10px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px $textColor;
+}
+
+/* s.module.css */
+.dialog {
+  padding: 10px;
+  margin: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dialog.active {
+  background-color: #f0f0f0;
+}
+
+.dialog a {
+  color: #000;
+  text-decoration: none;
+}
+
+.dialog a:hover {
+  text-decoration: underline;
+}

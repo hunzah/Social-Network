@@ -1,4 +1,6 @@
-import s from '../Dialogs.module.css'
+// @ts-ignore
+import s from '../Dialogs.module.scss'
+
 import {NavLink} from 'react-router-dom';
 
 type DialogPropsType = {
@@ -8,7 +10,7 @@ type DialogPropsType = {
 
 export const Dialog = (props: DialogPropsType) => {
     return (
-        <div className={`${s.dialog} ${s.active}`}><NavLink to={`/dialog${props.path}`}>{props.name}</NavLink></div>
+        <div className={`${s.dialog} ${s.active}`}><NavLink to={`/Dialogs`}>{props.name}</NavLink></div>
     )
 }
 

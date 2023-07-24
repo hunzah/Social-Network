@@ -1,6 +1,7 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import s from './Dialogs.module.css';
+// @ts-ignore
+import s from './Dialogs.module.scss';
 // @ts-ignore
 import b from './../../common/components/button.module.scss';
 import {Message} from './Message/Message';
@@ -40,16 +41,14 @@ export const Dialogs = (props: DialogsPropsType) => {
     );
 };
 const AddMessageForm = (props: InjectedFormProps<FormValues>) => {
-    const length15 = maxLength(15)
     return (
         <form onSubmit={props.handleSubmit}>
             <Field
                 component={TextArea}
-                validate={[required]}
                 name="newMessageBody"
                 placeholder="enter your message"
             />
-            <button className={b.button} type="submit">Send</button>
+            <button disabled={props.form.length>1} className={b.button} type="submit">Send</button>
         </form>
     );
 };
