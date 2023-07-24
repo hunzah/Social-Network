@@ -1,3 +1,35 @@
 .selectedPage {
     font-size: large;
 }
+/* s.module.css */
+.paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.paginator button {
+    margin: 0 5px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.paginator button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.paginator span {
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.paginator span.selectedPage {
+    font-weight: bold;
+    color: #007bff;
+}

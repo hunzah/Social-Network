@@ -2,3 +2,58 @@
     width: 40px;
     height: 40px;
 }
+/* s.module.css */
+/* Стили для компонента Users */
+.users-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 32px;
+}
+
+/* Стили для компонента User */
+.user-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color:black;
+    width: 500px;
+    margin: 10px;
+    padding: 10px;
+    background-color:#ccc ;
+    /*border: 1px solid #ccc;*/
+    border-radius: 4px;
+}
+
+.user-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-card button {
+    margin-left: 24px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-card button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Дополнительные стили (необязательно) */
+.user-name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.user-city {
+    color: #888;
+    font-size: 14px;
+}

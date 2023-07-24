@@ -39,11 +39,10 @@ export const Paginator = (props: PropsType) => {
     const nextDisabled = portionNumber === portionCount;
 
     return (
-        <div>
+        <div className={s.paginator}>
             <button onClick={() => setPortionNumber(portionNumber - 1)} disabled={prevDisabled}>
                 prev
             </button>
-
 
             {pages
                 .filter((p) => p >= leftPageNumber && p <= rightPageNumber)

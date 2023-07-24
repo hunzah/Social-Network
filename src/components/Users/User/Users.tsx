@@ -12,27 +12,38 @@ type PropsType = {
 }
 export const User = (props: PropsType) => {
     const {user, followThunk, unFollowThunk, followingInProgress} = props
-    return <div key={user.id}>
-        <NavLink to={'/profile/' + user.id}>
-            <img alt={'profile'} src={user.photos.small !== null ? user.photos.small : defaultPhoto}
-                 className={s.avatar}
-            /></NavLink>
-        {user.followed ?
-            <button onClick={() => {
-                followThunk(user.id)
-            }}
-                    disabled={followingInProgress.some(id => id === user.id)}
-
-            >unfollow</button>
-            :
-            <button onClick={() => {
-                unFollowThunk(user.id)
-            }}
-                    disabled={followingInProgress.some(id => id === user.id)}
-            >follow</button>
-        }
-        <div>{user.name}</div>
-        <div>{user.city}</div>
-    </div>
+    console.log('User - user.followed: ', user.followed);
+    return (
+        <div className={s['user-card']} key={user.id}>
+            <NavLink to={'/profile/' + user.id}>
+                <img
+                    alt={'profile'}
+                    src={user.photos.small !== null ? user.photos.small : defaultPhoto}
+                    className={s.avatar}
+                />
+            </NavLink>
+            <div className={s['user-name']}>{user.name}</div>
+            <div className={s['user-city']}>{user.city}</div>
+            {user.followed ? (
+                <button
+                    onClick={() => {
+                        unFollowThunk(user.id);
+                    }}
+                    disabled={followingInProgress.some((id) => id === user.id)}
+                >
+                    unfollow
+                </button>
+            ) : (
+                <button
+                    onClick={() => {
+                        followThunk(user.id);
+                    }}
+                    disabled={followingInProgress.some((id) => id === user.id)}
+                >
+                    follow
+                </button>
+            )}
+        </div>
+    );
 
 };

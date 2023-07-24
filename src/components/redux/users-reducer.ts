@@ -28,7 +28,7 @@ export type UsersArrType = {
 
 const initialState: UsersType = {
     usersArr: [],
-    pageSize: 10,
+    pageSize: 17,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
