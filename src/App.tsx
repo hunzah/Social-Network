@@ -21,7 +21,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Navbar/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {Switch} from "react-router-dom";
-
+import { Redirect } from 'react-router-dom';
 
 type PropsType = mapStateToPropsType & mapDispatchToPropsType
 
@@ -38,6 +38,7 @@ class App extends React.Component<PropsType> {
                 <div className={r.loader}><ReactLoading color={'#fff'} height={'20%'} width={'20%'}/></div>
             )
         }
+
         return (
             <>
                 <div className={s.App}>
